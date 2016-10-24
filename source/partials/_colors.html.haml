@@ -1,0 +1,27 @@
+%section#colors
+  
+  %article.container
+    .row
+      .span-12
+        %h1 Colors
+        .flex.up2
+          -['red', 'orange', 'yellow', 'green', 'blue', 'teal', 'indigo', 'violet', 'navy', 'pink'].each do |color|
+            .box.m-1
+              %article.card
+                %h5="#{color}"
+                %div{class:"swatch bg-#{color}"}
+                %code=".bg-#{color}"
+                %code{class:color}=".#{color}"
+  
+  %article.container
+    .row
+      .span-12
+        %h1 Shades
+        .flex.up1
+          -['black', 'dark', 'mid', 'light', 'white'].each do |color|
+            .box.m-1
+              %article.card
+                %h5="#{color}"
+                %div{class:"swatch bg-#{color}"}
+                %code=".bg-#{color}"
+                %code{class:color}=".#{color}"

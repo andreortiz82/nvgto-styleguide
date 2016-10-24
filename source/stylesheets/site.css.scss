@@ -1,0 +1,37 @@
+@charset "utf-8";
+@import "bourbon";
+@import "neat";
+@import "normalize";
+@import "colors";
+@import "typography";
+@import "functions";
+@import "mixins";
+@import "animations";
+@import "font-awesome";
+@import "grid";
+@import "cards";
+@import "rating";
+
+/* Global */
+section#colors,
+section#typography,
+section#cards
+{
+  border-bottom: 1px solid $mid;
+  article {
+    &.container {
+      padding: rem(20) 0;
+    }
+  }
+}
+/* Colors Section */
+#colors {
+  article.card {
+    @include card;
+    
+    .swatch { 
+      height: rem(50);
+      margin-bottom: rem(5);
+    }
+  }
+}

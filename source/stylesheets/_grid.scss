@@ -1,0 +1,48 @@
+$radius:3px;
+
+$grid-columns:12;
+$app-width:80%;
+$breakpoint-small: "only screen and (min-width: 20em)";
+$breakpoint-medium: "only screen and (min-width: 30em)";
+$breakpoint-large: "only screen and (min-width: 40em)";
+
+.row { @include outer-container($app-width); }
+
+@for $i from 1 through $grid-columns {
+  .span-#{$i} { @include span-columns($i); }
+}
+
+@media #{$breakpoint-small} { /* Do this */ }
+@media #{$breakpoint-medium} { /* Do this */ }
+@media #{$breakpoint-large} { /* Do this */ }
+
+@for $i from 1 through $grid-columns {
+  .flex.up#{$i} .box { width: 100% / $grid-columns * $i; }
+}
+
+@mixin flex-container($direction:row, $wrap:wrap, $justify:flex-start, $align:flex-start) {
+  display: flex;
+  /* or inline-flex */
+  flex-direction: $direction;
+  /* row | row-reverse | column | column-reverse */
+  flex-wrap: $wrap;
+  /* nowrap | wrap | wrap-reverse; */
+  justify-content: $justify;
+  /*flex-start | flex-end | center*/
+  align-items: $align;
+  /* flex-start | flex-end | center | baseline | stretch; */
+}
+
+@mixin flex-item($grow:1, $align:auto){
+  flex-grow: $grow;
+  flex-basis:auto;
+  align-self: $align;
+  /* auto | flex-start | flex-end | center | baseline | stretch; */
+}
+
+.flex { @include flex-container(); }
+.flex .box { @include flex-item(); }
+
+.clearfix { @include clearfix }
+.left { float: left }
+.right { float: right }

@@ -1,0 +1,34 @@
+@mixin shadow($size:"small") {
+  @if $size == "small" {
+    $value:0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    box-shadow:$value;
+    -webkit-box-shadow:$value;
+    -moz-box-shadow:$value;
+  } @else {
+    $value:0 8px 17px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:$value;
+    -webkit-box-shadow:$value;
+    -moz-box-shadow:$value;
+  }
+}
+
+@mixin border-radius($rad:$radius) {
+  @include border-top-radius($rad);
+  @include border-right-radius($rad);
+  @include border-bottom-radius($rad);
+  @include border-left-radius($rad);
+}
+
+@mixin header {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  margin: rem(10) 0;
+}
+
+/* Cards */
+@mixin card {
+  @include shadow;
+  background: $white;
+  padding: rem(20);
+  margin-bottom: rem(10);
+}

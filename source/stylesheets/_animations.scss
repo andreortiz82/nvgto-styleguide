@@ -1,0 +1,33 @@
+.pulse {
+  -webkit-animation: pulse 0.5s infinite;
+}
+
+.floatAway {
+  -webkit-animation: floatAway 1.5s;
+}
+
+@-webkit-keyframes pulse {
+  from {
+    @include transform(scale(1));
+  }
+  50% {
+    @include transform(scale(1.05));
+  }
+  to {
+    @include transform(scale(1));
+  }
+}
+
+@-webkit-keyframes floatAway {
+  from {
+    @include transform(scale(1) rotate(0deg));
+    opacity: 1;
+    top: 0;
+  }
+  
+  to {
+    @include transform(scale(2.5) rotate(30deg));
+    opacity: 0;
+    top: rem(-50);
+  }
+}

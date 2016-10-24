@@ -1,0 +1,255 @@
+.card {
+  @include card;
+}
+
+/*
+.hotel {
+  position: relative;
+  .thumbnail-container {
+    overflow: hidden;
+    height: rem(350);
+
+    .inside-information {
+      @include clearfix;
+      @include transition(top, 0.5s);
+
+      cursor: pointer;
+      position: absolute;
+      top: 75%;
+      bottom: 0;
+      width: 100%;
+      padding: rem(20);
+      background: rgba($black, 0.8);
+
+      span.price {
+        @include header;
+        color: $white;
+        font-size: rem(30);
+        display: block;
+        margin: 0;
+
+        &:before {
+          content:'$';
+          color: $white;
+          font-size: rem(20);
+        }
+      }
+
+      a.carrot {
+        @include transition(color, 0.5s);
+        text-decoration: none;
+        color: rgba($white, 0.5);
+
+        &:hover { color:$white; }
+
+        &:after {
+          @include fa-icon();
+          content:$fa-var-chevron-down;
+          color: $orange;
+          margin-left: rem(5);
+        }
+      }
+      
+      .favorite-icon {
+        cursor: pointer;
+        i.heart-icon { 
+          &:after {
+            @include fa-icon();
+            content:$fa-var-heart-o;
+            color: $white;
+            font-size: rem(25);
+          }
+        }
+
+        &.liked {
+          i.heart-icon { 
+            &:after {
+              @include fa-icon();
+              content:$fa-var-heart;
+              color: $red;
+              font-size: rem(25);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .inside-information {
+      top: 0;
+    }
+  }
+}
+*/
+
+article.hotel {
+  position: relative;
+  height: rem(450);
+
+  .content-wrapper {
+    position: relative;
+    
+    .image-container {
+      .image {
+        @include transition(all, 0.3s);
+        width: auto;
+        height: rem(350);
+      }
+    }
+
+    .price-fav-ota-container {
+      @include clearfix;
+      @include transition(top, 0.5s);
+
+      cursor: pointer;
+      position: absolute;
+      top: 75%;
+      bottom: 0;
+      width: 100%;
+      padding: rem(20);
+      background: rgba($black, 0.8);
+
+      span.price {
+        @include header;
+        color: $white;
+        font-size: rem(30);
+        display: block;
+        margin: 0;
+
+        &:before {
+          content:'$';
+          color: $white;
+          font-size: rem(20);
+        }
+      }
+
+      a.carrot {
+        @include transition(color, 0.5s);
+        text-decoration: none;
+        color: rgba($white, 0.5);
+
+        &:hover { color:$white; }
+
+        &:after {
+          @include fa-icon();
+          content:$fa-var-chevron-left;
+          color: $orange;
+          margin-left: rem(5);
+        }
+      }
+
+      .favorite-icon {
+        cursor: pointer;
+        
+        i.heart-icon { 
+          font-size: rem(25);
+          
+          &:before {
+            @include fa-icon();
+            content:$fa-var-heart;
+            color: $trans;
+            opacity: 0;
+            position: absolute;
+          }
+
+          &:after {
+            @include fa-icon();
+            content:$fa-var-heart-o;
+            color: $white;
+          }
+        }
+
+        &.liked {
+          i.heart-icon { 
+            &:after {
+              content:$fa-var-heart;
+              color: $red;
+            }
+            &:before {
+              content:$fa-var-heart;
+              color: $red;
+              @extend .floatAway;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .name-rating {
+    position: absolute;
+    @include transition(top, 0.5s);
+    top:rem(360);
+
+    padding-left: rem(20);
+  }
+
+  .you-like-container {
+    @include transition(opactiy, 0.5s);
+    border-top: 1px solid $ccc;
+    padding-top: rem(10);
+    visibility: hidden;
+    opacity: 0;
+
+    label {
+      text-transform: uppercase;
+      font-size: rem(12);
+      color: $ccc;
+      margin: 0 0 rem(2) 0;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .action {
+    @include transition(opactiy, 0.5s);
+    padding: rem(10) 0;
+    visibility: hidden;
+    opacity: 0;
+
+    button.book-button {
+      @include transition(background, 0.5s);
+      @include border-radius;
+      border:none;
+      background: $yellow;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 800i;
+      font-size: rem(20);
+      padding: rem(10) rem(15);
+      cursor: pointer;
+
+      &:hover {
+        background:$yellow*2;
+      }
+    }
+  }
+
+  &:hover {
+    .image-container .image {
+      @include transform(scale(1.05));
+    }
+
+    .price-fav-ota-container {
+      top: 0;
+    }
+
+    .name-rating {
+      color: $white;
+      top:rem(80);
+    }
+
+    .you-like-container,
+    .action {
+      visibility: visible;
+      opacity: 1;
+
+      button {
+        @extend .pulse;
+      }
+    }
+  }
+}

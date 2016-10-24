@@ -1,0 +1,40 @@
+/* Grid + Spacing */
+$spaceamounts: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+@each $space in $spaceamounts {
+  .m-#{$space} { margin: #{$space}rem; }
+  .mt-#{$space} { margin-top: #{$space}rem; }
+  .mb-#{$space} { margin-bottom: #{$space}rem; }
+  .ml-#{$space} { margin-left: #{$space}rem; }
+  .mr-#{$space} { margin-right: #{$space}rem; }
+
+  .p-#{$space} { padding: #{$space}rem; }
+  .pt-#{$space} { padding-top: #{$space}rem; }
+  .pb-#{$space} { padding-bottom: #{$space}rem; }
+  .pl-#{$space} { padding-left: #{$space}rem; }
+  .pr-#{$space} { padding-right: #{$space}rem; }
+}
+
+/* Colors */
+$colors: (
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  "blue": $blue,
+  "indigo": $indigo,
+  "violet": $violet,
+  "white": $white,
+  "light": $light,
+  "ccc": $ccc,
+  "black": $black,
+  "halfblack": $halfblack,
+  "halfwhite": $halfwhite,
+  "navy": $navy,
+  "highlight": $highlight
+);
+
+@each $class, $color in $colors {
+  .bg-#{$class} { background: $color; }
+  .#{$class} { color: $color; }
+}

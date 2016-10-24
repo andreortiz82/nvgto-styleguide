@@ -1,0 +1,65 @@
+%section#typography
+  %article.container
+    .row
+      .span-12
+        %h1 Typography
+
+    .row
+      .span-4
+        %h1 Large header h1
+        %h2 Large header h2
+        %h3 Large header h3
+        %h4 Large header h4
+        %h5 Large header h5
+
+      .span-4
+        %h1.red Large header h1
+        %h2.orange Large header h2
+        %h3.yellow Large header h3
+        %h4.green Large header h4
+        %h5.blue Large header h5
+
+      .span-4
+        %h1.mid Large header h1
+        %h2.mid Large header h2
+        %h3.mid Large header h3
+        %h4.mid Large header h4
+        %h5.mid Large header h5
+
+  %article.container
+    .row
+      .span-4
+        %p=lorem.words(40)
+      .span-4
+        %p.lead=lorem.words(40)
+      .span-4
+        %p.quote=lorem.words(40)
+    .row
+      .span-6
+        %p.lead.sans=lorem.words(40)
+      .span-6
+        %p.mid=lorem.words(40)
+
+  %article.container
+    .row
+      .span-12
+        %h2 Lists
+    .row
+      .span-3
+        %ul
+          -[1,2,3,4,5,6].each do |num|
+            %li="List item number #{num}"
+      .span-3
+        %ol
+          -[1,2,3,4,5,6].each do |num|
+            %li="List item number #{num}"
+      .span-6
+        %ul.inline
+          -[1,2,3,4,5,6].each do |num|
+            %li="List item number #{num}"
+    .row
+      .span-6
+        %ul.inline
+          -[1,2,3,4,5,6].each do |num|
+            %li
+              %a{href:'#'}="List item number #{num}"
