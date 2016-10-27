@@ -31,6 +31,8 @@
       .span-4
         %h2 Controls
         %div.mb-1
+          =partial 'partials/trip-details'
+        %div.mb-1
           =partial 'partials/price-slider'
         %div.mb-1
           %label.form-label Rating
@@ -40,7 +42,12 @@
             %label Dropdown
             %a.current{href:'#'} Current
             %ul.dropdown
-              %li
-                %a{href:'#'} Option 1
-              %li
-                %a{href:'#'} Option 1
+              -3.times do |num|
+                %li
+                  %a{href:'#'}="Option #{num}"
+        %div.mb-1
+          .flyout-element
+            %label Amenities
+            %a.trigger Choose Amenities
+            %p.quote wifi, swimming pool, childcare, room service, +4 more
+        

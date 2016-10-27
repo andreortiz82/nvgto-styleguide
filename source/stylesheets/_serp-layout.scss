@@ -28,34 +28,7 @@
       }
 
       
-      #destination-container {
-        border-top: 1px solid $ccc;
-        border-bottom: 1px solid $ccc;
-        padding: rem(10) 0;
-        cursor: pointer;
-        background: $trans;
-
-        .read-only {
-          .city {
-            font-weight: bold;
-            display: block;
-            margin: 0;
-
-            &:after {
-              @include fa-icon();
-              content:$fa-var-pencil;
-              color: $orange;
-              margin-left: rem(10);
-            }
-          }
-
-          .trip-details {
-            color: $silver;
-            font-weight: lighter;
-          }
-        }
-        
-      }
+      
     }
   }
   #map-container {

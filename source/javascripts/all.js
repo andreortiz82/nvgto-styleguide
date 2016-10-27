@@ -7,7 +7,8 @@ $(function(){
   })
 
   // Toggle Dropdown State
-  $('.dropdown-element').on('click', function(){
+  $('.dropdown-element').on('click', function(e){
+    e.preventDefault()
     $(this).toggleClass('active')
   })
 
