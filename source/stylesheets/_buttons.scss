@@ -1,0 +1,19 @@
+button.book-button {
+  @include book-button;
+}
+
+button.update-button {
+  @include update-button;
+
+  &.icon {
+    &:before { margin:0; }
+  }
+}
+
+button.pagination-button {
+  @include pagination-button;
+}
+
+button.concept-button {
+  @include concept-button;
+}

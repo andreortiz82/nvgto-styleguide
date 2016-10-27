@@ -32,3 +32,108 @@
   padding: rem(20);
   margin-bottom: rem(10);
 }
+
+/* Buttons */
+@mixin book-button {
+  @include shadow;
+  @include transition(background, 0.5s);
+  @include border-radius;
+  border:none;
+  background: $yellow;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: rem(20);
+  padding: rem(10) rem(15);
+  cursor: pointer;
+  color: $black;
+  outline: none;
+  &:hover {
+    background:$yellow*2;
+    @include shadow('lg');
+  }
+}
+
+@mixin update-button {
+  @include shadow;
+  @include transition(background, 0.5s);
+  @include border-radius;
+  border:none;
+  background: $blue;
+  font-family: 'Raleway', sans-serif;
+  font-weight: normal;
+  padding: rem(10) rem(15);
+  cursor: pointer;
+  color: $white;
+  outline: none;
+  &:before {
+    @include fa-icon();
+    content:$fa-var-refresh;
+    color: $white;
+    margin-right: rem(5);
+  }
+
+
+  &:hover {
+    background:$blue/2;
+    @include shadow('lg');
+  }
+}
+
+@mixin pagination-button {
+  @include transition(color, 0.5s);
+  @include border-radius;
+  border:none;
+  background: $light;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  padding: rem(10) rem(15);
+  cursor: pointer;
+  color: $silver;
+  outline: none;
+  
+  &.disabled {
+    color: $mid;
+    cursor: not-allowed;
+    &:hover { color:$mid; } 
+  }
+
+  &.active {
+    color: $blue;
+    cursor: auto;
+    &:hover { color:$blue; } 
+  }
+
+  &:hover {
+    color: $black;
+
+  }
+}
+
+/* Concepts */
+@mixin concept-button {
+  @include transition(all, 0.5s);
+  @include border-radius;
+  border:none;
+  background: $halfblack;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  padding: rem(10) rem(15);
+  cursor: pointer;
+  color: $white;
+  outline: none;
+  &:hover {
+    background:rgba($orange, 0.5);
+  }
+
+  &.active {
+    @include shadow;
+    background: $orange;
+  }
+}
+
+/* Form Labels */
+@mixin form-label {
+  color: $silver;
+  text-transform: uppercase;
+  font-size: rem(12);
+}

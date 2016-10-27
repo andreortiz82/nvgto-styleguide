@@ -1,0 +1,70 @@
+#serp-container
+  .view-wrapper.fluid
+    #ui-container
+      #sidebar
+        .container
+          #logo.orange
+            %h1 Logo here
+          =partial 'partials/trip-details'
+          =partial 'partials/price-slider'
+          
+          #rating
+            %label Rating
+            =partial 'partials/rating'
+
+          #sort_by.dropdown-element
+            %label Sort by
+            %a.current{href:'#'} Best Match
+            %ul.dropdown
+              %li
+                %a{href:'#'} Price Lowest to Highest
+              %li
+                %a{href:'#'} Price Highest to Lowest
+
+          #ota.dropdown-element
+            %label Booking Site
+            %a.current{href:'#'} Expedia
+            %ul.dropdown
+              %li
+                %a{href:'#'} Travelocity
+              %li
+                %a{href:'#'} Hotels.com
+
+          #amenities.flyout-element
+            %label Amenities
+            %a.trigger{href:'#'} View Amenities
+            %p.quote wifi, swimming pool, childcare, room service, +4 more
+
+      #hotel-results
+        %section.concepts
+          %label Concepts here
+        
+        %section.hotels
+          .flex.up6
+            -20.times do |num|
+              .box
+                %article.hotel.m-1
+                  .content-wrapper
+                    .image-container
+                      %div{class:'image', style:"background-image:url(/images/hotels/thumb-1.jpeg); background-repeat:no-repeat; background-size:cover"}
+                    
+                    .price-fav-ota-container
+                      .left
+                        %span.price 350
+                        %a.carrot{href:'#'} On Expedia
+                      .right
+                        .favorite-icon
+                          %i.heart-icon
+                  .name-rating
+                    %h3="Hotel #{lorem.name} resort"
+                    =partial 'partials/rating'
+
+                    .you-like-container
+                      %label You like this because
+                      %p.sans swimming pool, tacos, roomservice
+
+                    .action
+                      %button.book-button{type:'button'} Book Now
+
+    #map-container
+      #map

@@ -1,87 +1,4 @@
-.card {
-  @include card;
-}
-
-/*
-.hotel {
-  position: relative;
-  .thumbnail-container {
-    overflow: hidden;
-    height: rem(350);
-
-    .inside-information {
-      @include clearfix;
-      @include transition(top, 0.5s);
-
-      cursor: pointer;
-      position: absolute;
-      top: 75%;
-      bottom: 0;
-      width: 100%;
-      padding: rem(20);
-      background: rgba($black, 0.8);
-
-      span.price {
-        @include header;
-        color: $white;
-        font-size: rem(30);
-        display: block;
-        margin: 0;
-
-        &:before {
-          content:'$';
-          color: $white;
-          font-size: rem(20);
-        }
-      }
-
-      a.carrot {
-        @include transition(color, 0.5s);
-        text-decoration: none;
-        color: rgba($white, 0.5);
-
-        &:hover { color:$white; }
-
-        &:after {
-          @include fa-icon();
-          content:$fa-var-chevron-down;
-          color: $orange;
-          margin-left: rem(5);
-        }
-      }
-      
-      .favorite-icon {
-        cursor: pointer;
-        i.heart-icon { 
-          &:after {
-            @include fa-icon();
-            content:$fa-var-heart-o;
-            color: $white;
-            font-size: rem(25);
-          }
-        }
-
-        &.liked {
-          i.heart-icon { 
-            &:after {
-              @include fa-icon();
-              content:$fa-var-heart;
-              color: $red;
-              font-size: rem(25);
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &:hover {
-    .inside-information {
-      top: 0;
-    }
-  }
-}
-*/
+.card { @include card; }
 
 article.hotel {
   position: relative;
@@ -178,20 +95,17 @@ article.hotel {
   }
 
   .name-rating {
+    background: $trans;
     position: absolute;
     @include transition(top, 0.5s);
     top:rem(360);
-
     padding-left: rem(20);
   }
 
   .you-like-container {
-    @include transition(opactiy, 0.5s);
     border-top: 1px solid $ccc;
     padding-top: rem(10);
-    visibility: hidden;
-    opacity: 0;
-
+    
     label {
       text-transform: uppercase;
       font-size: rem(12);
@@ -206,10 +120,8 @@ article.hotel {
   }
 
   .action {
-    @include transition(opactiy, 0.5s);
     padding: rem(10) 0;
-    visibility: hidden;
-    opacity: 0;
+    
 
     button.book-button {
       @include transition(background, 0.5s);
@@ -228,9 +140,18 @@ article.hotel {
     }
   }
 
+  .you-like-container,
+  .action {
+    @include transition(all, 0.5s);
+    visibility: hidden;
+    opacity: 0;
+    
+    /*display: none;*/
+  }
+
   &:hover {
     .image-container .image {
-      @include transform(scale(1.05));
+      /*@include transform(scale(0.95));*/
     }
 
     .price-fav-ota-container {
@@ -246,7 +167,7 @@ article.hotel {
     .action {
       visibility: visible;
       opacity: 1;
-
+      
       button {
         @extend .pulse;
       }

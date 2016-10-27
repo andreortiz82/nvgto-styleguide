@@ -56,3 +56,15 @@ ul,ol {
     li { display: inline-block; }
   }
 }
+
+.info {
+  background: $blue*3;
+  padding:rem(10);
+
+  &:before {
+    @include fa-icon();
+    content:$fa-var-info-circle;
+    color: $blue;
+    margin-right: rem(5);
+  }
+}

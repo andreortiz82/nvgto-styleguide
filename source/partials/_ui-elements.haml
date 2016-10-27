@@ -1,0 +1,46 @@
+%section#ui-elements
+  %article.container
+    .row
+      .span-12
+        %h1 UI Elements
+
+    .row
+      .span-4
+        %h2 Buttons
+
+        .container.button-examples
+          %button.pagination-button{type:'button'} Load more
+          %button.pagination-button{type:'button'} Next
+          %button.pagination-button{type:'button'} Prev
+          %button.pagination-button.disabled{type:'button'} Disabled
+          %button.pagination-button.active{type:'button'} active
+          %div
+            -5.times do |num|
+              %button.pagination-button{type:'button'}=num
+          %button.book-button{type:'button'} Book Now
+          %button.update-button{type:'button'} Update
+          %button.update-button.icon{type:'button'}
+
+      .span-4
+        %h2 Concept tags
+        %p.info.lead.quote Click to toggle states
+        .container.concept-tags-examples
+          -20.times do |num|
+            %button.concept-button{type:'button'}=lorem.word
+          
+      .span-4
+        %h2 Controls
+        %div.mb-1
+          =partial 'partials/price-slider'
+        %div.mb-1
+          %label.form-label Rating
+          =partial 'partials/rating'
+        %div.mb-1
+          .dropdown-element
+            %label Dropdown
+            %a.current{href:'#'} Current
+            %ul.dropdown
+              %li
+                %a{href:'#'} Option 1
+              %li
+                %a{href:'#'} Option 1

@@ -1,0 +1,138 @@
+/* Labels */
+.form-label {
+  @include form-label;
+}
+
+/* Flyout */
+#amenities.flyout-element {
+  label {
+    @include form-label;
+  }
+
+  p.quote {
+    color: $silver;
+    padding: 0;
+    margin: 0;
+    margin-left: rem(20);
+  }
+
+  a.trigger {
+    display: block;
+    color: $black;
+    font-size: rem(14);
+    text-decoration: none;
+
+    &:before {
+      @include fa-icon();
+      content:$fa-var-chevron-left;
+      color: $orange;
+      margin-right: rem(5);
+    }
+  }
+}
+/* Dropdown Element */
+.dropdown-element {
+  position: relative;
+  label {
+    @include form-label;
+  }
+
+  a.current {
+    display: block;
+    color: $black;
+    font-size: rem(14);
+    text-decoration: none;
+
+    &:after {
+      @include fa-icon();
+      content:$fa-var-chevron-down;
+      color: $orange;
+      margin-left: rem(5);
+    }
+  }
+
+  .dropdown {
+    @include shadow('large');
+    display: none;
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: $white;
+    z-index: 100;
+
+    li {
+      @include transition(background, 0.5s);
+      padding:rem(15);
+      
+      a {
+        text-decoration: none;
+        color: $black;
+      }
+
+      &:hover { background: $light; }
+    }
+  }
+
+  &.active .dropdown { display: block; }
+}
+
+/* Rating */
+#rating {
+  label {
+    @include form-label;
+  }
+}
+
+/* Slider */
+$slider-height:rem(5);
+
+.slider-control {
+  label {
+    @include form-label;
+    
+    &.range {
+      color: $black;
+      font-size: rem(14);
+      display: inline-block;
+      float: right;
+      font-weight: bold;
+    }
+  }
+
+  .slider {
+    position: relative;
+    margin-top: rem(10);
+
+    .track {
+      background: $light;
+      height: $slider-height;
+      position: relative;
+      
+      span.meter {
+        position: absolute;
+        width: 50%;
+        background: $orange;
+        display: block;
+        height: $slider-height;
+      }
+    }
+
+    .thumb {
+      @include border-radius($round);
+      background: $white;
+      @include shadow;
+      width: rem(20);
+      height: rem(20);
+      position: absolute;
+      top: rem(-8);
+      
+      &.min {
+        left: 0;
+      }
+      &.max {
+        left: 50%;
+      }
+    }
+  }
+}

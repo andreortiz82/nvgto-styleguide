@@ -1,0 +1,65 @@
+#serp-container {
+  
+  #sidebar,
+  #ui-container,
+  #map {
+    min-height: rem(500);
+    height:100vh;
+  }
+
+  #ui-container {
+    @include span-columns(9, block-collapse);
+    background: $white;
+
+    #sidebar {
+      @include span-columns(2 of 9, block-collapse);
+      padding: rem(20);
+      background: $white;
+      border-right: 1px solid $ccc;
+
+      #logo { margin-bottom: rem(20) }
+
+      #price-filter,
+      #sort_by,
+      #ota,
+      #amenities,
+      #rating {
+        margin-top: rem(20);
+      }
+
+      
+      #destination-container {
+        border-top: 1px solid $ccc;
+        border-bottom: 1px solid $ccc;
+        padding: rem(10) 0;
+        cursor: pointer;
+        background: $trans;
+
+        .read-only {
+          .city {
+            font-weight: bold;
+            display: block;
+            margin: 0;
+
+            &:after {
+              @include fa-icon();
+              content:$fa-var-pencil;
+              color: $orange;
+              margin-left: rem(10);
+            }
+          }
+
+          .trip-details {
+            color: $silver;
+            font-weight: lighter;
+          }
+        }
+        
+      }
+    }
+  }
+  #map-container {
+    @include span-columns(3, block-collapse);
+    
+  }
+}
