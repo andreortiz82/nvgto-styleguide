@@ -59,10 +59,11 @@
     margin: 0;
     background: $white;
     z-index: 100;
+    min-width: rem(200);
 
     li {
       @include transition(background, 0.5s);
-      padding:rem(15);
+      padding:rem(10);
       
       a {
         text-decoration: none;

@@ -1,0 +1,43 @@
+%section#form-fields
+  %article.container
+    .row
+      .span-12
+        %h1 Form Fields
+
+  %article.container
+    .row
+      .span-3
+        .field
+          %label Empty field
+          %input{type:'text', placeholder:'Enter your name'}
+        .field
+          %label Filled out field
+          %input{type:'text', placeholder:'Enter your name', value:lorem.name}
+        .field.error
+          %label Error field
+          %input{type:'text', placeholder:'Enter your name'}
+          %span Uh oh! You f*cked up...
+        .field.success
+          %label Success field
+          %input{type:'text', placeholder:'Enter your name'}
+      .span-3
+        .field
+          %label Password field
+          %input{type:'password', placeholder:'Enter your password'}
+        .field
+          %label Email field
+          %input{type:'email', placeholder:'Enter your email'}
+        .field
+          %label Number field
+          %input{type:'number'}
+        .field
+          %label Date field
+          %input{type:'date', }
+        .field
+          %label Color field
+          %input{type:'color', value:'#FF4700'}
+      .span-3
+        
+      .span-3
+        
+        

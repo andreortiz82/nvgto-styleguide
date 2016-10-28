@@ -1,0 +1,59 @@
+form {}
+.field { margin-bottom: rem(20) }
+.field {
+  label {
+    display: block;
+    margin-bottom: rem(2);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  input[type="color"],
+  input[type="password"] {
+    @include border-radius;
+    border:1px solid $mid;
+    height: rem(40);
+    padding: rem(5);
+    width: 100%;
+    font-size: rem(12);
+    background: $white;
+  }
+
+  &.error {
+    span {
+      font-family: Georgia;
+      font-style: italic;
+      color: $red;
+      font-size: rem(12);
+    }
+    input[type="text"] { border-color: $red; }
+    label {
+      color: $red;
+      font-weight: bold;
+      &:after {
+        @include fa-icon();
+        content:$fa-var-frown-o;
+        color: $red;
+        margin-left: rem(5);
+        font-size: rem(14);
+      }
+    }
+  }
+
+  &.success {
+    input[type="text"] { border-color: $green; }
+    label {
+      color: $green;
+      font-weight: bold;
+      &:after {
+        @include fa-icon();
+        content:$fa-var-check;
+        color: $green;
+        margin-left: rem(5);
+        font-size: rem(14);
+      }
+    }
+  }
+}

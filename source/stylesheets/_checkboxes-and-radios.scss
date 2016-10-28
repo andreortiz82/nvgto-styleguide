@@ -1,6 +1,7 @@
 /* Default color is ORANGE for checked */
 $checked-color:$orange;
 $unchecked-color:$mid;
+$size:10;
 
 .checkbox,
 .radio {
@@ -28,30 +29,29 @@ $unchecked-color:$mid;
     @include form-label;
     cursor: pointer;
     position: relative;
-    margin-left: rem(25);
-
+    padding-left: rem(20);
     &:before {
       content: '';
       @include border-radius($round);
       display: inline-block;
-      width: rem(15);
-      height:rem(15);
+      width: rem($size);
+      height:rem($size);
       background: $unchecked-color;
       position: absolute;
-      top: 0;
-      left: rem(-25);
+      top: rem(2);
+      left: 0;
     }
 
     &:after {
       content: '';
       @include border-radius($round);
       display: inline-block;
-      width: rem(15);
-      height:rem(15);
+      width: rem($size);
+      height:rem($size);
       background: $unchecked-color;
       position: absolute;
-      top: 0;
-      left: rem(-25);
+      top: rem(2);
+      left: 0;
     }
   }
 

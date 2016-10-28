@@ -22,11 +22,14 @@
 @import "map-points";
 @import "ota-list";
 @import "focus-window";
+@import "form-fields";
 
 /* Global */
 section#colors,
 section#typography,
 section#ui-elements,
+section#form-fields,
+section#focus-window,
 section#cards
 {
   border-bottom: 1px solid $mid;
