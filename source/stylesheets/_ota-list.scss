@@ -1,0 +1,55 @@
+.ota-list {
+  article.ota {
+    @include transition(background, 0.5s);
+    position: relative;
+    padding: rem(5);
+    cursor: pointer;
+    overflow-x: hidden;
+    
+    a.link {
+      @include transition(right, 0.5s);
+      display: block;
+      position: absolute;
+      right: rem(-70);
+      top: 0;
+      
+      &:before {
+        @include fa-icon();
+        content:$fa-var-link;
+        color: $orange;
+        margin-left: rem(10);
+      }
+
+      span {
+        @include transition(opacity, 0.5s);
+        font-size: rem(12);
+        opacity: 0;
+      }
+    }
+    .hotel-detail {
+      p.description { 
+        margin: rem(2) 0;
+        font-size: rem(12);
+        font-style: italic; 
+      }
+      .cost {
+        span.price {
+          @include header;
+          margin: 0;
+          font-size: rem(18);
+        }
+        span.per {
+          font-size: rem(12);
+          color: $silver;
+        }
+      }
+    }
+
+    &:hover {
+      background: $light;
+
+      a.link { right: 0 }
+      a.link span { opacity: 1 }
+    }
+  }
+}

@@ -120,6 +120,21 @@ article.hotel {
   .action {
     padding: rem(10) 0;
     
+    .booking-options.flyout-element {
+      display: block;
+      
+      a.trigger { 
+        font-size: rem(12);
+        color: $white;
+        &:before { content:''; }
+        &:after {
+          @include fa-icon();
+          content:$fa-var-chevron-right;
+          color: $orange;
+          margin-left: rem(5);
+        }
+      }
+    }
 
     button.book-button {
       @include transition(background, 0.5s);
@@ -131,7 +146,7 @@ article.hotel {
       font-size: rem(20);
       padding: rem(10) rem(15);
       cursor: pointer;
-
+      margin-bottom: rem(5);
       &:hover {
         background:$yellow*2;
       }

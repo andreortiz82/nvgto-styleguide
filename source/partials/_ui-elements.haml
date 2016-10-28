@@ -73,7 +73,18 @@
           =partial 'partials/map-pin', locals:{price:'$530', liked:true}
 
       .span-4
-        %h2 Form Fields Here
-        
+        %h2 OTA List
+
+        .ota-list
+          -5.times do |num|
+            %article.ota
+              .hotel-detail
+                .cost
+                  %span.price $300
+                  %span.per /night
+                %p.description=lorem.words(6)
+              %a.link{href:'#'}
+                %span View Details
+              
 
 
