@@ -17,4 +17,12 @@ $(function(){
     $(this).toggleClass('active')
   })
 
+  // Focus Window
+  $('.focus-element').on('click', function(){
+    var width_of_el = $(this).width()
+    $(this).width(width_of_el)
+    $('body').toggleClass('set-focus')
+    $(this).toggleClass('active')
+  })
+
 })
