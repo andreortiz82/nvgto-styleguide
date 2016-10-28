@@ -17,6 +17,4 @@ $(function(){
     $(this).toggleClass('active')
   })
 
-  
-
 })

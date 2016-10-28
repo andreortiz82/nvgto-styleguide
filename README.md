@@ -15,3 +15,6 @@ This project was started using [Middleman](http://middlemanapp.com) and will req
 - [Bourbon / Neat](http://bourbon.io/)
 - [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
 - [HAML](http://haml.info/)
+
+Map demo:
+http://support.avuxi.com/code/GMWithoutWidgetDemo.html

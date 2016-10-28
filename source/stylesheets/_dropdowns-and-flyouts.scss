@@ -1,0 +1,77 @@
+/* Flyout */
+/* Where the chevron is pointing to the left */
+.flyout-element {
+  cursor: pointer;
+  label {
+    @include form-label;
+  }
+
+  p.quote {
+    color: $silver;
+    padding: 0;
+    margin: 0;
+    margin-left: rem(20);
+  }
+
+  a.trigger {
+    display: block;
+    color: $black;
+    font-size: rem(14);
+    text-decoration: none;
+
+    &:before {
+      @include fa-icon();
+      content:$fa-var-chevron-left;
+      color: $orange;
+      margin-right: rem(5);
+    }
+  }
+}
+
+/* Dropdown Element */
+/* Where the chevron is pointing down */
+.dropdown-element {
+  position: relative;
+  label {
+    @include form-label;
+  }
+
+  a.current {
+    display: block;
+    color: $black;
+    font-size: rem(14);
+    text-decoration: none;
+
+    &:after {
+      @include fa-icon();
+      content:$fa-var-chevron-down;
+      color: $orange;
+      margin-left: rem(5);
+    }
+  }
+
+  .dropdown {
+    @include shadow('large');
+    display: none;
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: $white;
+    z-index: 100;
+
+    li {
+      @include transition(background, 0.5s);
+      padding:rem(15);
+      
+      a {
+        text-decoration: none;
+        color: $black;
+      }
+
+      &:hover { background: $light; }
+    }
+  }
+
+  &.active .dropdown { display: block; }
+}

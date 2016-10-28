@@ -1,0 +1,28 @@
+.hotel-pin {
+  @include header;
+  font-weight: 700;
+  @include border-radius;
+  background: $orange;
+  display: inline-block;
+  padding:rem(5);
+  color: $white;
+  position: relative;
+
+  &:before {
+    @include just-the-tip;
+  }
+
+
+  &.liked {
+    &:before {
+      left:35%;
+    }
+    &:after {
+      @include fa-icon();
+      content:$fa-var-heart;
+      color: $white;
+      margin: 0 rem(4);
+      font-size: rem(12);
+    }
+  }
+}

@@ -1,0 +1,29 @@
+#trip-details {
+  border-top: 1px solid $ccc;
+  border-bottom: 1px solid $ccc;
+  padding: rem(10) 0;
+  cursor: pointer;
+  background: $trans;
+
+  .detail-section {
+    .city {
+      font-weight: bold;
+      display: block;
+      margin: 0;
+
+      &:after {
+        @include fa-icon();
+        content:$fa-var-pencil;
+        color: $orange;
+        margin-left: rem(10);
+      }
+
+
+    }
+
+    .trip-data {
+      color: $silver;
+      font-weight: lighter;
+    }
+  }
+}

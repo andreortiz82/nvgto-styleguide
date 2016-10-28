@@ -1,0 +1,52 @@
+/* Slider */
+$slider-height:rem(5);
+
+.slider-control {
+  label {
+    @include form-label;
+    
+    &.range {
+      color: $black;
+      font-size: rem(14);
+      display: inline-block;
+      float: right;
+      font-weight: bold;
+    }
+  }
+
+  .slider {
+    position: relative;
+    margin-top: rem(10);
+
+    .track {
+      background: $light;
+      height: $slider-height;
+      position: relative;
+      
+      span.meter {
+        position: absolute;
+        width: 50%;
+        background: $orange;
+        display: block;
+        height: $slider-height;
+      }
+    }
+
+    .thumb {
+      @include border-radius($round);
+      background: $white;
+      @include shadow;
+      width: rem(20);
+      height: rem(20);
+      position: absolute;
+      top: rem(-8);
+      
+      &.min {
+        left: 0;
+      }
+      &.max {
+        left: 50%;
+      }
+    }
+  }
+}

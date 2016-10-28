@@ -50,3 +50,5 @@ $breakpoint-large: "only screen and (min-width: 40em)";
 .clearfix { @include clearfix }
 .left { float: left }
 .right { float: right }
+
+.block { display: block; }

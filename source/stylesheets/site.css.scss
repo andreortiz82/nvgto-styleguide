@@ -4,15 +4,22 @@
 @import "neat";
 @import "font-awesome";
 @import "colors";
-@import "typography";
 @import "functions";
 @import "mixins";
 @import "animations";
 @import "grid";
+@import "typography";
+
+/* UI SCSS */
+@import "hotel-cards";
 @import "cards";
 @import "rating";
-@import "form-elements";
+@import "dropdowns-and-flyouts";
+@import "price-slider";
 @import "buttons";
+@import "trip-details";
+@import "checkboxes-and-radios";
+@import "map-points";
 
 /* Global */
 section#colors,

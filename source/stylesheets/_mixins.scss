@@ -1,3 +1,5 @@
+/* Globals
+============================================ */
 @mixin shadow($size:"small") {
   @if $size == "small" {
     $value:0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -19,13 +21,16 @@
   @include border-left-radius($rad);
 }
 
+/* Typography
+============================================ */
 @mixin header {
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
   margin: rem(10) 0;
 }
 
-/* Cards */
+/* Cards
+============================================ */
 @mixin card {
   @include shadow;
   background: $white;
@@ -33,7 +38,13 @@
   margin-bottom: rem(10);
 }
 
-/* Buttons */
+@mixin panel {
+  padding: rem(20);
+  margin-bottom: rem(10);
+}
+
+/* Buttons
+============================================ */
 @mixin book-button {
   @include shadow;
   @include transition(background, 0.5s);
@@ -50,6 +61,7 @@
   &:hover {
     background:$yellow*2;
     @include shadow('lg');
+    @extend .pulse;
   }
 }
 
@@ -109,7 +121,8 @@
   }
 }
 
-/* Concepts */
+/* Tags (Concepts)
+============================================ */
 @mixin concept-button {
   @include transition(all, 0.5s);
   @include border-radius;
@@ -131,9 +144,23 @@
   }
 }
 
-/* Form Labels */
+/* Forms
+============================================ */
 @mixin form-label {
   color: $silver;
   text-transform: uppercase;
   font-size: rem(12);
+}
+
+/* Map pins
+============================================ */
+@mixin just-the-tip($color:$orange) {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: rem(-6);
+  left: 25%;
+  border-style: solid;
+  border-width: rem(10) rem(10) 0 rem(10);
+  border-color: $color transparent transparent transparent;
 }

@@ -51,3 +51,29 @@
             %a.trigger Choose Amenities
             %p.quote wifi, swimming pool, childcare, room service, +4 more
         
+    .row
+      .span-4
+        %h2 Checkboxes &amp; Radios
+        %div.panel.border.bg-white
+          .checkbox
+            %input{type:'checkbox', id:'cb1'}
+            %label{for:'cb1'}=lorem.sentence
+        %div.panel.border.bg-white
+          -4.times do |num|
+            .radio
+              %input{type:'radio', name:'test', id:"r#{num}"}
+              %label{for:"r#{num}"}=lorem.word
+            
+
+      .span-4
+        %h2 Map Points
+        %div
+          =partial 'partials/map-pin', locals:{price:'$300', liked:false}
+        %div
+          =partial 'partials/map-pin', locals:{price:'$530', liked:true}
+
+      .span-4
+        %h2 Form Fields Here
+        
+
+
