@@ -12,10 +12,6 @@
 
     <%= stylesheet_link_tag :site %>
     
-
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
-
   </head>
 
   <body class="<%= page_classes %>">
@@ -24,15 +20,5 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     
     <%= javascript_include_tag :all %>
-
-    <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYW5kcmVvcnRpeiIsImEiOiJjaXVxeHV0cjAwMDJxMnlxdWR1anJvd3ZnIn0.AJlp5b1vY6yQd3schL5euA';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        center: [-97.7427778, 30.2669444],
-        zoom: 13,
-        style: 'mapbox://styles/mapbox/streets-v9'
-    });
-    </script>
   </body>
 </html>
