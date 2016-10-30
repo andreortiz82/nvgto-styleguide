@@ -4,15 +4,15 @@
   $routeProvider
   .when('/',
     templateUrl:'templates/serp.html',
-    controller:'demoController'
+    controller:'serpController'
     )
   .when('/serp.html',
     templateUrl:'templates/serp.html',
-    controller:'demoController'
+    controller:'serpController'
     )
   .when('/pdp.html',
     templateUrl:'templates/pdp.html',
-    controller:'demoController'
+    controller:'pdpController'
     )
   .otherwise(
     redirectTo: '/'

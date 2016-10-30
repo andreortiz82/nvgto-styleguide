@@ -1,1 +1,24 @@
-/**/
+nav.main {
+  position: absolute;
+  z-index: 1000;
+}
+.page {
+  padding: rem(100);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  
+  &.pdp {
+    background: $red;
+    &.ng-enter { @extend .pt-page-moveFromRight }
+    &.ng-leave { @extend .pt-page-scaleDown }
+  }
+  
+  &.serp {
+    background: $green;
+    &.ng-enter { @extend .pt-page-moveFromLeft }
+    &.ng-leave { @extend .pt-page-scaleDown }
+  }
+}
