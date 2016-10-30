@@ -9,6 +9,10 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 
+# Pages in Layer Demo
+page '*/serp.html', layout: false
+page '*/pdp.html', layout: false
+
 # With alternative layout
 # page "/path/to/file.html", layout: :otherlayout
 page "/layers1.html", layout: :layers

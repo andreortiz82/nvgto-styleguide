@@ -1,24 +1,96 @@
-nav.main {
-  position: absolute;
-  z-index: 1000;
-}
+body { background: $black }
 .page {
-  padding: rem(100);
+  background: $black;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  
-  &.pdp {
-    background: $red;
-    &.ng-enter { @extend .pt-page-moveFromRight }
+
+  &.serp {
+    background: $white;
+    &.ng-enter { @extend .pt-page-scaleUp }
     &.ng-leave { @extend .pt-page-scaleDown }
   }
-  
-  &.serp {
-    background: $green;
-    &.ng-enter { @extend .pt-page-moveFromLeft }
-    &.ng-leave { @extend .pt-page-scaleDown }
+
+  &.pdp {
+    background: $white;
+    &.ng-enter { @extend .pt-page-moveFromBottom }
+    &.ng-leave { @extend .pt-page-moveToBottom }
+  }
+}
+
+/* Demo Only */
+#serp-view,
+#pdp-view {
+  .view-wrapper {
+    @include outer-container(100%);
+
+    #sidebar,
+    #hotels,
+    #hotel-details,
+    #map {
+      height: 100vh;
+    }
+
+    #sidebar { 
+      @include span-columns(2, block-collapse); 
+      border-right: 1px solid $mid;
+      .wrapper { padding: rem(10) }
+    }
+
+    #hotels { 
+      @include span-columns(6, block-collapse); 
+      background: $white;
+      .placeholder { margin:rem(5); }
+    }
+
+    #hotel-details {
+      @include span-columns(8, block-collapse); 
+      padding: rem(10);
+
+      .title-area { 
+        position: relative; 
+        
+        a.close {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+    }
+
+    #map { 
+      background: $green;
+      @include span-columns(4, block-collapse);
+      padding: rem(10);
+    }
+  }
+}
+
+.placeholder {
+  display: block;
+  background: $light;
+  height: rem(300);
+  text-align: center;
+  line-height: rem(300);
+}
+
+a.close {
+  text-align: right;
+  text-decoration: none;
+  font-size: rem(50);
+}
+
+ul.filters,
+ul.things {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li { 
+    background: $light;
+    padding: rem(5);
+    margin-bottom: rem(10);
   }
 }

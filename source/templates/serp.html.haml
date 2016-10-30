@@ -1,1 +1,17 @@
-%h1 SERP
+#serp-view
+  .view-wrapper
+    #sidebar
+      .wrapper
+        %h1 Navigato
+        %ul.filters
+          -['Destination', 'Price', 'Rating', 'Sort by', 'Amenities'].each do |filter|
+            %li
+              %span=filter
+    #hotels
+      .flex.up6
+        -4.times do |num|
+          .box
+            %a.placeholder{href:'/layers1.html#/pdp.html'}
+              %label="Hotel #{lorem.name}"
+    #map
+      %span Map

@@ -1,11 +1,9 @@
-@app.controller('serpController', ['$scope', ($scope) ->
-  $scope.pageClass = 'serp pt-page-current';
-  console.log 'serp'
+@app.controller('serpController', ['$scope', '$window', ($scope, $window) ->
+  $scope.pageClass = 'serp';
   return
 ])
 
-@app.controller('pdpController', ['$scope', ($scope) ->
-  $scope.pageClass = 'pdp pt-page-current';
-  console.log 'pdp'
+@app.controller('pdpController', ['$scope', '$window', ($scope, $window) ->
+  $scope.pageClass = 'pdp';
   return
 ])
