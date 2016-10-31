@@ -4,14 +4,18 @@
       .wrapper
         %h1 Navigato
         %ul.filters
+          %label Filters
           -['Destination', 'Price', 'Rating', 'Sort by', 'Amenities'].each do |filter|
             %li
               %span=filter
-    #hotels
-      .flex.up6
-        -4.times do |num|
-          .box
-            %a.placeholder{href:'/layers1.html#/pdp.html'}
-              %label="Hotel #{lorem.name}"
+    / #hotels
+    /   .flex.up6
+    /     -4.times do |num|
+    /       .box
+    /         %a.placeholder{href:'/layers1.html#/pdp.html'}
+    /           %label="Hotel #{lorem.name}"
     #map
-      %span Map
+      .pin-container
+        -4.times do |num|
+          %div.map-pin-example{style:"top:#{rand(0..600)}px; left:#{rand(0..600)}px"}
+            =partial 'partials/map-pin', locals:{price:"$#{rand(250..300)}", liked:[true, false].sample}

@@ -35,7 +35,6 @@ body { background: $black }
 
     #sidebar { 
       @include span-columns(2, block-collapse); 
-      border-right: 1px solid $mid;
       .wrapper { padding: rem(10) }
     }
 
@@ -62,8 +61,17 @@ body { background: $black }
 
     #map { 
       background: $green;
-      @include span-columns(4, block-collapse);
+      @include span-columns(10, block-collapse);
       padding: rem(10);
+
+      .pin-container {
+        position: relative;
+
+        .map-pin-example {
+          position: absolute;
+          display: inline-block;
+        }
+      }
     }
   }
 }
