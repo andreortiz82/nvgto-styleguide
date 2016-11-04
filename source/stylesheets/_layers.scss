@@ -1,4 +1,5 @@
-body { background: $black }
+body.layers-example { background: $black }
+
 .page {
   background: $black;
   position: absolute;
@@ -6,99 +7,53 @@ body { background: $black }
   left: 0;
   height: 100%;
   width: 100%;
+  overflow:hidden;
 
   &.serp {
     background: $white;
-    &.ng-enter { @extend .pt-page-scaleUp }
-    &.ng-leave { @extend .pt-page-scaleDown }
+    &.ng-enter { @extend .pt-page-moveFromLeft }
+    &.ng-leave { @extend .pt-page-moveToLeft }
   }
 
   &.pdp {
     background: $white;
-    &.ng-enter { @extend .pt-page-moveFromBottom }
-    &.ng-leave { @extend .pt-page-moveToBottom }
+    &.ng-enter { @extend .pt-page-moveFromRight }
+    &.ng-leave { @extend .pt-page-moveToRight }
   }
 }
 
-/* Demo Only */
-#serp-view,
-#pdp-view {
-  .view-wrapper {
-    @include outer-container(100%);
-
-    #sidebar,
-    #hotels,
-    #hotel-details,
-    #map {
-      height: 100vh;
-    }
-
-    #sidebar { 
-      @include span-columns(2, block-collapse); 
-      .wrapper { padding: rem(10) }
-    }
-
-    #hotels { 
-      @include span-columns(6, block-collapse); 
-      background: $white;
-      .placeholder { margin:rem(5); }
-    }
-
-    #hotel-details {
-      @include span-columns(8, block-collapse); 
-      padding: rem(10);
-
-      .title-area { 
-        position: relative; 
-        
-        a.close {
-          position: absolute;
-          right: 0;
-          top: 0;
-        }
-      }
-    }
-
-    #map { 
-      background: $green;
-      @include span-columns(10, block-collapse);
-      padding: rem(10);
-
-      .pin-container {
-        position: relative;
-
-        .map-pin-example {
-          position: absolute;
-          display: inline-block;
-        }
-      }
-    }
-  }
-}
-
-.placeholder {
-  display: block;
+#header {
   background: $light;
-  height: rem(300);
-  text-align: center;
-  line-height: rem(300);
+  padding: rem(20);
 }
 
-a.close {
-  text-align: right;
-  text-decoration: none;
-  font-size: rem(50);
-}
+#split-view-container {
+  @include outer-container(100%);
 
-ul.filters,
-ul.things {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-
-  li { 
-    background: $light;
-    padding: rem(5);
-    margin-bottom: rem(10);
+  #page-content,
+  #map-content {
+    padding: rem(20);
+    height: 100vh;
   }
+}
+
+#page-content {
+  background: $red;
+  @include span-columns(8, block-collapse);
+
+  .clearfix { @include clearfix; }
+
+  .panel {
+    background: $halfblack;
+    padding: rem(40);
+    text-align: center;
+    margin: rem(1);
+    &.box { width: 48% }
+  }
+}
+
+#map-content {
+  background: $green;
+  @include span-columns(4, block-collapse);
+
 }

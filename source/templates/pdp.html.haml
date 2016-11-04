@@ -1,8 +1,9 @@
-#pdp-view{style:"height: {{window_height}}px"}
-  .view-wrapper
-    #hotel-details
-      .title-area
-        %h1="Hotel #{lorem.name}"
-        %a.close{href:'/layers1.html#/serp.html'} &times;
-    #map
-      %span Map
+#pdp-view
+  #header
+    %span Header / Filters / Fixed
+  #split-view-container
+    #map-content
+      Map
+    #page-content
+      PDP Detail
+      %a{href:'/layers1.html#/serp.html'} Back to SERP

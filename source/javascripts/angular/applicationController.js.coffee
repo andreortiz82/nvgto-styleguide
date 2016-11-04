@@ -1,5 +1,7 @@
 @app.controller('serpController', ['$scope', '$window', ($scope, $window) ->
   $scope.pageClass = 'serp';
+  
+
   return
 ])
 

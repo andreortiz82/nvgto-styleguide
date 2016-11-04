@@ -1,21 +1,9 @@
 #serp-view
-  .view-wrapper
-    #sidebar
-      .wrapper
-        %h1 Navigato
-        %ul.filters
-          %label Filters
-          -['Destination', 'Price', 'Rating', 'Sort by', 'Amenities'].each do |filter|
-            %li
-              %span=filter
-    / #hotels
-    /   .flex.up6
-    /     -4.times do |num|
-    /       .box
-    /         %a.placeholder{href:'/layers1.html#/pdp.html'}
-    /           %label="Hotel #{lorem.name}"
-    #map
-      .pin-container
-        -4.times do |num|
-          %div.map-pin-example{style:"top:#{rand(0..600)}px; left:#{rand(0..600)}px"}
-            =partial 'partials/map-pin', locals:{price:"$#{rand(250..300)}", liked:[true, false].sample}
+  #header
+    %span Header / Filters / Fixed
+  #split-view-container
+    #page-content
+      SERP Results
+      %a{href:'/layers1.html#/pdp.html'} View Details
+    #map-content
+      #map{:style => "width: 400px; height: 300px;"}
