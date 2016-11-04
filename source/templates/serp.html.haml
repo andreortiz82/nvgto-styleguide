@@ -1,9 +1,8 @@
 #serp-view
-  #header
+  #header{'ng-click' => 'openMenu()'}
     %span Header / Filters / Fixed
   #split-view-container
     #page-content
       SERP Results
       %a{href:'/layers1.html#/pdp.html'} View Details
     #map-content
-      #map{:style => "width: 400px; height: 300px;"}

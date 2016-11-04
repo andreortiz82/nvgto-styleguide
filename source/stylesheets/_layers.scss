@@ -1,5 +1,12 @@
 body.layers-example { background: $black }
 
+#app-container {
+  perspective: 1500px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 .page {
   background: $black;
   position: absolute;
@@ -8,6 +15,11 @@ body.layers-example { background: $black }
   height: 100%;
   width: 100%;
   overflow:hidden;
+  transition: transform 0.4s;
+  @include transform(translateZ(0) translateX(0) rotateY(0deg));
+  &.menu-open {
+    @include transform(translateZ(-1000px) translateX(20%) rotateY(-45deg));
+  }
 
   &.serp {
     background: $white;
