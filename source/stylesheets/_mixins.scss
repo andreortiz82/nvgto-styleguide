@@ -65,6 +65,8 @@
   }
 }
 
+
+
 @mixin update-button {
   @include shadow;
   @include transition(background, 0.5s);
@@ -118,6 +120,13 @@
   &:hover {
     color: $black;
 
+  }
+}
+
+@mixin button-group {
+  button, a {
+    display: inline-block;
+    margin:0;
   }
 }
 

@@ -1,24 +1,43 @@
 %article.hotel
   .content-wrapper
+    .photo-icon
+      %i.icon
+      %span 10
     .image-container
       %div{class:'image', style:"background-image:url(/images/hotels/thumb-1.jpeg)"}
-    
-    .price-fav-ota-container
-      .left
-        %span.price 350
+
+    .overlay-container
+      .price-area
+        %span.price $350
         %a.carrot{href:'#'} On Expedia
-      .right
-        .favorite-icon
-          %i.heart-icon
-  .name-rating
+      .action-area
+        .button-group
+          %button.book-button{type:'button'} Book Now
+          %a.carrot{href:'#'} Booking options
+  .name-rating-container
     %h3="Hotel #{lorem.name} resort"
     =partial 'partials/rating'
+/ %article.hotel
+/   .content-wrapper
+/     .image-container
+/       %div{class:'image', style:"background-image:url(/images/hotels/thumb-1.jpeg)"}
+    
+/     .price-fav-ota-container
+/       .left
+/         %span.price 350
+/         %a.carrot{href:'#'} On Expedia
+/       .right
+/         .favorite-icon
+/           %i.heart-icon
+/   .name-rating
+/     %h3="Hotel #{lorem.name} resort"
+/     =partial 'partials/rating'
 
-    .you-like-container
-      %label You like this because
-      %p.sans swimming pool, tacos, roomservice
+/     .you-like-container
+/       %label You like this because
+/       %p.sans swimming pool, tacos, roomservice
 
-    .action
-      %button.book-button{type:'button'} Book Now
-      .flyout-element.booking-options
-        %a.trigger Booking options
+/     .action
+/       %button.book-button{type:'button'} Book Now
+/       .flyout-element.booking-options
+/         %a.trigger Booking options

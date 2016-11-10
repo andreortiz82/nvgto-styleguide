@@ -17,3 +17,7 @@ button.pagination-button {
 button.concept-button {
   @include concept-button;
 }
+
+.button-group {
+  @include button-group;
+}
