@@ -1,8 +1,18 @@
-#serp-view
-  #header{'ng-click' => 'openMenu()'}
-    %span Header / Filters / Fixed
+%div#menu-area{'ng-click' => 'openMenu()'}
+  %h1 What will go here?
+
+  %ul
+    %li Destinaiton Edit Form
+    %li Amenities Check List
+    %li Concept list
+    %li ... open to discussion
+#serp-view.main-view-wrapper
   #split-view-container
     #page-content
       SERP Results
       %a{href:'/layers1.html#/pdp.html'} View Details
+      %div
+        %a.button{'ng-click' => 'openMenu()'} Open Menu
+
     #map-content
+      Map

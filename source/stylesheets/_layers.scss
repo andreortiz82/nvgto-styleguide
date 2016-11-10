@@ -8,30 +8,49 @@ body.layers-example { background: $black }
 }
 
 .page {
-  background: $black;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   overflow:hidden;
-  transition: transform 0.4s;
-  @include transform(translateZ(0) translateX(0) rotateY(0deg));
-  &.menu-open {
-    @include transform(translateZ(-1000px) translateX(20%) rotateY(-45deg));
+  background: $black;
+  
+  .main-view-wrapper {
+    @include transition(top 0.5s, left 0.5s, opacity 0.5s);
+    opacity: 1;
+    position: inherit;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
   }
 
+  &.menu-open .main-view-wrapper { top: rem(50); left:rem(300); opacity: 0.5 }
+  &.menu-open #menu-area { left:rem(0); }
+
+
   &.serp {
-    background: $white;
     &.ng-enter { @extend .pt-page-moveFromLeft }
     &.ng-leave { @extend .pt-page-moveToLeft }
   }
 
   &.pdp {
-    background: $white;
     &.ng-enter { @extend .pt-page-moveFromRight }
     &.ng-leave { @extend .pt-page-moveToRight }
   }
+}
+
+#menu-area {
+  @include transition(left 0.5s);
+  width: rem(400);
+  left: rem(-400);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  height: 90%;
+  padding: rem(20);
+  background: $white;
 }
 
 #header {
