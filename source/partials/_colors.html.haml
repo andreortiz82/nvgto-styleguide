@@ -4,6 +4,7 @@
     .row
       .span-12
         %h1 Colors
+        =yield_content(:color_docs)
         .flex.up2
           -['red', 'orange', 'yellow', 'green', 'blue', 'teal', 'indigo', 'violet', 'navy', 'pink'].each do |color|
             .box.m-1

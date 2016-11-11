@@ -10,11 +10,6 @@ h1,h2,h3,h4,h5 {
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
   margin: rem(10) 0;
-
-  &.uppercase,
-  &.up {
-    text-transform: uppercase;
-  }
 }
 
 p,ul,ol,span,a {
@@ -35,13 +30,16 @@ p {
     font-size: rem(18);
     line-height: rem(30);
   }
-
-  &.quote,
-  &.sans {
-    font-family: Georgia;
-    font-style: italic;
-  }
 }
+
+.quote,
+.sans {
+  font-family: Georgia;
+  font-style: italic;
+}
+
+.uppercase,
+.up { text-transform: uppercase; }
 
 /* Lists */
 ul,ol {
