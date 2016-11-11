@@ -64,7 +64,7 @@ article.hotel {
       position: absolute;
       bottom: 0;
       width: 100%;
-      padding:rem(20);
+      padding:rem(10);
 
       .price-area {
         @extend .left;
@@ -79,7 +79,7 @@ article.hotel {
         span.price {
           @include header;
           color: $white;
-          font-size: rem(40);
+          font-size: rem(32);
           display: block;
           margin: 0;
         }

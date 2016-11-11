@@ -23,17 +23,19 @@
 @import "ota-list";
 @import "focus-window";
 @import "form-fields";
+@import "badges";
+@import "app-bar";
 
 /* Demo interactions */
 @import "layers";
 @import "pt-animations";
-
 
 /* Global */
 section#colors,
 section#typography,
 section#ui-elements,
 section#form-fields,
+section#app-bar-component,
 section#focus-window,
 section#cards
 {
@@ -44,6 +46,7 @@ section#cards
     }
   }
 }
+
 /* Colors Section */
 #colors {
   article.card {

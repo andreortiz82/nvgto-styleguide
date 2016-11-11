@@ -1,0 +1,35 @@
+header#app-bar {
+  @include shadow;
+
+  nav {
+    @include flex-container;
+    .nav-item {
+      @include flex-item;
+      padding: 0 rem(15);
+      border-right:1px solid $light;
+      height: rem(55);
+      margin-top: rem(4);
+
+      &:last-child { border:none; }
+
+      &.logo-container {
+        h1 { 
+          margin:0; 
+          line-height: rem(50); 
+          color: $orange;
+        }
+      }
+      &.destination-container { }
+      &.price-container { }
+      &.rating-container {
+        label { @include form-label; }
+        .rating ul li:after { font-size: rem(14) }
+      }
+      &.filter-container {
+        a.trigger {
+          font-size: rem(12);
+        }
+      }
+    }
+  }
+}

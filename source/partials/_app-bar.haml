@@ -1,0 +1,33 @@
+%section#app-bar-component
+  %article.container
+    .row
+      .span-12
+        %h1 App Bar
+
+  %article.container
+    .row
+      .span-12
+        %header#app-bar
+          %nav
+            .logo-container.nav-item
+              %h1 logo
+            .destination-container.nav-item
+              =partial 'partials/trip-details'
+            .price-container.nav-item
+              =partial 'partials/price-slider'
+            .rating-container.nav-item
+              %label Rating
+              =partial 'partials/rating'
+            .filter-container.nav-item
+              .flyout-element
+                %label Filter
+                %span.badge 12
+                %a.trigger Choose something
+            .filter-container.nav-item
+              .flyout-element
+                %label Filter
+                %a.trigger Choose something
+            .filter-container.nav-item
+              .flyout-element
+                %label Filter
+                %a.trigger Choose something

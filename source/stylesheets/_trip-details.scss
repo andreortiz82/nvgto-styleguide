@@ -1,9 +1,5 @@
 #trip-details {
-  border-top: 1px solid $ccc;
-  border-bottom: 1px solid $ccc;
-  padding: rem(10) 0;
   cursor: pointer;
-  background: $trans;
 
   .detail-section {
     .city {
@@ -17,8 +13,6 @@
         color: $orange;
         margin-left: rem(10);
       }
-
-
     }
 
     .trip-data {

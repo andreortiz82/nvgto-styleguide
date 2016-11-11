@@ -27,7 +27,7 @@ body.layers-example { background: $black }
   }
 
   &.menu-open .main-view-wrapper { top: rem(50); left:rem(300); opacity: 0.5 }
-  &.menu-open #menu-area { left:rem(0); }
+  &.menu-open #side-panel-container { left:rem(0); }
 
 
   &.serp {
@@ -41,7 +41,7 @@ body.layers-example { background: $black }
   }
 }
 
-#menu-area {
+#side-panel-container {
   @include transition(left 0.5s);
   width: rem(400);
   left: rem(-400);

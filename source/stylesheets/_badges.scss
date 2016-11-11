@@ -1,0 +1,11 @@
+/* You'll need these stinkin' badges */
+
+.badge {
+  @include border-radius;
+  background: $orange;
+  padding: rem(2) rem(8);
+  color: $white;
+  text-align: center;
+  font-size: rem(10);
+  margin:0 rem(2);
+}
