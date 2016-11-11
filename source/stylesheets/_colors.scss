@@ -9,7 +9,7 @@ $halfwhite:rgba(white, 0.5);
 $red:#f44336;
 $orange:#FF4700;
 $yellow:#FFEB3B;
-$highlight:#EAEF3A;
+$highlighter:#EAEF3A;
 $green:#8BC34A;
 $blue:#5095F1;
 $indigo:#3F51B5;
@@ -41,7 +41,7 @@ $colors: (
   "navy": $navy,
   "teal": $teal,
   "silver": $silver,
-  "highlight": $highlight
+  "highlighter": $highlighter
 );
 
 @each $class, $color in $colors {

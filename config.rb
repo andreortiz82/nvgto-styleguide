@@ -2,6 +2,8 @@
 # Page options, layouts, aliases and proxies
 ###
 
+activate :syntax, line_numbers: true
+
 # Per-page layout changes:
 #
 # With no layout
