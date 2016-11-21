@@ -7,7 +7,7 @@
     .row
       .span-4
         %h2 Buttons
-
+        =yield_content(:buttons_docs)
         .container.button-examples
           %button.pagination-button{type:'button'} Load more
           %button.pagination-button{type:'button'} Next
@@ -30,6 +30,7 @@
           
       .span-4
         %h2 Controls
+        =yield_content(:buttons_docs)
         %div.mb-1
           =partial 'partials/trip-details'
         %div.mb-1
@@ -54,6 +55,7 @@
     .row
       .span-4
         %h2 Checkboxes &amp; Radios
+        =yield_content(:buttons_docs)
         %div.panel.border.bg-white
           .checkbox
             %input{type:'checkbox', id:'cb1'}
