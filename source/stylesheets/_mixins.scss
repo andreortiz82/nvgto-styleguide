@@ -1,5 +1,6 @@
 /* Globals
 ============================================ */
+
 @mixin shadow($size:"small") {
   @if $size == "small" {
     $value:0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -104,17 +105,17 @@
   cursor: pointer;
   color: $silver;
   outline: none;
-  
+
   &.disabled {
     color: $mid;
     cursor: not-allowed;
-    &:hover { color:$mid; } 
+    &:hover { color:$mid; }
   }
 
   &.active {
     color: $blue;
     cursor: auto;
-    &:hover { color:$blue; } 
+    &:hover { color:$blue; }
   }
 
   &:hover {
