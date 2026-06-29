@@ -1,0 +1,17 @@
+---
+import { withBase } from "../lib/nav";
+
+interface Props {
+  base: string;
+  tier: "Atoms" | "Molecules" | "Organisms" | "Pages";
+  tierHref: string;
+}
+
+const { base, tier, tierHref } = Astro.props;
+---
+
+<p class="text-xs uppercase text-muted-foreground tracking-wide mb-2">
+  <a href={withBase(base, "/components/")} class="text-muted-foreground no-underline hover:text-primary">Components</a>
+  <span class="mx-1">·</span>
+  <a href={withBase(base, tierHref)} class="text-primary no-underline">{tier}</a>
+</p>

@@ -1,0 +1,52 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Getting started" description="Install and use @navigato/react">
+  <h1>Getting started</h1>
+
+  <h2>Install</h2>
+  <pre><code>npm install @navigato/react</code></pre>
+
+  <h2>Import styles</h2>
+  <p>Add the Navigato stylesheet once in your app entry:</p>
+  <pre><code>{`import '@navigato/react/styles.css'`}</code></pre>
+
+  <h2>Use components</h2>
+  <p>Navigato v0.2 ships shadcn/ui primitives plus booking-specific composites:</p>
+  <pre><code>{`import {
+  BookingSearchBar,
+  ListingCard,
+  BookingWidget,
+} from '@navigato/react'
+
+export function SearchPage() {
+  return (
+    <div className="navigato-root">
+      <BookingSearchBar />
+      <ListingCard
+        title="Navigato Loft"
+        location="South Congress, Austin"
+        pricePerNight={189}
+        rating={4.9}
+        reviewCount={128}
+        imageUrl="/hotel.jpg"
+      />
+      <BookingWidget pricePerNight={220} />
+    </div>
+  )
+}`}</code></pre>
+
+  <h2>Root wrapper</h2>
+  <p>
+    Wrap your app (or Storybook) in <code>.navigato-root</code> to apply base typography:
+  </p>
+  <pre><code>{`<div className="navigato-root">{children}</div>`}</code></pre>
+
+  <h2>shadcn/ui foundation</h2>
+  <p>
+    Primitives live under <code>components/ui/</code> in the package source. To add more shadcn
+    components, run the CLI from <code>packages/navigato</code> — see
+    <a href="https://ui.shadcn.com/">shadcn/ui docs</a>.
+  </p>
+</DocsLayout>

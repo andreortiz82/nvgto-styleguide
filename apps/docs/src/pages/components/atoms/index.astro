@@ -1,0 +1,18 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import { AtomsShowcaseV2 } from "../../../components/demos/v2/ComponentDocPage";
+import TierCards from "../../../components/TierCards.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title="Atoms" description="shadcn/ui primitives">
+  <p class="text-xs uppercase text-silver tracking-wide mb-2">Components · Atomic Design</p>
+  <h1>Atoms</h1>
+  <p class="nvg-lead">shadcn/ui primitives — Button, Badge, Input, Skeleton — themed with Navigato tokens.</p>
+  <AtomsShowcaseV2 client:load />
+  <section class="mt-12">
+    <h2>All atoms</h2>
+    <TierCards base={base} tierLabel="Atoms" />
+  </section>
+</DocsLayout>

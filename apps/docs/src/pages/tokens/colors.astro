@@ -1,0 +1,13 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { ThemeColorsPage } from "../../components/demos/ColorsDemo";
+---
+
+<DocsLayout title="Colors">
+  <h1>Colors</h1>
+  <p>
+    Default shadcn neutral theme in <code>oklch</code>. Tokens live in
+    <code>packages/navigato/src/styles/global.css</code>.
+  </p>
+  <ThemeColorsPage client:load />
+</DocsLayout>

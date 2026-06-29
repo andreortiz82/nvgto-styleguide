@@ -1,0 +1,14 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import { CheckoutPageDemo } from "../../../components/demos/v2/PageDemos";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title="Checkout">
+  <Breadcrumb base={base} tier="Pages" tierHref="/components/pages/" />
+  <h1>Checkout</h1>
+  <p>Booking stepper, payment placeholder, and price breakdown.</p>
+  <CheckoutPageDemo client:load />
+</DocsLayout>

@@ -1,0 +1,18 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import { MoleculesShowcaseV2 } from "../../../components/demos/v2/ComponentDocPage";
+import TierCards from "../../../components/TierCards.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title="Molecules">
+  <p class="text-xs uppercase text-silver tracking-wide mb-2">Components · Atomic Design</p>
+  <h1>Molecules</h1>
+  <p class="nvg-lead">Booking controls — destination search, date range, guests, price filter, map pins.</p>
+  <MoleculesShowcaseV2 client:load />
+  <section class="mt-12">
+    <h2>All molecules</h2>
+    <TierCards base={base} tierLabel="Molecules" />
+  </section>
+</DocsLayout>

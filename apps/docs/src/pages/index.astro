@@ -1,0 +1,51 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Overview">
+  <h1>Navigato Design System</h1>
+  <p class="nvg-lead">
+    A React component library for travel booking, trip planning, and short-term rental products —
+    built for engineers who need consistent UI patterns across search, map, and booking flows.
+  </p>
+
+  <section class="mt-10 space-y-4">
+    <h2>What is Navigato?</h2>
+    <p>
+      Navigato started as an internal Middleman styleguide for a travel product team. This revival
+      packages the same design language as <code>@navigato/react</code> — an MIT-licensed npm package
+      with live documentation.
+    </p>
+    <ul class="list-disc pl-5 space-y-1">
+      <li>shadcn/ui primitives + booking composites on Tailwind CSS v4</li>
+      <li>Date range pickers, guest selectors, listing cards, booking widgets, price breakdowns</li>
+      <li>Accessible Radix/Base UI patterns with keyboard support</li>
+      <li>Live demos, copy-paste usage, and props API tables for every component</li>
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2>Explore components</h2>
+    <p>
+      Browse the library by Atomic Design tier — atoms, molecules, organisms, and demoable pages.
+    </p>
+    <p class="mt-4">
+      <a href={`${import.meta.env.BASE_URL}components/`} class="text-brand font-bold no-underline hover:underline">
+        View all components →
+      </a>
+    </p>
+  </section>
+
+  <section class="mt-10">
+    <h2>Quick install</h2>
+    <pre><code>{`npm install @navigato/react
+
+import '@navigato/react/styles.css'
+import { BookingSearchBar, ListingCard } from '@navigato/react'`}</code></pre>
+    <p class="mt-4">
+      <a href={`${import.meta.env.BASE_URL}getting-started/`} class="text-brand font-bold no-underline hover:underline">
+        Read the getting started guide →
+      </a>
+    </p>
+  </section>
+</DocsLayout>

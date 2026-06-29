@@ -1,0 +1,18 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import { OrganismsShowcaseV2 } from "../../../components/demos/v2/ComponentDocPage";
+import TierCards from "../../../components/TierCards.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title="Organisms">
+  <p class="text-xs uppercase text-silver tracking-wide mb-2">Components · Atomic Design</p>
+  <h1>Organisms</h1>
+  <p class="nvg-lead">Full booking UI sections built on shadcn primitives.</p>
+  <OrganismsShowcaseV2 client:load />
+  <section class="mt-12">
+    <h2>All organisms</h2>
+    <TierCards base={base} tierLabel="Organisms" />
+  </section>
+</DocsLayout>

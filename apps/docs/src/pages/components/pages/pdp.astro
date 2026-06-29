@@ -1,0 +1,14 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import { PdpPageDemo } from "../../../components/demos/v2/PageDemos";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title="PDP">
+  <Breadcrumb base={base} tier="Pages" tierHref="/components/pages/" />
+  <h1>PDP — Property detail</h1>
+  <p>Photo gallery, amenity tabs, reviews, and sticky booking widget.</p>
+  <PdpPageDemo client:load />
+</DocsLayout>

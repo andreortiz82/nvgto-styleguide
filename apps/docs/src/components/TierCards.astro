@@ -1,0 +1,26 @@
+---
+import { componentsNav, withBase } from "../lib/nav";
+
+interface Props {
+  base: string;
+  tierLabel: string;
+}
+
+const { base, tierLabel } = Astro.props;
+const tier = componentsNav.children?.find((t) => t.label === tierLabel);
+---
+
+{
+  tier?.children && (
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose mt-8">
+      {tier.children.map((item) => (
+        <a
+          href={withBase(base, item.href!)}
+          class="block nvg-shadow-sm bg-white p-5 no-underline text-inherit rounded-md transition-transform duration-200 hover:scale-[1.02] hover:nvg-shadow-lg"
+        >
+          <h3 class="text-brand m-0 text-lg">{item.label}</h3>
+        </a>
+      ))}
+    </div>
+  )
+}

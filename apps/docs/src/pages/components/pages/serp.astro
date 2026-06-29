@@ -1,0 +1,14 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import { SerpPageDemo } from "../../../components/demos/v2/PageDemos";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title="SERP">
+  <Breadcrumb base={base} tier="Pages" tierHref="/components/pages/" />
+  <h1>SERP — Search results</h1>
+  <p>Search header, filter bar, listing grid, and map price markers.</p>
+  <SerpPageDemo client:load />
+</DocsLayout>

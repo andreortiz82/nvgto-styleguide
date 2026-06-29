@@ -1,0 +1,48 @@
+@import "@navigato/react/theme.css";
+
+@source "../**/*.{astro,tsx,jsx}";
+@source "../../../packages/navigato/src/**/*.{tsx,ts}";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.875rem;
+  }
+
+  .docs-prose > code {
+    background: var(--muted);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border);
+  }
+
+  .docs-prose > pre {
+    background: var(--foreground);
+    color: var(--background);
+    padding: 1rem;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+  }
+
+  .docs-prose > pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: inherit;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

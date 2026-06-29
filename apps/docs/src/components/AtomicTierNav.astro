@@ -1,0 +1,25 @@
+---
+import { componentsNav, withBase } from "../lib/nav";
+
+interface Props {
+  base: string;
+}
+
+const { base } = Astro.props;
+const tiers = componentsNav.children ?? [];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose my-8">
+  {
+    tiers.map((tier) => (
+      <a
+        href={withBase(base, tier.href!)}
+        class="block nvg-shadow-sm bg-white p-6 no-underline text-inherit rounded-md border-l-4 border-brand transition-transform duration-200 hover:scale-[1.01]"
+      >
+        <p class="text-xs uppercase text-silver tracking-wide m-0 mb-1">Atomic Design</p>
+        <h3 class="m-0 mb-2">{tier.label}</h3>
+        <p class="text-sm text-silver m-0">{tier.description}</p>
+      </a>
+    ))
+  }
+</div>

@@ -1,0 +1,17 @@
+{
+  "name": "navigato-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@navigato/docs",
+    "dev:lib": "npm run dev --workspace=@navigato/react",
+    "build": "npm run build --workspace=@navigato/react && npm run build --workspace=@navigato/docs",
+    "build:lib": "npm run build --workspace=@navigato/react",
+    "build:docs": "npm run build --workspace=@navigato/docs",
+    "preview": "npm run preview --workspace=@navigato/docs"
+  }
+}

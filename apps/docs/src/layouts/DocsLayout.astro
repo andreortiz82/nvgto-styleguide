@@ -1,0 +1,136 @@
+---
+import { siteNav, withBase, isActive, type NavItem } from "../lib/nav";
+import "@navigato/react/styles.css";
+
+const base = import.meta.env.BASE_URL;
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+function itemActive(href?: string) {
+  if (!href) return false;
+  return isActive(currentPath, href, base);
+}
+
+function groupActive(item: NavItem) {
+  if (item.href && itemActive(item.href)) return true;
+  return item.children?.some(
+    (child) =>
+      itemActive(child.href) ||
+      child.children?.some((grand) => itemActive(grand.href)),
+  );
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description ?? "Navigato design system documentation"} />
+    <title>{title ? `${title} · Navigato` : "Navigato Design System"}</title>
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+  </head>
+  <body class="navigato-root min-h-screen bg-background text-foreground">
+    <div class="flex min-h-screen">
+      <aside class="w-72 shrink-0 border-r border-sidebar-border bg-sidebar p-6 hidden lg:block sticky top-0 h-screen overflow-y-auto">
+        <a href={base} class="block mb-8 no-underline">
+          <span class="nvg-font-heading font-extrabold text-2xl text-primary">Navigato</span>
+          <span class="block text-xs text-muted-foreground mt-1">Design System</span>
+        </a>
+        <nav class="space-y-5 text-sm">
+          {
+            siteNav.map((item) =>
+              item.children ? (
+                <div>
+                  <p class="text-xs uppercase text-muted-foreground tracking-wide mb-2 font-bold">
+                    {item.href ? (
+                      <a
+                        href={withBase(base, item.href)}
+                        class:list={[
+                          "no-underline",
+                          itemActive(item.href) ? "text-primary" : "text-muted-foreground hover:text-primary",
+                        ]}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      item.label
+                    )}
+                  </p>
+                  <ul class="space-y-3 list-none p-0 m-0">
+                    {item.children.map((child) => (
+                      <li>
+                        {child.children ? (
+                          <div>
+                            <a
+                              href={child.href ? withBase(base, child.href) : undefined}
+                              class:list={[
+                                "block py-0.5 no-underline text-xs uppercase tracking-wide mb-1.5 font-bold",
+                                groupActive(child) ? "text-primary" : "text-foreground hover:text-primary",
+                              ]}
+                            >
+                              {child.label}
+                            </a>
+                            <ul class="space-y-1 list-none p-0 m-0 pl-2 border-l border-border">
+                              {child.children.map((grand) => (
+                                <li>
+                                  <a
+                                    href={withBase(base, grand.href!)}
+                                    class:list={[
+                                      "block py-0.5 no-underline transition-colors text-sm",
+                                      itemActive(grand.href)
+                                        ? "text-primary font-bold"
+                                        : "text-muted-foreground hover:text-primary",
+                                    ]}
+                                  >
+                                    {grand.label}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : (
+                          <a
+                            href={withBase(base, child.href!)}
+                            class:list={[
+                              "block py-0.5 no-underline transition-colors",
+                              itemActive(child.href)
+                                ? "text-primary font-bold"
+                                : "text-foreground hover:text-primary",
+                            ]}
+                          >
+                            {child.label}
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <a
+                  href={withBase(base, item.href!)}
+                  class:list={[
+                    "block py-1 no-underline transition-colors font-medium",
+                    itemActive(item.href) ? "text-primary font-bold" : "text-foreground hover:text-primary",
+                  ]}
+                >
+                  {item.label}
+                </a>
+              ),
+            )
+          }
+        </nav>
+      </aside>
+
+      <main class="flex-1 p-6 lg:p-10 max-w-5xl">
+        <div class="docs-prose">
+          <slot />
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>

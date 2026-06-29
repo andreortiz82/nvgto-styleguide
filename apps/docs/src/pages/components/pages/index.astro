@@ -1,0 +1,43 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import { SerpPageDemo, PdpPageDemo, CheckoutPageDemo } from "../../../components/demos/v2/PageDemos";
+import TierCards from "../../../components/TierCards.astro";
+import { withBase } from "../../../lib/nav";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title="Pages">
+  <p class="text-xs uppercase text-silver tracking-wide mb-2">Components · Atomic Design</p>
+  <h1>Pages</h1>
+  <p class="nvg-lead">Demoable hotel booking flows — search results, property detail, and checkout.</p>
+
+  <section class="mt-8">
+    <h2>SERP</h2>
+    <p class="text-sm text-muted-foreground mb-4">
+      <a href={withBase(base, "/components/pages/serp/")} class="text-primary font-medium">Full page →</a>
+    </p>
+    <SerpPageDemo client:load />
+  </section>
+
+  <section class="mt-12">
+    <h2>PDP</h2>
+    <p class="text-sm text-muted-foreground mb-4">
+      <a href={withBase(base, "/components/pages/pdp/")} class="text-primary font-medium">Full page →</a>
+    </p>
+    <PdpPageDemo client:load />
+  </section>
+
+  <section class="mt-12">
+    <h2>Checkout</h2>
+    <p class="text-sm text-muted-foreground mb-4">
+      <a href={withBase(base, "/components/pages/checkout/")} class="text-primary font-medium">Full page →</a>
+    </p>
+    <CheckoutPageDemo client:load />
+  </section>
+
+  <section class="mt-12">
+    <h2>Templates</h2>
+    <TierCards base={base} tierLabel="Pages" />
+  </section>
+</DocsLayout>

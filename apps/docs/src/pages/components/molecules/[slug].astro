@@ -1,0 +1,21 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import { ComponentDocPage } from "../../../components/demos/v2/ComponentDocPage";
+import { componentDocs, getSlugsByTier } from "../../../content/components/registry";
+
+export function getStaticPaths() {
+  return getSlugsByTier("molecules").map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const meta = componentDocs[slug!];
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title={meta.title}>
+  <Breadcrumb base={base} tier="Molecules" tierHref="/components/molecules/" />
+  <h1>{meta.title}</h1>
+  <p>{meta.description}</p>
+  <ComponentDocPage slug={slug!} client:load />
+</DocsLayout>
