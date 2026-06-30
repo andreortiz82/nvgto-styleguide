@@ -28,7 +28,25 @@ export function SearchHeader({
   return (
     <header className={cn("border-b bg-background shadow-sm", className)}>
       <div className="flex flex-wrap items-center gap-4 px-4 py-3">
-        <div className="nvg-font-heading text-xl font-extrabold text-primary">{logo}</div>
+        <div className="flex items-center gap-2 shrink-0">
+          {typeof logo === "string" ? (
+            <>
+              <span
+                className="inline-flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground"
+                aria-hidden
+              >
+                <svg viewBox="0 0 24 24" className="size-4" fill="currentColor">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" />
+                </svg>
+              </span>
+              <span className="nvg-font-heading text-lg font-bold tracking-tight text-foreground">
+                {logo}
+              </span>
+            </>
+          ) : (
+            logo
+          )}
+        </div>
         <button
           type="button"
           onClick={onEditTrip}

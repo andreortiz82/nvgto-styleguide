@@ -25,7 +25,7 @@ Built on shadcn/ui primitives with Navigato brand tokens:
 
 ### Design tokens
 
-Brand orange `#FF4700`, Raleway headings, Open Sans body — applied via shadcn CSS variables in `global.css`.
+Brand orange `oklch(0.705 0.213 47.604)`, SN Pro typography — applied via shadcn CSS variables in `global.css`.
 
 ## Quick start
 

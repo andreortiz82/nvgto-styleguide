@@ -161,10 +161,11 @@ export function ThemeColorsPage() {
     <div className="space-y-10 mt-8">
       <Card className="border-dashed">
         <CardHeader>
-          <CardTitle className="text-base">Default shadcn theme</CardTitle>
+          <CardTitle className="text-base">Navigato theme</CardTitle>
           <CardDescription>
-            Neutral zinc palette with light mode default. Add <code className="text-xs">.dark</code> on{" "}
-            <code className="text-xs">html</code> to enable dark tokens.
+            Warm orange primary with stone-tinted neutrals. Light mode default. Add{" "}
+            <code className="text-xs">.dark</code> on <code className="text-xs">html</code> to enable
+            dark tokens.
           </CardDescription>
         </CardHeader>
       </Card>

@@ -19,28 +19,28 @@ const base = import.meta.env.BASE_URL;
     <h2>How the tiers map to travel UI</h2>
     <dl class="space-y-4">
       <div>
-        <dt class="font-bold text-brand">Atoms</dt>
+        <dt class="font-semibold text-primary">Atoms</dt>
         <dd class="m-0 text-sm">
           Buttons, badges, labels, star ratings, and map pins — the smallest pieces that can't be
           broken down further without losing meaning.
         </dd>
       </div>
       <div>
-        <dt class="font-bold text-brand">Molecules</dt>
+        <dt class="font-semibold text-primary">Molecules</dt>
         <dd class="m-0 text-sm">
           Form fields, cards, dropdowns, trip summaries, and price sliders — functional groups
           of atoms working together.
         </dd>
       </div>
       <div>
-        <dt class="font-bold text-brand">Organisms</dt>
+        <dt class="font-semibold text-primary">Organisms</dt>
         <dd class="m-0 text-sm">
           Hotel cards, the SERP app bar, OTA rate lists, and focus windows — full interface
           sections users recognize instantly.
         </dd>
       </div>
       <div>
-        <dt class="font-bold text-brand">Pages</dt>
+        <dt class="font-semibold text-primary">Pages</dt>
         <dd class="m-0 text-sm">
           SERP and PDP templates — realistic compositions you can demo to stakeholders or use as
           integration references.
@@ -55,10 +55,10 @@ const base = import.meta.env.BASE_URL;
       {
         componentsNav.children?.map((tier) => (
           <li>
-            <a href={withBase(base, tier.href!)} class="text-brand font-bold no-underline hover:underline">
+            <a href={withBase(base, tier.href!)} class="text-primary font-semibold no-underline hover:underline">
               {tier.label} →
             </a>
-            <span class="text-silver text-sm ml-2">{tier.description}</span>
+            <span class="text-muted-foreground text-sm ml-2">{tier.description}</span>
           </li>
         ))
       }

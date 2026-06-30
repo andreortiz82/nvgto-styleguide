@@ -6,13 +6,13 @@ export function DemoFrame({
   children: React.ReactNode;
 }) {
   return (
-    <div className="my-6 border border-mid rounded-md overflow-hidden">
+    <div className="my-6 border border-border rounded-lg overflow-hidden shadow-sm">
       {title ? (
-        <div className="px-4 py-2 bg-white border-b border-mid text-xs uppercase text-silver tracking-wide">
+        <div className="px-4 py-2.5 bg-muted/50 border-b border-border nvg-uppercase text-muted-foreground">
           {title}
         </div>
       ) : null}
-      <div className="p-6 bg-white">{children}</div>
+      <div className="p-6 bg-card">{children}</div>
     </div>
   );
 }

@@ -16,9 +16,9 @@ const tier = componentsNav.children?.find((t) => t.label === tierLabel);
       {tier.children.map((item) => (
         <a
           href={withBase(base, item.href!)}
-          class="block nvg-shadow-sm bg-white p-5 no-underline text-inherit rounded-md transition-transform duration-200 hover:scale-[1.02] hover:nvg-shadow-lg"
-        >
-          <h3 class="text-brand m-0 text-lg">{item.label}</h3>
+          class="block nvg-shadow-sm bg-card border border-border p-5 no-underline text-inherit rounded-lg transition-all duration-200 hover:scale-[1.02] hover:nvg-shadow-lg hover:border-primary/30"
+          >
+          <h3 class="text-primary m-0 text-lg font-semibold">{item.label}</h3>
         </a>
       ))}
     </div>
