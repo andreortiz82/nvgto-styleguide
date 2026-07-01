@@ -25,7 +25,7 @@ export function FilterChip({
     >
       <Badge
         variant={active ? "default" : "outline"}
-        className="cursor-pointer gap-1 pr-1.5"
+        className="cursor-pointer gap-1 pr-1.5 transition-colors duration-150"
       >
         {label}
         {active && onRemove ? (

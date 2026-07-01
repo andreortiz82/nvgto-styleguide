@@ -1,0 +1,46 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Accessibility">
+  <h1>Accessibility</h1>
+  <p>
+    Navigato builds on Base UI / Radix patterns via shadcn/ui. Components ship with keyboard support,
+    focus management, and ARIA attributes where appropriate.
+  </p>
+
+  <h2>Focus &amp; keyboard</h2>
+  <ul class="list-disc pl-5 space-y-1">
+    <li>Global focus ring: <code>outline-ring/50</code> on interactive elements</li>
+    <li><strong>DateRangePicker</strong> — opens calendar popover; arrow keys navigate dates when focused</li>
+    <li><strong>FilterSheet</strong> — trap focus in sheet; Escape closes</li>
+    <li><strong>GuestSelector</strong> — stepper buttons are keyboard activatable</li>
+    <li><strong>DestinationInput</strong> — combobox pattern with typeahead</li>
+  </ul>
+
+  <h2>Screen readers</h2>
+  <ul class="list-disc pl-5 space-y-1">
+    <li>Icon-only buttons require <code>aria-label</code> (see Button icon demo)</li>
+    <li><strong>StarRating</strong> — exposes value when <code>readOnly</code></li>
+    <li><strong>EmptyState</strong> — heading + description structure for announcements</li>
+    <li>Decorative icons use <code>aria-hidden</code></li>
+  </ul>
+
+  <h2>Motion &amp; contrast</h2>
+  <ul class="list-disc pl-5 space-y-1">
+    <li><code>prefers-reduced-motion</code> disables pulse/ping animations</li>
+    <li>Dark mode tokens maintain WCAG-friendly contrast for primary on background</li>
+    <li>Use <code>.navigato-root</code> wrapper for consistent base typography</li>
+  </ul>
+
+  <h2>Docs site</h2>
+  <ul class="list-disc pl-5 space-y-1">
+    <li>Skip link to main content on every page</li>
+    <li>Mobile navigation via accessible sheet drawer</li>
+    <li>Theme toggle updates <code>color-scheme</code> on <code>html</code></li>
+  </ul>
+
+  <p class="mt-8">
+    <a href={`${import.meta.env.BASE_URL}getting-started/`}>Getting started →</a>
+  </p>
+</DocsLayout>

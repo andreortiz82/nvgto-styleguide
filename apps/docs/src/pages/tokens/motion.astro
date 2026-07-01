@@ -1,0 +1,13 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { MotionPage } from "../../components/demos/MotionDemo";
+---
+
+<DocsLayout title="Motion">
+  <h1>Motion</h1>
+  <p>
+    Duration, easing, and animation utilities for Navigato. See the repo root{" "}
+    <code>DESIGN.md</code> for the full motion policy.
+  </p>
+  <MotionPage client:load />
+</DocsLayout>

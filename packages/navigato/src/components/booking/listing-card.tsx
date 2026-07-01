@@ -46,7 +46,7 @@ export function ListingCard({
   return (
     <Card
       className={cn(
-        "group cursor-pointer overflow-hidden p-0 ring-0 transition-shadow hover:shadow-lg",
+        "group cursor-pointer overflow-hidden p-0 ring-0 transition-[box-shadow,transform] duration-200 ease-out hover:shadow-lg",
         className,
       )}
       onClick={onClick}
@@ -55,7 +55,7 @@ export function ListingCard({
         <img
           src={gallery[activeImage]}
           alt={title}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
         />
         {badge ? (
           <Badge className="absolute left-3 top-3">{badge}</Badge>

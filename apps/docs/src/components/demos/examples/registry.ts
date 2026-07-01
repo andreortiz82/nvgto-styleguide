@@ -16,6 +16,13 @@ import {
   InputTypesDemo,
 } from "./atoms/input";
 import {
+  CardDefaultDemo,
+  DialogDefaultDemo,
+  SelectDefaultDemo,
+  SheetDefaultDemo,
+  TabsDefaultDemo,
+} from "./atoms/primitives";
+import {
   SkeletonCardDemo,
   SkeletonDefaultDemo,
   SkeletonShapesDemo,
@@ -24,6 +31,7 @@ import {
   DateRangePickerDefaultDemo,
   DateRangePickerWidthDemo,
   DestinationInputDefaultDemo,
+  FilterChipDefaultDemo,
   GuestSelectorCompactDemo,
   GuestSelectorDefaultDemo,
   MapPriceMarkerDefaultDemo,
@@ -35,10 +43,13 @@ import {
 import {
   AmenityGridDefaultDemo,
   BookingSearchBarDefaultDemo,
+  BookingStepsDefaultDemo,
   BookingWidgetDefaultDemo,
+  EmptyStateDefaultDemo,
   FilterBarDefaultDemo,
   FilterSheetDefaultDemo,
   ListingCardDefaultDemo,
+  ListingCardSkeletonDefaultDemo,
   ListingCardVariantsDemo,
   PhotoGalleryDefaultDemo,
   PriceBreakdownDefaultDemo,
@@ -59,6 +70,11 @@ export const previewDemos: Record<string, ComponentType> = {
   badge: BadgeDefaultDemo,
   input: InputDefaultDemo,
   skeleton: SkeletonDefaultDemo,
+  card: CardDefaultDemo,
+  tabs: TabsDefaultDemo,
+  select: SelectDefaultDemo,
+  sheet: SheetDefaultDemo,
+  dialog: DialogDefaultDemo,
   "date-range-picker": DateRangePickerDefaultDemo,
   "guest-selector": GuestSelectorDefaultDemo,
   "destination-input": DestinationInputDefaultDemo,
@@ -66,6 +82,7 @@ export const previewDemos: Record<string, ComponentType> = {
   "price-range-slider": PriceRangeSliderDefaultDemo,
   "map-price-marker": MapPriceMarkerDefaultDemo,
   "sort-select": SortSelectDefaultDemo,
+  "filter-chip": FilterChipDefaultDemo,
   "listing-card": ListingCardDefaultDemo,
   "booking-search-bar": BookingSearchBarDefaultDemo,
   "booking-widget": BookingWidgetDefaultDemo,
@@ -77,6 +94,9 @@ export const previewDemos: Record<string, ComponentType> = {
   "rate-comparison": RateComparisonDefaultDemo,
   "price-breakdown": PriceBreakdownDefaultDemo,
   "filter-sheet": FilterSheetDefaultDemo,
+  "booking-steps": BookingStepsDefaultDemo,
+  "empty-state": EmptyStateDefaultDemo,
+  "listing-card-skeleton": ListingCardSkeletonDefaultDemo,
 };
 
 export const componentExamples: Record<string, ExampleEntry[]> = {

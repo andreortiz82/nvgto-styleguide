@@ -1,5 +1,8 @@
 ---
 import DocsLayout from "../layouts/DocsLayout.astro";
+import TierCards from "../components/TierCards.astro";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <DocsLayout title="Overview">
@@ -8,6 +11,14 @@ import DocsLayout from "../layouts/DocsLayout.astro";
     A React component library for travel booking, trip planning, and short-term rental products —
     built for engineers who need consistent UI patterns across search, map, and booking flows.
   </p>
+
+  <div class="not-prose my-8 flex items-center gap-4 rounded-xl border border-border bg-card p-5 nvg-shadow-sm">
+    <div class="size-12 shrink-0 rounded-lg bg-primary" aria-hidden="true"></div>
+    <div>
+      <p class="m-0 text-sm font-semibold text-foreground">Brand primary</p>
+      <p class="m-0 mt-0.5 text-xs text-muted-foreground font-mono">oklch(0.705 0.213 47.604)</p>
+    </div>
+  </div>
 
   <section class="mt-10 space-y-4">
     <h2>What is Navigato?</h2>
@@ -25,15 +36,31 @@ import DocsLayout from "../layouts/DocsLayout.astro";
   </section>
 
   <section class="mt-10">
-    <h2>Explore components</h2>
-    <p>
-      Browse the library by Atomic Design tier — atoms, molecules, organisms, and demoable pages.
-    </p>
-    <p class="mt-4">
-      <a href={`${import.meta.env.BASE_URL}components/`} class="text-primary font-semibold no-underline hover:underline">
+    <h2>Component tiers</h2>
+    <p>Browse the library by Atomic Design tier — atoms, molecules, organisms, and demoable pages.</p>
+    <TierCards base={base} tierLabel="Atoms" />
+    <div class="mt-6">
+      <a href={`${base}components/`} class="text-primary font-semibold no-underline hover:underline">
         View all components →
       </a>
-    </p>
+    </div>
+  </section>
+
+  <section class="mt-10 grid gap-4 sm:grid-cols-2 not-prose">
+    <a
+      href={`${base}tokens/colors/`}
+      class="block rounded-lg border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30 hover:nvg-shadow-sm"
+    >
+      <h3 class="m-0 text-base font-semibold text-primary">Colors</h3>
+      <p class="m-0 mt-1 text-sm text-muted-foreground">Semantic tokens, charts, sidebar</p>
+    </a>
+    <a
+      href={`${base}getting-started/`}
+      class="block rounded-lg border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30 hover:nvg-shadow-sm"
+    >
+      <h3 class="m-0 text-base font-semibold text-primary">Getting started</h3>
+      <p class="m-0 mt-1 text-sm text-muted-foreground">Install, import styles, first component</p>
+    </a>
   </section>
 
   <section class="mt-10">
@@ -43,7 +70,7 @@ import DocsLayout from "../layouts/DocsLayout.astro";
 import '@navigato/react/styles.css'
 import { BookingSearchBar, ListingCard } from '@navigato/react'`}</code></pre>
     <p class="mt-4">
-      <a href={`${import.meta.env.BASE_URL}getting-started/`} class="text-primary font-semibold no-underline hover:underline">
+      <a href={`${base}getting-started/`} class="text-primary font-semibold no-underline hover:underline">
         Read the getting started guide →
       </a>
     </p>

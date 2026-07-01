@@ -1,6 +1,7 @@
 import {
   DateRangePicker,
   DestinationInput,
+  FilterChip,
   GuestSelector,
   MapPriceMarker,
   PriceRangeSlider,
@@ -54,11 +55,21 @@ export function MapPriceMarkerDefaultDemo() {
     <div className="flex flex-wrap gap-3">
       <MapPriceMarker price="$189" />
       <MapPriceMarker price="$245" saved />
-      <MapPriceMarker price="$312" />
+      <MapPriceMarker price="$312" selected />
     </div>
   );
 }
 
 export function SortSelectDefaultDemo() {
   return <SortSelect className="w-44" />;
+}
+
+export function FilterChipDefaultDemo() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <FilterChip label="Free cancellation" active />
+      <FilterChip label="Pool" />
+      <FilterChip label="Pet friendly" active onRemove={() => {}} />
+    </div>
+  );
 }

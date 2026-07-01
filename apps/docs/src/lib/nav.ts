@@ -16,6 +16,11 @@ export const componentsNav: NavItem = {
         { label: "Badge", href: "/components/atoms/badge/" },
         { label: "Input", href: "/components/atoms/input/" },
         { label: "Skeleton", href: "/components/atoms/skeleton/" },
+        { label: "Card", href: "/components/atoms/card/" },
+        { label: "Tabs", href: "/components/atoms/tabs/" },
+        { label: "Select", href: "/components/atoms/select/" },
+        { label: "Sheet", href: "/components/atoms/sheet/" },
+        { label: "Dialog", href: "/components/atoms/dialog/" },
       ],
     },
     {
@@ -30,6 +35,7 @@ export const componentsNav: NavItem = {
         { label: "Price range slider", href: "/components/molecules/price-range-slider/" },
         { label: "Map price marker", href: "/components/molecules/map-price-marker/" },
         { label: "Sort select", href: "/components/molecules/sort-select/" },
+        { label: "Filter chip", href: "/components/molecules/filter-chip/" },
       ],
     },
     {
@@ -48,6 +54,9 @@ export const componentsNav: NavItem = {
         { label: "Photo gallery", href: "/components/organisms/photo-gallery/" },
         { label: "Amenity grid", href: "/components/organisms/amenity-grid/" },
         { label: "Review summary", href: "/components/organisms/review-summary/" },
+        { label: "Booking steps", href: "/components/organisms/booking-steps/" },
+        { label: "Empty state", href: "/components/organisms/empty-state/" },
+        { label: "Listing card skeleton", href: "/components/organisms/listing-card-skeleton/" },
       ],
     },
     {
@@ -71,6 +80,8 @@ export const siteNav: NavItem[] = [
     children: [
       { label: "Colors", href: "/tokens/colors/" },
       { label: "Typography", href: "/tokens/typography/" },
+      { label: "Spacing & shadows", href: "/tokens/spacing/" },
+      { label: "Motion", href: "/tokens/motion/" },
     ],
   },
   componentsNav,

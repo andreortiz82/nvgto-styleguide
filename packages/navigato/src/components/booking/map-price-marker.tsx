@@ -21,8 +21,8 @@ export function MapPriceMarker({
       type="button"
       onClick={onClick}
       className={cn(
-        "relative inline-flex items-center gap-1 rounded-lg px-2 py-1 text-sm font-bold text-primary-foreground shadow-md transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        selected ? "bg-foreground" : "bg-primary",
+        "relative inline-flex items-center gap-1 rounded-lg px-2 py-1 text-sm font-bold text-primary-foreground shadow-md transition-[transform,box-shadow] duration-200 ease-out hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        selected ? "bg-foreground nvg-animate-pulse" : "bg-primary",
         "after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:border-[6px] after:border-x-transparent after:border-b-transparent",
         selected ? "after:border-t-foreground" : "after:border-t-primary",
         className,

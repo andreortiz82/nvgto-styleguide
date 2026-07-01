@@ -1,10 +1,14 @@
 import {
   AmenityGrid,
   BookingSearchBar,
+  BookingSteps,
   BookingWidget,
+  defaultBookingSteps,
+  EmptyState,
   FilterBar,
   FilterSheet,
   ListingCard,
+  ListingCardSkeleton,
   PhotoGallery,
   PriceBreakdown,
   RateComparison,
@@ -148,6 +152,22 @@ export function ReviewSummaryDefaultDemo() {
         { author: "Sam", date: "Jan 2026", rating: 4, text: "Great value, would stay again." },
       ]}
     />
+  );
+}
+
+export function BookingStepsDefaultDemo() {
+  return <BookingSteps steps={defaultBookingSteps} currentStep="payment" className="max-w-md" />;
+}
+
+export function EmptyStateDefaultDemo() {
+  return <EmptyState className="max-w-md w-full" onAction={() => {}} />;
+}
+
+export function ListingCardSkeletonDefaultDemo() {
+  return (
+    <div className="max-w-sm w-full">
+      <ListingCardSkeleton />
+    </div>
   );
 }
 
