@@ -81,6 +81,38 @@ const SERP_LISTINGS: SerpListing[] = [
   },
 ];
 
+const DEST_LABELS: Record<string, string> = {
+  "austin-tx": "Austin, TX",
+  barcelona: "Barcelona, Spain",
+  tokyo: "Tokyo, Japan",
+  paris: "Paris, France",
+};
+
+function shortDate(value: Date) {
+  return value.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+function formatStayQuery(params: {
+  destination?: string;
+  dateRange?: { from?: Date; to?: Date };
+  guests?: { adults: number; children: number; rooms: number };
+}) {
+  const destination = params.destination
+    ? (DEST_LABELS[params.destination] ?? params.destination)
+    : "Anywhere";
+  const dates =
+    params.dateRange?.from && params.dateRange?.to
+      ? `${shortDate(params.dateRange.from)}–${shortDate(params.dateRange.to)}`
+      : params.dateRange?.from
+        ? `${shortDate(params.dateRange.from)}–?`
+        : "add dates";
+  const guests = params.guests ?? { adults: 2, children: 0, rooms: 1 };
+  const occupancy = `${guests.adults} adult${guests.adults === 1 ? "" : "s"}${
+    guests.children ? ` · ${guests.children} child${guests.children === 1 ? "" : "ren"}` : ""
+  } · ${guests.rooms} room${guests.rooms === 1 ? "" : "s"}`;
+  return { destination, tripSummary: `${dates} · ${occupancy}` };
+}
+
 const SERP_FILTERS = [
   { id: "wifi", label: "WiFi" },
   { id: "pool", label: "Pool" },
@@ -99,6 +131,9 @@ type SerpView = (typeof SERP_VIEWS)[number]["id"];
 export function SerpPageDemo() {
   const [view, setView] = useState<SerpView>("results");
   const [activeFilters, setActiveFilters] = useState<string[]>(["wifi"]);
+  const [destination, setDestination] = useState("Austin, TX");
+  const [tripSummary, setTripSummary] = useState("Mar 12–15 · 2 adults · 1 room");
+  const [searchNote, setSearchNote] = useState<string | null>(null);
 
   const filters = SERP_FILTERS.map((filter) => ({
     ...filter,
@@ -112,11 +147,24 @@ export function SerpPageDemo() {
     <div className="space-y-6">
       <SearchHeader
         logo={<span className="nvg-font-heading text-lg font-bold tracking-tight">Navigato</span>}
-        destination="Austin, TX"
-        tripSummary="Mar 12–15 · 2 adults · 1 room"
+        destination={destination}
+        tripSummary={tripSummary}
         rating={4}
       />
-      <BookingSearchBar />
+      <BookingSearchBar
+        onSearch={(params) => {
+          const next = formatStayQuery(params);
+          setDestination(next.destination);
+          setTripSummary(next.tripSummary);
+          setSearchNote(`${next.destination} · ${next.tripSummary}`);
+          setView("results");
+        }}
+      />
+      {searchNote ? (
+        <p className="text-sm text-muted-foreground m-0" aria-live="polite">
+          Search updated — {searchNote}. Demo does not route.
+        </p>
+      ) : null}
       <FilterBar
         resultCount={resultCount}
         filters={filters}
