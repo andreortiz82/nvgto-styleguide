@@ -658,7 +658,7 @@ const [range, setRange] = useState<[number, number]>([50, 400])
       "A vertical facet list on PDP. Don’t invent a Carbon-style filter tree.",
     ],
     anatomy: [
-      { name: "Result count", description: "“N stays”; polite live region." },
+      { name: "Result count", description: "“0 stays” / “1 stay” / “N stays”; polite live region." },
       { name: "Filter chips", description: "Toggle amenity/type filters; active chips can remove." },
       { name: "SortSelect", description: "Recommended, price, rating, distance." },
       { name: "Filters button", description: "Only if `onOpenSheet` is passed." },
@@ -669,7 +669,7 @@ const [range, setRange] = useState<[number, number]>([50, 400])
       { name: "selected", description: "Active chip uses the default Badge (primary)." },
       { name: "empty", description: "Pass resultCount={0} and pair with EmptyState on the page — this bar does not render the empty illustration." },
     ],
-    content: "Count noun is “stays”, not “results” or “hits”. Chip labels are amenities or trip facts (“WiFi”, “Free cancellation”), not CSS class names. Sort labels stay human (“Price: low to high”).",
+    content: "Count noun is “stay” / “stays” (1 stay, otherwise stays), not “results” or “hits”. Chip labels are amenities or trip facts (“WiFi”, “Free cancellation”), not CSS class names. Sort labels stay human (“Price: low to high”).",
     a11y: "Result count is aria-live polite — keep it in sync when filters change. Consumer owns the filter logic. Pair onOpenSheet with FilterSheet `open` / `onOpenChange` (pass `trigger={null}`). Don’t disable chips with no explanation. Keyboard on chips and sort comes from FilterChip + Select.",
     doDont: {
       do: "Update the live stay count when a chip toggles, and show EmptyState when it hits zero.",

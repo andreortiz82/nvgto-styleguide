@@ -29,7 +29,7 @@ export function FilterBar({
     <div className={cn("flex flex-wrap items-center gap-3", className)}>
       {resultCount !== undefined ? (
         <p className="text-sm text-muted-foreground" aria-live="polite">
-          {resultCount} stays
+          {resultCount} {resultCount === 1 ? "stay" : "stays"}
         </p>
       ) : null}
       <div className="flex flex-1 flex-wrap gap-2">
