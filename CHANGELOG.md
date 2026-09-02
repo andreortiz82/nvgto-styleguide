@@ -54,6 +54,6 @@ shadcn atoms (Button, Badge, Input, Card, …) stay thin.
 ### Package surface (already in 0.2.0)
 
 - Name: `@navigato/react`
-- Exports: `.` (JS + types), `./styles.css` → `dist/navigato.css`, `./theme.css` → `src/styles/global.css`
+- Exports: `.` (JS + types), `./styles.css` → `dist/navigato.css`, `./theme.css` → `dist/theme.css` (copy of `src/styles/global.css`)
 - Peer: `react` and `react-dom` `>=18`
-- Files published (when the time comes): `dist` only
+- `files` is `dist` only. The library build copies `src/styles/global.css` to `dist/theme.css` so `./theme.css` is in the tarball (it previously pointed at source, which `files` does not include). `./styles.css` still maps to `dist/navigato.css`.

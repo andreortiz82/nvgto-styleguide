@@ -30,7 +30,7 @@ Import the built stylesheet and (if you need tokens without the bundle) the them
 
 ```tsx
 import "@navigato/react/styles.css";
-// optional: tokens only — maps to src/styles/global.css
+// optional: tokens only — maps to dist/theme.css (copy of src/styles/global.css)
 // import "@navigato/react/theme.css";
 
 import {
@@ -63,7 +63,7 @@ Package exports (see `packages/navigato/package.json`):
 |--------|-------------|
 | `@navigato/react` | `dist/index.js` + `dist/index.d.ts` |
 | `@navigato/react/styles.css` | `dist/navigato.css` |
-| `@navigato/react/theme.css` | `src/styles/global.css` |
+| `@navigato/react/theme.css` | `dist/theme.css` (source tokens copied from `src/styles/global.css`) |
 
 Add SN Pro yourself (the package does not inject the font):
 
@@ -135,7 +135,7 @@ npm run build:lib
 npm publish --workspace=@navigato/react
 ```
 
-`publishConfig.access` is `public`. `files` is `dist` only. After the first publish, consumers can `npm install @navigato/react` and the snippet above becomes the install path. Until then, consume from this repo.
+`publishConfig.access` is `public`. `files` is `dist` only. `build:lib` writes `dist/navigato.css` (`./styles.css`) and copies `src/styles/global.css` to `dist/theme.css` (`./theme.css`) so both CSS exports are in the tarball. After the first publish, consumers can `npm install @navigato/react` and the snippet above becomes the install path. Until then, consume from this repo.
 
 See [CHANGELOG.md](./CHANGELOG.md) for what 0.2.x already contains (SERP `soldOut`, BookingWidget contract, remaining booking docs, FilterSheet / price / RateComparison API).
 

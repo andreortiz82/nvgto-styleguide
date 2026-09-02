@@ -16,7 +16,7 @@
       "types": "./dist/index.d.ts"
     },
     "./styles.css": "./dist/navigato.css",
-    "./theme.css": "./src/styles/global.css"
+    "./theme.css": "./dist/theme.css"
   },
   "sideEffects": [
     "**/*.css"
