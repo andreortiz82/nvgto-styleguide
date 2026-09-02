@@ -15,12 +15,12 @@ Read `DESIGN.md` (quality bar + How AI changes this) before writing UI. Query th
 ## Plan against the system API
 
 1. Public exports: `packages/navigato/src/index.ts`
-2. Props and when/when-not: `apps/docs/src/content/components/registry.ts` (SERP parts have the full docs skeleton)
-3. Page instance: SERP at `apps/docs/src/components/demos/v2/PageDemos.tsx`
+2. Props and when/when-not: `apps/docs/src/content/components/registry.ts` (SERP + PDP/checkout parts have the full docs skeleton)
+3. Page instances: SERP, PDP, and checkout at `apps/docs/src/components/demos/v2/PageDemos.tsx`
 4. Index: `llms.txt` (repo) and `/nvgto-styleguide/llms.txt` (docs site). Index, not a teacher.
 
 Prefer existing primitives. New primitive only if composition fails. New pattern if it appears twice in the booking flow.
 
 **Copy-in vs package:** app teams import `@navigato/react`. Override tokens before forking. Copy `packages/navigato/src` when the consumer must edit the file. Don’t do neither (black-box npm with no tokens and no fork path).
 
-Patterns that matter: ListingCard (including `soldOut`), BookingSearchBar, FilterBar, DateRangePicker, GuestSelector, ListingCardSkeleton, EmptyState. Buttons don’t differentiate this library.
+Patterns that matter: ListingCard (including `soldOut`), BookingSearchBar, FilterBar, DateRangePicker, GuestSelector, ListingCardSkeleton, EmptyState, BookingWidget (empty dates / sold-out — never invent 3 nights or silent-disable Reserve), PriceBreakdown, PhotoGallery, BookingSteps, AmenityGrid, ReviewSummary. Buttons don’t differentiate this library.

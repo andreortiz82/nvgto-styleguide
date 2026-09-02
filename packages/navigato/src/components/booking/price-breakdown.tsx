@@ -23,7 +23,7 @@ export function PriceBreakdown({
   const total = subtotal + taxes;
 
   return (
-    <div className={cn("space-y-2 text-sm", className)}>
+    <div className={cn("space-y-2 text-sm", className)} aria-live="polite">
       {lineItems.map((item) => (
         <div key={item.label} className="flex justify-between gap-4">
           <span className="text-muted-foreground underline decoration-dotted underline-offset-2">

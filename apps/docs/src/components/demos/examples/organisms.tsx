@@ -24,6 +24,18 @@ const GALLERY = [
   "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop",
 ];
 
+const PDP_GALLERY = [
+  ...GALLERY,
+  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&h=600&fit=crop",
+];
+
+/** Mar 12–15 — same stay copy as the SERP header. Not invented by BookingWidget. */
+const DEMO_STAY_RANGE = {
+  from: new Date(2026, 2, 12),
+  to: new Date(2026, 2, 15),
+};
+
 export function BookingSearchBarDefaultDemo() {
   return <BookingSearchBar />;
 }
@@ -117,7 +129,23 @@ export function FilterSheetDefaultDemo() {
 export function BookingWidgetDefaultDemo() {
   return (
     <div className="max-w-sm w-full">
-      <BookingWidget pricePerNight={220} />
+      <BookingWidget pricePerNight={189} />
+    </div>
+  );
+}
+
+export function BookingWidgetReadyDemo() {
+  return (
+    <div className="max-w-sm w-full">
+      <BookingWidget pricePerNight={189} defaultDateRange={DEMO_STAY_RANGE} />
+    </div>
+  );
+}
+
+export function BookingWidgetSoldOutDemo() {
+  return (
+    <div className="max-w-sm w-full">
+      <BookingWidget pricePerNight={189} defaultDateRange={DEMO_STAY_RANGE} soldOut />
     </div>
   );
 }
@@ -127,7 +155,7 @@ export function PriceBreakdownDefaultDemo() {
     <PriceBreakdown
       className="max-w-sm w-full"
       lineItems={[
-        { label: "$220 × 3 nights", amount: 660 },
+        { label: "$189 × 3 nights", amount: 567 },
         { label: "Cleaning fee", amount: 75 },
         { label: "Service fee", amount: 120 },
       ]}
@@ -187,4 +215,4 @@ export function ListingCardSkeletonDefaultDemo() {
   );
 }
 
-export { IMG, GALLERY };
+export { IMG, GALLERY, PDP_GALLERY, DEMO_STAY_RANGE };
