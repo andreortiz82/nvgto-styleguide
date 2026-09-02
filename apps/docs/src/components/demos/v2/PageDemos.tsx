@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import type { DateRange } from "react-day-picker";
 import {
   AmenityGrid,
@@ -126,6 +126,10 @@ const SERP_FILTERS = [
   { id: "parking", label: "Parking" },
 ];
 
+const SERP_PRICE_MIN = 50;
+const SERP_PRICE_MAX = 800;
+const SERP_PRICE_DEFAULT: [number, number] = [50, 400];
+
 const SERP_VIEWS = [
   { id: "results", label: "Results" },
   { id: "loading", label: "Loading" },
@@ -134,22 +138,61 @@ const SERP_VIEWS = [
 
 type SerpView = (typeof SERP_VIEWS)[number]["id"];
 
+/** Sort keys match SortSelect defaults. Distance has no fixture field — keep original order. */
+function applySerpFilters(
+  listings: SerpListing[],
+  priceRange: [number, number],
+  minRating: number,
+  sortValue: string,
+): SerpListing[] {
+  const filtered = listings.filter((listing) => {
+    const inPrice =
+      listing.pricePerNight >= priceRange[0] && listing.pricePerNight <= priceRange[1];
+    const meetsRating = minRating <= 0 || listing.rating >= minRating;
+    return inPrice && meetsRating;
+  });
+
+  if (sortValue === "price-asc") {
+    return [...filtered].sort((a, b) => a.pricePerNight - b.pricePerNight);
+  }
+  if (sortValue === "price-desc") {
+    return [...filtered].sort((a, b) => b.pricePerNight - a.pricePerNight);
+  }
+  if (sortValue === "rating") {
+    return [...filtered].sort((a, b) => b.rating - a.rating);
+  }
+  return filtered;
+}
+
 export function SerpPageDemo() {
+  const searchRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<SerpView>("results");
   const [activeFilters, setActiveFilters] = useState<string[]>(["wifi"]);
   const [destination, setDestination] = useState("Austin, TX");
   const [tripSummary, setTripSummary] = useState("Mar 12–15 · 2 adults · 1 room");
   const [searchNote, setSearchNote] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [priceRange, setPriceRange] = useState<[number, number]>([50, 400]);
+  const [priceRange, setPriceRange] = useState<[number, number]>(SERP_PRICE_DEFAULT);
+  const [minRating, setMinRating] = useState(0);
+  const [sortValue, setSortValue] = useState("recommended");
 
   const filters = SERP_FILTERS.map((filter) => ({
     ...filter,
     active: activeFilters.includes(filter.id),
   }));
 
-  const resultCount = view === "empty" ? 0 : view === "loading" ? undefined : SERP_LISTINGS.length;
-  const mapMarkers = SERP_LISTINGS.filter((listing) => listing.mapPrice && !listing.soldOut);
+  const visibleListings = applySerpFilters(SERP_LISTINGS, priceRange, minRating, sortValue);
+  const resultCount = view === "empty" ? 0 : view === "loading" ? undefined : visibleListings.length;
+  const showEmpty = view === "empty" || (view === "results" && visibleListings.length === 0);
+  const mapMarkers = visibleListings.filter((listing) => listing.mapPrice && !listing.soldOut);
+
+  const resetFilters = () => {
+    setActiveFilters([]);
+    setPriceRange(SERP_PRICE_DEFAULT);
+    setMinRating(0);
+    setSortValue("recommended");
+    setView("results");
+  };
 
   return (
     <div className="space-y-6">
@@ -157,21 +200,28 @@ export function SerpPageDemo() {
         logo={<span className="nvg-font-heading text-lg font-bold tracking-tight">Navigato</span>}
         destination={destination}
         tripSummary={tripSummary}
-        rating={4}
-        min={50}
-        max={800}
+        onEditTrip={() => {
+          searchRef.current?.scrollIntoView({ block: "nearest" });
+          searchRef.current?.querySelector<HTMLElement>("button, input")?.focus();
+        }}
+        rating={minRating}
+        onRatingChange={setMinRating}
+        min={SERP_PRICE_MIN}
+        max={SERP_PRICE_MAX}
         value={priceRange}
         onChange={setPriceRange}
       />
-      <BookingSearchBar
-        onSearch={(params) => {
-          const next = formatStayQuery(params);
-          setDestination(next.destination);
-          setTripSummary(next.tripSummary);
-          setSearchNote(`${next.destination} · ${next.tripSummary}`);
-          setView("results");
-        }}
-      />
+      <div ref={searchRef}>
+        <BookingSearchBar
+          onSearch={(params) => {
+            const next = formatStayQuery(params);
+            setDestination(next.destination);
+            setTripSummary(next.tripSummary);
+            setSearchNote(`${next.destination} · ${next.tripSummary}`);
+            setView("results");
+          }}
+        />
+      </div>
       {searchNote ? (
         <p className="text-sm text-muted-foreground m-0" aria-live="polite">
           Search updated — {searchNote}. Demo does not route.
@@ -185,18 +235,20 @@ export function SerpPageDemo() {
             current.includes(id) ? current.filter((item) => item !== id) : [...current, id],
           )
         }
+        sortValue={sortValue}
+        onSortChange={setSortValue}
         onOpenSheet={() => setFiltersOpen(true)}
       />
       <FilterSheet
         open={filtersOpen}
         onOpenChange={setFiltersOpen}
         trigger={null}
-        min={50}
-        max={800}
+        min={SERP_PRICE_MIN}
+        max={SERP_PRICE_MAX}
         value={priceRange}
         onChange={setPriceRange}
         onApply={() => setFiltersOpen(false)}
-        onClear={() => setPriceRange([50, 400])}
+        onClear={() => setPriceRange(SERP_PRICE_DEFAULT)}
       />
 
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -218,22 +270,19 @@ export function SerpPageDemo() {
         </div>
       </div>
 
-      {view === "empty" ? (
+      {showEmpty ? (
         <EmptyState
           title="No stays in Austin for these dates"
           description="Try different dates, drop a filter, or widen the map."
           actionLabel="Clear filters"
-          onAction={() => {
-            setActiveFilters([]);
-            setView("results");
-          }}
+          onAction={resetFilters}
         />
       ) : (
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {view === "loading"
               ? Array.from({ length: 4 }, (_, i) => <ListingCardSkeleton key={i} />)
-              : SERP_LISTINGS.map((listing) => (
+              : visibleListings.map((listing) => (
                   <ListingCard
                     key={listing.title}
                     title={listing.title}

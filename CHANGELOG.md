@@ -37,6 +37,10 @@ shadcn atoms (Button, Badge, Input, Card, …) stay thin.
 - `SearchHeader` desktop refine row no longer uses `hidden` (docs `.hidden` was winning over package `md:block`). Slider uses `max-md:hidden`; min-rating uses `max-md:!hidden`; the stub Filters button uses `md:!hidden`.
 - `RateComparison` no longer defaults `href` to `#`. Missing `href` renders a non-link row.
 
+### SERP demo consumes the filter APIs (still unpublished)
+
+- SERP page demo filters the mixed fixture by price range and min rating, sorts with SortSelect’s public keys, keeps FilterBar’s stay count in sync, and shows EmptyState at zero matches. Header and FilterSheet share one `priceRange`. Fixture-only — not a stay API.
+
 ### Agent surface
 
 - `llms.txt` (repo and docs) indexes the booking parts that now have the skeleton.
