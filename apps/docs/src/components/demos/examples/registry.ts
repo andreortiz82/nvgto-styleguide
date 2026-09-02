@@ -50,6 +50,7 @@ import {
   FilterSheetDefaultDemo,
   ListingCardDefaultDemo,
   ListingCardSkeletonDefaultDemo,
+  ListingCardSoldOutDemo,
   ListingCardVariantsDemo,
   PhotoGalleryDefaultDemo,
   PriceBreakdownDefaultDemo,
@@ -128,5 +129,6 @@ export const componentExamples: Record<string, ExampleEntry[]> = {
   ],
   "listing-card": [
     { id: "variants", title: "Variants", description: "Default tile vs saved with badge.", Demo: ListingCardVariantsDemo },
+    { id: "sold-out", title: "Sold out", description: "Unavailable for the searched dates — not a Guest favorite badge.", Demo: ListingCardSoldOutDemo },
   ],
 };
