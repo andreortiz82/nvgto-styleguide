@@ -8,7 +8,7 @@
 - [AGENTS.md](./AGENTS.md): standing agent rules
 - [Public exports](./packages/navigato/src/index.ts): `@navigato/react` API
 - [Component registry](./apps/docs/src/content/components/registry.ts): purpose, status, when/when-not, props
-- [SERP demo](./apps/docs/src/components/demos/v2/PageDemos.tsx): mixed results, loading, empty
+- [Page demos](./apps/docs/src/components/demos/v2/PageDemos.tsx): SERP, PDP, checkout
 
 ## Docs site (`/nvgto-styleguide/`)
 
@@ -17,7 +17,13 @@
 - [FilterBar](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/filter-bar/)
 - [DateRangePicker](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/date-range-picker/)
 - [GuestSelector](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/guest-selector/)
+- [BookingWidget](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/booking-widget/)
+- [PriceBreakdown](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/price-breakdown/)
+- [PhotoGallery](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/photo-gallery/)
+- [BookingSteps](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/booking-steps/)
 - [SERP](https://andreortiz82.github.io/nvgto-styleguide/components/pages/serp/)
+- [PDP](https://andreortiz82.github.io/nvgto-styleguide/components/pages/pdp/)
+- [Checkout](https://andreortiz82.github.io/nvgto-styleguide/components/pages/checkout/)
 - [EmptyState](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/empty-state/)
 - [ListingCardSkeleton](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/listing-card-skeleton/)
 - [llms.txt (public)](https://andreortiz82.github.io/nvgto-styleguide/llms.txt)

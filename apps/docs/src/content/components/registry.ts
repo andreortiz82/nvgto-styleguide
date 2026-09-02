@@ -129,7 +129,9 @@ const [range, setRange] = useState<DateRange>()
     related: [
       { title: "BookingSearchBar", href: "/components/organisms/booking-search-bar/" },
       { title: "GuestSelector", href: "/components/molecules/guest-selector/" },
+      { title: "BookingWidget", href: "/components/organisms/booking-widget/" },
       { title: "SERP", href: "/components/pages/serp/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
     ],
     examples: [{ id: "width", title: "Layout" }],
     props: [
@@ -181,7 +183,9 @@ const [guests, setGuests] = useState<GuestCounts>({ adults: 2, children: 0, room
     related: [
       { title: "BookingSearchBar", href: "/components/organisms/booking-search-bar/" },
       { title: "DateRangePicker", href: "/components/molecules/date-range-picker/" },
+      { title: "BookingWidget", href: "/components/organisms/booking-widget/" },
       { title: "SERP", href: "/components/pages/serp/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
     ],
     examples: [{ id: "compact", title: "Compact width" }],
     props: [
@@ -456,17 +460,123 @@ const [guests, setGuests] = useState<GuestCounts>({ adults: 2, children: 0, room
     slug: "booking-widget",
     tier: "organisms",
     title: "BookingWidget",
-    description: "PDP sticky reservation widget.",
-    usage: `import { BookingWidget } from '@navigato/react'\n\n<BookingWidget pricePerNight={220} />`,
-    props: [{ name: "pricePerNight", type: "number", required: true, description: "Nightly rate." }],
+    description: "PDP sticky reserve: dates, guests, price with fees, and a Reserve action that does not invent a stay.",
+    status: "preview",
+    usage: `import { BookingWidget } from "@navigato/react"
+
+<BookingWidget
+  pricePerNight={189}
+  onReserve={(stay) => {
+    // stay.nights, stay.from, stay.to, stay.guests — only fires for a real range
+  }}
+/>`,
+    whenToUse: [
+      "PDP sidebar reserve for a stay. Composes DateRangePicker, GuestSelector, and PriceBreakdown.",
+      "Sold-out for the selected dates (`soldOut`) — same widget, not a different card.",
+    ],
+    whenNot: [
+      "SERP search — that’s BookingSearchBar.",
+      "Checkout payment — that’s BookingSteps + PriceBreakdown + guest/payment fields. Don’t nest this widget on checkout.",
+    ],
+    anatomy: [
+      { name: "Nightly rate", description: "Header. Always the listed rate, even with no dates." },
+      { name: "DateRangePicker", description: "Check-in — check-out. One month in this widget." },
+      { name: "GuestSelector", description: "Adults, children, rooms." },
+      { name: "PriceBreakdown", description: "Only when from and to make at least one night. Empty copy otherwise." },
+      { name: "Reserve", description: "Primary CTA. Chroma belongs here. Helper text explains why it cannot run." },
+    ],
+    variants: "Content variants, not style variants: empty dates, valid range, soldOut. No “compact” fork — width is layout (`className`).",
+    states: [
+      { name: "default", description: "No dates. Total is an empty state. Reserve stays enabled and says to select dates." },
+      { name: "selected", description: "A real range. Nights = calendar difference. Breakdown and total follow that range." },
+      { name: "invalid", description: "From without a later to, or a zero-night range. Helper explains; onReserve does not fire." },
+      { name: "sold-out", description: "Consumer sets soldOut. Helper explains; onReserve does not fire." },
+      { name: "focus-visible", description: "Reserve uses the primary Button ring." },
+    ],
+    content: "Empty copy is “Select check-in and check-out to see the total.” Do not default nights to 3. Reserve label stays “Reserve”, not “Unavailable”. Charged-yet line: “You won’t be charged yet.” when the action can run.",
+    a11y: "Reserve is not disabled — GOV.UK: don’t disable Pay without an explanation; this widget explains next to the button and keeps it focusable. aria-describedby points at the helper (polite live region). onReserve only fires with a real stay. Consumer owns routing and soldOut. Price updates live in PriceBreakdown.",
+    doDont: {
+      do: "Leave dates empty until the guest picks them, and explain why Reserve cannot run.",
+      dont: "Invent a 3-night stay when the range is empty, or silently disable Reserve.",
+    },
+    related: [
+      { title: "DateRangePicker", href: "/components/molecules/date-range-picker/" },
+      { title: "GuestSelector", href: "/components/molecules/guest-selector/" },
+      { title: "PriceBreakdown", href: "/components/organisms/price-breakdown/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
+    ],
+    examples: [
+      { id: "ready", title: "Dates selected" },
+      { id: "sold-out", title: "Sold out" },
+    ],
+    props: [
+      { name: "pricePerNight", type: "number", required: true, description: "Nightly rate shown in the header and used in the breakdown." },
+      { name: "currency", type: "string", default: '"$"', description: "Prefix for rate and totals." },
+      { name: "cleaningFee", type: "number", default: "75", description: "Cleaning line. Shown only when nights exist." },
+      { name: "serviceFee", type: "number", default: "120", description: "Service line. Shown only when nights exist." },
+      { name: "taxes", type: "number", default: "98", description: "Tax line passed to PriceBreakdown when nights exist." },
+      { name: "dateRange", type: "DateRange", description: "Controlled range. Empty is valid. Pair with onDateRangeChange." },
+      { name: "defaultDateRange", type: "DateRange", description: "Uncontrolled initial range. Do not pass a fake 3-night stay unless the demo has dates." },
+      { name: "onDateRangeChange", type: "(range?: DateRange) => void", description: "Fires when the picker changes. Makes the range controlled if dateRange is also used." },
+      { name: "guests", type: "GuestCounts", description: "Controlled occupancy. Uncontrolled default is 2 adults, 0 children, 1 room." },
+      { name: "onGuestsChange", type: "(value: GuestCounts) => void", description: "Fires on stepper change." },
+      { name: "soldOut", type: "boolean", default: "false", description: "Consumer-owned availability. Widget does not infer sold-out from the calendar." },
+      { name: "onReserve", type: "(stay: BookingStay) => void", description: "Fires only for a valid range that is not sold out. stay: { nights, from, to, guests }." },
+      { name: "className", type: "string", description: "Layout classes on the card. Sticky top is built in." },
+    ],
   }),
   "price-breakdown": doc({
     slug: "price-breakdown",
     tier: "organisms",
     title: "PriceBreakdown",
-    description: "Line items, taxes, and total.",
-    usage: `import { PriceBreakdown } from '@navigato/react'\n\n<PriceBreakdown lineItems={items} taxes={98} />`,
-    props: [{ name: "lineItems", type: "PriceLineItem[]", required: true, description: "Fee rows." }],
+    description: "Stay charges: line items, optional taxes, and a total in tabular-nums.",
+    status: "preview",
+    usage: `import { PriceBreakdown } from "@navigato/react"
+
+<PriceBreakdown
+  lineItems={[
+    { label: "$189 × 3 nights", amount: 567 },
+    { label: "Cleaning fee", amount: 75 },
+    { label: "Service fee", amount: 120 },
+  ]}
+  taxes={98}
+/>`,
+    whenToUse: [
+      "PDP BookingWidget and checkout summary when the stay range is known.",
+      "Any price-with-fees stack that must show how the total was built.",
+    ],
+    whenNot: [
+      "A nightly rate on a SERP tile — ListingCard shows / night, not this stack.",
+      "An empty range. Don’t pass a made-up “× 3 nights” row. BookingWidget omits this until dates exist.",
+    ],
+    anatomy: [
+      { name: "Line items", description: "Label + amount. Labels use a dotted underline as “what is this fee” affordance." },
+      { name: "Taxes", description: "Optional row. Hidden when taxes is 0." },
+      { name: "Total", description: "Subtotal of lines plus taxes. tabular-nums." },
+    ],
+    variants: "No visual variants. Currency is a prefix string, not a formatter.",
+    states: [
+      { name: "default", description: "One or more line items; optional taxes." },
+      { name: "empty taxes", description: "taxes={0} (default) hides the tax row. Total is still the line subtotal." },
+    ],
+    content: "Night labels are “$189 × 3 nights”, not “Subtotal”. Fee names are human (“Cleaning fee”). Don’t invent a compare-at or strikethrough — the API has no originalPrice.",
+    a11y: "The stack is a polite live region so night changes announce a new total. Consumer must still not pass invented nights. Currency is a prefix; don’t assume a screen reader will expand “$”.",
+    doDont: {
+      do: "Pass line items that match an actual date range and the fees you will charge.",
+      dont: "Hard-code “× 3 nights” when the guest has not picked dates.",
+    },
+    related: [
+      { title: "BookingWidget", href: "/components/organisms/booking-widget/" },
+      { title: "BookingSteps", href: "/components/organisms/booking-steps/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
+      { title: "Checkout", href: "/components/pages/checkout/" },
+    ],
+    props: [
+      { name: "lineItems", type: "PriceLineItem[]", required: true, description: "{ label, amount } rows. Summed into the total." },
+      { name: "taxes", type: "number", default: "0", description: "Added after line items. Row hidden when 0." },
+      { name: "currency", type: "string", default: '"$"', description: "Prefix before every amount." },
+      { name: "className", type: "string", description: "Layout classes on the stack." },
+    ],
   }),
   "rate-comparison": doc({
     slug: "rate-comparison",
@@ -480,33 +590,189 @@ const [guests, setGuests] = useState<GuestCounts>({ adults: 2, children: 0, room
     slug: "photo-gallery",
     tier: "organisms",
     title: "PhotoGallery",
-    description: "PDP photo grid with lightbox.",
-    usage: `import { PhotoGallery } from '@navigato/react'\n\n<PhotoGallery images={urls} />`,
-    props: [{ name: "images", type: "string[]", required: true, description: "Image URLs." }],
+    description: "PDP photo mosaic with a lightbox. Thumbnails open the same dialog; they are not dead buttons.",
+    status: "preview",
+    usage: `import { PhotoGallery } from "@navigato/react"
+
+<PhotoGallery
+  images={["/loft-1.jpg", "/loft-2.jpg", "/loft-3.jpg"]}
+  title="Navigato Loft"
+/>`,
+    whenToUse: [
+      "PDP hero photos for one stay.",
+      "A mosaic that must open a lightbox from the primary or a secondary tile.",
+    ],
+    whenNot: [
+      "SERP tiles — ListingCard owns the 4:3 crop and dots.",
+      "An empty array. The component renders nothing; don’t invent stock photos.",
+    ],
+    anatomy: [
+      { name: "Primary", description: "Large tile. Overlay “Show all N photos”. Opens the lightbox at index 0." },
+      { name: "Secondary", description: "Up to four more tiles from index 1–4. Hidden below md. Each opens the lightbox at that index." },
+      { name: "Lightbox", description: "Dialog with the active image and a thumbnail strip for the full `images` list." },
+    ],
+    variants: "Layout only: mosaic vs stacked on small screens. No branded chrome — orange is the active thumbnail ring.",
+    states: [
+      { name: "default", description: "Primary plus up to four secondaries." },
+      { name: "empty", description: "No first image → render null." },
+      { name: "expanded", description: "Dialog open; thumbnail strip marks the active photo." },
+      { name: "focus-visible", description: "Tiles are buttons; use the browser/Button focus treatment on the trigger." },
+    ],
+    content: "`title` is the property name and seeds alt text (“{title}, photo 2 of 6”). Don’t pass “Gallery” on a named stay. Don’t use empty alt on visible photos.",
+    a11y: "Each tile and lightbox thumb has a real alt. DialogTitle is visually hidden but present. Consumer must pass a meaningful title. Keyboard: buttons + Base UI dialog (Escape closes). Don’t nest this in another button or link.",
+    doDont: {
+      do: "Pass the stay’s real photos and title, and let any tile open the lightbox.",
+      dont: "Wire secondary tiles to setActive without opening the dialog, or dump a shadcn Carousel from memory.",
+    },
+    related: [
+      { title: "ListingCard", href: "/components/organisms/listing-card/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
+    ],
+    props: [
+      { name: "images", type: "string[]", required: true, description: "Photo URLs. First is primary; next four are mosaic tiles; all appear in the lightbox." },
+      { name: "title", type: "string", default: '"Gallery"', description: "Property name. Used in alts and the dialog title." },
+      { name: "className", type: "string", description: "Layout classes on the wrapper." },
+    ],
   }),
   "amenity-grid": doc({
     slug: "amenity-grid",
     tier: "organisms",
     title: "AmenityGrid",
-    description: "Icon grid of property amenities.",
-    usage: `import { AmenityGrid } from '@navigato/react'\n\n<AmenityGrid columns={2} />`,
-    props: [{ name: "amenities", type: "Amenity[]", description: "Amenity list." }],
+    description: "Icon + label grid of stay amenities on PDP.",
+    status: "preview",
+    usage: `import { AmenityGrid } from "@navigato/react"
+import { WifiHigh } from "@phosphor-icons/react"
+
+<AmenityGrid
+  columns={2}
+  amenities={[{ id: "wifi", label: "Fast WiFi", icon: WifiHigh }]}
+/>`,
+    whenToUse: [
+      "PDP amenity section for one stay.",
+      "A short list of facts the guest will use (WiFi, kitchen, parking).",
+    ],
+    whenNot: [
+      "SERP chips — that’s FilterBar / FilterChip.",
+      "A 40-item hotel fact sheet. Don’t invent a searchable amenity encyclopedia.",
+    ],
+    anatomy: [
+      { name: "Item", description: "Optional Phosphor icon + label in a list item." },
+      { name: "Grid", description: "2, 3, or 4 columns (`columns={4}` is 2 on small screens)." },
+    ],
+    variants: "Column count only. Default amenities (WiFi, kitchen, AC, coffee, parking) are a demo fallback, not a product taxonomy.",
+    states: [
+      { name: "default", description: "Renders the passed list, or the five defaults if omitted." },
+    ],
+    content: "Labels are guest-facing (“Full kitchen”), not keys (`kitchen_full`). Phosphor names must already exist in booking/ — don’t invent icons. Omit the icon rather than using Lucide here.",
+    a11y: "A list (`ul`/`li`). Icons are decorative beside text; the label is the name. Don’t rely on color or icon alone. Consumer must pass unique `id`s.",
+    doDont: {
+      do: "Pass the stay’s amenities with Phosphor icons already used in booking/.",
+      dont: "Drop a Lucide icon grid from memory, or show FilterChips and call them amenities.",
+    },
+    related: [
+      { title: "FilterChip", href: "/components/molecules/filter-chip/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
+    ],
+    props: [
+      { name: "amenities", type: "Amenity[]", description: "{ id, label, icon? }. Defaults to WiFi, kitchen, AC, coffee, parking." },
+      { name: "columns", type: "2 | 3 | 4", default: "2", description: "Grid columns. 4 becomes 2 on small screens." },
+      { name: "className", type: "string", description: "Layout classes on the list." },
+    ],
   }),
   "review-summary": doc({
     slug: "review-summary",
     tier: "organisms",
     title: "ReviewSummary",
-    description: "Average rating, distribution bars, sample reviews.",
-    usage: `import { ReviewSummary } from '@navigato/react'\n\n<ReviewSummary average={4.8} totalReviews={268} />`,
-    props: [{ name: "average", type: "number", required: true, description: "Average score." }],
+    description: "PDP reviews: average, distribution bars, and optional quotes.",
+    status: "preview",
+    usage: `import { ReviewSummary } from "@navigato/react"
+
+<ReviewSummary
+  average={4.9}
+  totalReviews={128}
+  reviews={[
+    { author: "Jordan", date: "Feb 2026", rating: 5, text: "Quiet for SoCo." },
+  ]}
+/>`,
+    whenToUse: [
+      "PDP review section under amenities.",
+      "A snapshot of rating plus a few quotes — not a full reviews product.",
+    ],
+    whenNot: [
+      "The rating on a SERP tile — ListingCard uses StarRating.",
+      "A paginated reviews feed. Don’t invent infinite scroll here.",
+    ],
+    anatomy: [
+      { name: "Average", description: "Large tabular number, StarRating, and “N reviews”." },
+      { name: "Distribution", description: "5→1 bars. Width is relative to the max count." },
+      { name: "Quotes", description: "Optional review articles: author, date, stars, text." },
+    ],
+    variants: "With or without `reviews`. Distribution has a built-in demo fallback if omitted — pass real counts when you have them.",
+    states: [
+      { name: "default", description: "Average + distribution." },
+      { name: "with quotes", description: "Reviews list under a divider." },
+    ],
+    content: "Authors are names, not “User1”. Dates are “Feb 2026”, not ISO. Don’t leave the default 180/62/18/6/2 distribution on a stay that has 128 reviews — pass matching counts.",
+    a11y: "StarRating is read-only with an accessible label. Bars are visual; the count text is the data. Consumer should keep `totalReviews` consistent with distribution + quotes. Don’t put this inside a decorative Card you then hide from AT.",
+    doDont: {
+      do: "Pass an average, a real review count, and a few quotes for the stay on the page.",
+      dont: "Show only a 4.8 with empty quotes, or copy Airbnb’s category scores this component doesn’t have.",
+    },
+    related: [
+      { title: "StarRating", href: "/components/molecules/star-rating/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
+    ],
+    props: [
+      { name: "average", type: "number", required: true, description: "Mean score. Displayed to one decimal." },
+      { name: "totalReviews", type: "number", required: true, description: "Count next to the stars." },
+      { name: "distribution", type: "ReviewDistribution[]", description: "{ stars, count } for 5→1. Default demo distribution if omitted." },
+      { name: "reviews", type: "Review[]", default: "[]", description: "{ author, date, rating, text }. Hidden when empty." },
+      { name: "className", type: "string", description: "Layout classes on the card." },
+    ],
   }),
   "booking-steps": doc({
     slug: "booking-steps",
     tier: "organisms",
     title: "BookingSteps",
-    description: "Checkout progress indicator.",
-    usage: `import { BookingSteps, defaultBookingSteps } from '@navigato/react'\n\n<BookingSteps steps={defaultBookingSteps} currentStep="payment" />`,
-    props: [{ name: "currentStep", type: "string", required: true, description: "Active step id." }],
+    description: "Checkout progress: details, payment, confirmation.",
+    status: "preview",
+    usage: `import { BookingSteps, defaultBookingSteps } from "@navigato/react"
+
+<BookingSteps steps={defaultBookingSteps} currentStep="payment" />`,
+    whenToUse: [
+      "Checkout for a stay that already has dates. Pair with PriceBreakdown and guest/payment fields.",
+      "A three-step stay booking (details → payment → confirmation).",
+    ],
+    whenNot: [
+      "PDP reserve — that’s BookingWidget.",
+      "A flight itinerary stepper. Don’t invent extra legs or a fare calendar.",
+    ],
+    anatomy: [
+      { name: "Steps", description: "Ordered list. Numbered circle, or a Phosphor Check when done." },
+      { name: "Current", description: "Primary fill + `aria-current=\"step\"`." },
+      { name: "Upcoming", description: "Muted label and empty circle." },
+    ],
+    variants: "Pass `steps` for labels. `defaultBookingSteps` is Details / Payment / Confirmation. Don’t add a visual “compact” variant — wrap on small screens.",
+    states: [
+      { name: "default", description: "One current step; previous are done." },
+      { name: "selected / current", description: "Matches `currentStep` id." },
+    ],
+    content: "Labels are “Payment”, not “Step 2”. Keep three stay-booking steps unless the product truly has another. Don’t name a step “Pay now” if Confirm is the CTA on the page.",
+    a11y: "An `ol` labelled “Booking progress”. Current item has aria-current=\"step\". This is an indicator, not a router — consumer must still move `currentStep` and not disable Confirm without a reason (see checkout demo).",
+    doDont: {
+      do: "Show Details → Payment → Confirmation on checkout, and move currentStep when the guest actually advances.",
+      dont: "Drop a shadcn Stepper from memory, or nest BookingWidget under the payment step.",
+    },
+    related: [
+      { title: "PriceBreakdown", href: "/components/organisms/price-breakdown/" },
+      { title: "Checkout", href: "/components/pages/checkout/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
+    ],
+    props: [
+      { name: "steps", type: "BookingStep[]", required: true, description: "{ id, label }[]. Use defaultBookingSteps for the stay-booking three." },
+      { name: "currentStep", type: "string", required: true, description: "id of the active step." },
+      { name: "className", type: "string", description: "Layout classes on the list." },
+    ],
   }),
   "empty-state": doc({
     slug: "empty-state",

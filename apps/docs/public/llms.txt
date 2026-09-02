@@ -25,3 +25,14 @@
 - [ListingCardSkeleton](/nvgto-styleguide/components/organisms/listing-card-skeleton/)
 - [SearchHeader](/nvgto-styleguide/components/organisms/search-header/)
 - [FilterSheet](/nvgto-styleguide/components/organisms/filter-sheet/)
+
+## PDP and checkout parts (docs skeleton)
+
+- [BookingWidget](/nvgto-styleguide/components/organisms/booking-widget/)
+- [PriceBreakdown](/nvgto-styleguide/components/organisms/price-breakdown/)
+- [PhotoGallery](/nvgto-styleguide/components/organisms/photo-gallery/)
+- [AmenityGrid](/nvgto-styleguide/components/organisms/amenity-grid/)
+- [ReviewSummary](/nvgto-styleguide/components/organisms/review-summary/)
+- [BookingSteps](/nvgto-styleguide/components/organisms/booking-steps/)
+- [PDP](/nvgto-styleguide/components/pages/pdp/)
+- [Checkout](/nvgto-styleguide/components/pages/checkout/)

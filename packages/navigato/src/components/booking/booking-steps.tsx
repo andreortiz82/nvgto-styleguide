@@ -16,7 +16,7 @@ export function BookingSteps({ steps, currentStep, className }: BookingStepsProp
   const currentIndex = steps.findIndex((s) => s.id === currentStep);
 
   return (
-    <ol className={cn("flex flex-wrap gap-2 md:gap-4", className)}>
+    <ol className={cn("flex flex-wrap gap-2 md:gap-4", className)} aria-label="Booking progress">
       {steps.map((step, index) => {
         const done = index < currentIndex;
         const active = step.id === currentStep;
@@ -24,6 +24,7 @@ export function BookingSteps({ steps, currentStep, className }: BookingStepsProp
         return (
           <li
             key={step.id}
+            aria-current={active ? "step" : undefined}
             className={cn(
               "flex items-center gap-2 text-sm",
               active && "font-semibold text-primary",

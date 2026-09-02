@@ -45,6 +45,8 @@ import {
   BookingSearchBarDefaultDemo,
   BookingStepsDefaultDemo,
   BookingWidgetDefaultDemo,
+  BookingWidgetReadyDemo,
+  BookingWidgetSoldOutDemo,
   EmptyStateDefaultDemo,
   FilterBarDefaultDemo,
   FilterSheetDefaultDemo,
@@ -130,5 +132,9 @@ export const componentExamples: Record<string, ExampleEntry[]> = {
   "listing-card": [
     { id: "variants", title: "Variants", description: "Default tile vs saved with badge.", Demo: ListingCardVariantsDemo },
     { id: "sold-out", title: "Sold out", description: "Unavailable for the searched dates — not a Guest favorite badge.", Demo: ListingCardSoldOutDemo },
+  ],
+  "booking-widget": [
+    { id: "ready", title: "Dates selected", description: "A real range. Total and nights follow the calendar, not a default of 3.", Demo: BookingWidgetReadyDemo },
+    { id: "sold-out", title: "Sold out", description: "Reserve stays enabled and explains why it cannot run.", Demo: BookingWidgetSoldOutDemo },
   ],
 };

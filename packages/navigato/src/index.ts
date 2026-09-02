@@ -46,7 +46,7 @@ export { ListingCard, type ListingCardProps } from "./components/booking/listing
 export { FilterBar, type FilterBarProps } from "./components/booking/filter-bar";
 export { FilterSheet, type FilterSheetProps } from "./components/booking/filter-sheet";
 export { RateComparison, type RateComparisonProps, type RateComparisonItem } from "./components/booking/rate-comparison";
-export { BookingWidget, type BookingWidgetProps } from "./components/booking/booking-widget";
+export { BookingWidget, type BookingWidgetProps, type BookingStay } from "./components/booking/booking-widget";
 export { PriceBreakdown, type PriceBreakdownProps, type PriceLineItem } from "./components/booking/price-breakdown";
 export { PhotoGallery, type PhotoGalleryProps } from "./components/booking/photo-gallery";
 export { AmenityGrid, type AmenityGridProps, type Amenity } from "./components/booking/amenity-grid";
