@@ -3,10 +3,13 @@
 import { PencilSimple } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { PriceRangeSlider } from "./price-range-slider";
+import { PriceRangeSlider, type PriceRangeSliderProps } from "./price-range-slider";
 import { StarRating } from "./star-rating";
 
-export interface SearchHeaderProps {
+export interface SearchHeaderProps extends Pick<
+  PriceRangeSliderProps,
+  "min" | "max" | "value" | "onChange"
+> {
   logo?: React.ReactNode;
   destination: string;
   tripSummary: string;
@@ -23,6 +26,10 @@ export function SearchHeader({
   onEditTrip,
   rating = 0,
   onRatingChange,
+  min = 50,
+  max = 800,
+  value,
+  onChange,
   className,
 }: SearchHeaderProps) {
   return (
@@ -58,14 +65,14 @@ export function SearchHeader({
           </span>
           <span className="text-sm text-muted-foreground">{tripSummary}</span>
         </button>
-        <div className="hidden min-w-[12rem] flex-1 md:block">
-          <PriceRangeSlider min={50} max={800} />
+        <div className="min-w-[12rem] flex-1 max-md:hidden">
+          <PriceRangeSlider min={min} max={max} value={value} onChange={onChange} />
         </div>
-        <div className="hidden flex-col md:flex">
+        <div className="flex flex-col max-md:!hidden">
           <span className="text-xs text-muted-foreground">Min rating</span>
           <StarRating value={rating} onChange={onRatingChange} size="sm" />
         </div>
-        <Button variant="outline" size="sm" className="ml-auto md:hidden">
+        <Button variant="outline" size="sm" className="ml-auto md:!hidden">
           Filters
         </Button>
       </div>

@@ -319,18 +319,18 @@ const [range, setRange] = useState<[number, number]>([50, 400])
 <PriceRangeSlider min={50} max={800} value={range} onChange={setRange} />`,
     whenToUse: [
       "A SERP price facet you actually filter with — controlled value + onChange.",
-      "Inside FilterSheet as the price block (that host hardcodes 50–800 today).",
+      "Inside FilterSheet or SearchHeader via their composed min / max / value / onChange (those hosts default to 50–800).",
     ],
     whenNot: [
       "A stay total — that’s PriceBreakdown after dates exist.",
-      "A fare calendar or price histogram. Don’t invent one. SearchHeader embeds this slider with no onChange — do not treat that as a connected filter API.",
+      "A fare calendar or price histogram. Don’t invent one.",
     ],
     anatomy: [
       { name: "Label", description: "Default “Price range”." },
       { name: "Range text", description: "formatValue(min) – formatValue(max), tabular-nums, en dash." },
       { name: "Slider", description: "shadcn Slider, two thumbs, step 10 (not a prop)." },
     ],
-    variants: "No branded chrome variants. Currency is formatValue, not a locale prop. SearchHeader and FilterSheet do not expose price props — don’t invent them.",
+    variants: "No branded chrome variants. Currency is formatValue, not a locale prop. SearchHeader and FilterSheet compose min / max / value / onChange — don’t invent a second slider.",
     states: [
       { name: "default", description: "Uncontrolled starts at [min, round(max × 0.5)]." },
       { name: "selected", description: "Thumbs sit on the current pair." },
@@ -670,7 +670,7 @@ const [range, setRange] = useState<[number, number]>([50, 400])
       { name: "empty", description: "Pass resultCount={0} and pair with EmptyState on the page — this bar does not render the empty illustration." },
     ],
     content: "Count noun is “stays”, not “results” or “hits”. Chip labels are amenities or trip facts (“WiFi”, “Free cancellation”), not CSS class names. Sort labels stay human (“Price: low to high”).",
-    a11y: "Result count is aria-live polite — keep it in sync when filters change. Consumer owns the filter logic and the FilterSheet contents. Don’t disable chips with no explanation. Keyboard on chips and sort comes from FilterChip + Select.",
+    a11y: "Result count is aria-live polite — keep it in sync when filters change. Consumer owns the filter logic. Pair onOpenSheet with FilterSheet `open` / `onOpenChange` (pass `trigger={null}`). Don’t disable chips with no explanation. Keyboard on chips and sort comes from FilterChip + Select.",
     doDont: {
       do: "Update the live stay count when a chip toggles, and show EmptyState when it hits zero.",
       dont: "Hide zero results behind a spinner, or dump twenty ungrouped checkboxes into this bar.",
@@ -687,7 +687,7 @@ const [range, setRange] = useState<[number, number]>([50, 400])
       { name: "onFilterToggle", type: "(id: string) => void", description: "Chip toggle/remove. Same handler for both." },
       { name: "sortValue", type: "string", description: "Controlled sort key for SortSelect." },
       { name: "onSortChange", type: "(value: string) => void", description: "Sort change." },
-      { name: "onOpenSheet", type: "() => void", description: "If passed, shows the Filters button." },
+      { name: "onOpenSheet", type: "() => void", description: "If passed, shows the Filters button. Set FilterSheet `open` from this handler." },
       { name: "resultCount", type: "number", description: "Stay count. Live region when set." },
       { name: "className", type: "string", description: "Layout classes on the row." },
     ],
@@ -706,32 +706,37 @@ const [range, setRange] = useState<[number, number]>([50, 400])
   onEditTrip={focusSearch}
   rating={4}
   onRatingChange={setMinRating}
+  min={50}
+  max={800}
+  value={priceRange}
+  onChange={setPriceRange}
 />`,
     whenToUse: [
       "SERP top chrome above BookingSearchBar — destination + trip summary from the last search.",
       "A min-rating filter you actually handle (`rating` / `onRatingChange`).",
+      "A nightly price refine you actually handle (`min` / `max` / `value` / `onChange` — same names as PriceRangeSlider).",
     ],
     whenNot: [
       "The search form itself — that’s BookingSearchBar (destination, dates, guests, Search).",
-      "A complete filter system. PriceRangeSlider inside is hardcoded 50–800 with no onChange. There is no price prop. The small-screen “Filters” button is a visual stub — it does not open FilterSheet.",
+      "A complete filter system. The small-screen “Filters” button is still a visual stub — it does not open FilterSheet. Use FilterBar.onOpenSheet.",
     ],
     anatomy: [
       { name: "Logo", description: "String default “Navigato” plus a pin mark, or a custom node (SERP demo passes a wordmark)." },
       { name: "Trip", description: "destination + Phosphor PencilSimple; tripSummary on the second line. Clicks call onEditTrip." },
-      { name: "PriceRangeSlider", description: "md+ only. 50–800, not wired. Not a public price API." },
-      { name: "Min rating", description: "md+ StarRating. This pair is the connected refine control." },
+      { name: "PriceRangeSlider", description: "md+ only. Composes PriceRangeSlider min / max / value / onChange. Host default 50–800." },
+      { name: "Min rating", description: "md+ StarRating. rating / onRatingChange." },
       { name: "Filters", description: "outline Button, md:hidden. No onClick. Use FilterBar.onOpenSheet for a real sheet." },
     ],
     variants: "logo string vs React node. No compact fork — hide pieces with composition, not a second header.",
     states: [
-      { name: "default", description: "Shows destination and tripSummary. rating defaults to 0." },
+      { name: "default", description: "Shows destination and tripSummary. rating defaults to 0. Price thumbs start at [min, round(max × 0.5)] unless value is passed." },
       { name: "focus-visible", description: "Edit-trip is a button; rating stars are buttons when not read-only." },
     ],
     content: "tripSummary is “Mar 12–15 · 2 adults · 1 room”, not a JSON blob. destination is a place name. Default logo mark is a pin, not the astronaut cat — pass `logo` if you need the brand mark.",
-    a11y: "onEditTrip must do something (focus BookingSearchBar or reopen it). Don’t advertise the inner price slider as a live filter. The Filters button cannot be the a11y path to FilterSheet — it has no handler. Min-rating is the only refine that can announce via StarRating.",
+    a11y: "onEditTrip must do something (focus BookingSearchBar or reopen it). Price and min-rating announce when you pass onChange / onRatingChange. The Filters button cannot be the a11y path to FilterSheet — it has no handler.",
     doDont: {
-      do: "Keep destination and tripSummary in sync with the last BookingSearchBar submit.",
-      dont: "Invent `priceRange` / `openFilters` props, or fork this into a generic shadcn navbar from memory.",
+      do: "Keep destination and tripSummary in sync with the last BookingSearchBar submit, and control the price slider when it filters results.",
+      dont: "Invent `openFilters` or a second slider component, or fork this into a generic shadcn navbar from memory.",
     },
     related: [
       { title: "BookingSearchBar", href: "/components/organisms/booking-search-bar/" },
@@ -747,6 +752,10 @@ const [range, setRange] = useState<[number, number]>([50, 400])
       { name: "onEditTrip", type: "() => void", description: "Trip button click. Consumer focuses or opens search." },
       { name: "rating", type: "number", default: "0", description: "Min-rating StarRating value." },
       { name: "onRatingChange", type: "(value: number) => void", description: "Min-rating change." },
+      { name: "min", type: "number", default: "50", description: "PriceRangeSlider lower bound." },
+      { name: "max", type: "number", default: "800", description: "PriceRangeSlider upper bound." },
+      { name: "value", type: "[number, number]", description: "Controlled price pair. Uncontrolled if omitted." },
+      { name: "onChange", type: "(value: [number, number]) => void", description: "Price thumb move. Same contract as PriceRangeSlider." },
       { name: "className", type: "string", description: "Classes on the header." },
     ],
   }),
@@ -758,40 +767,51 @@ const [range, setRange] = useState<[number, number]>([50, 400])
     status: "preview",
     usage: `import { FilterSheet } from "@navigato/react"
 
+const [open, setOpen] = useState(false)
+
+<FilterBar onOpenSheet={() => setOpen(true)} />
 <FilterSheet
+  open={open}
+  onOpenChange={setOpen}
+  trigger={null}
+  min={50}
+  max={800}
+  value={priceRange}
+  onChange={setPriceRange}
   amenities={["Free WiFi", "Pool", "Parking"]}
   selectedAmenities={selected}
   onAmenityChange={(amenity, checked) => toggle(amenity, checked)}
-  onApply={apply}
+  onApply={() => setOpen(false)}
   onClear={clear}
 />`,
     whenToUse: [
       "A full filter surface with its own trigger — mobile or “all filters”.",
+      "A sheet driven by FilterBar.onOpenSheet (`open` / `onOpenChange`, `trigger={null}`).",
       "Amenity checkboxes you actually store in `selectedAmenities`.",
     ],
     whenNot: [
       "The desktop chip row — that’s FilterBar + FilterChip.",
-      "A controlled sheet driven by FilterBar.onOpenSheet. There is no `open` / `onOpenChange`. The SERP demo’s Filters button is a no-op — don’t invent a bridge prop. PriceRangeSlider inside is hardcoded 50–800 with no onChange.",
+      "A second price slider. Compose PriceRangeSlider via min / max / value / onChange.",
     ],
     anatomy: [
-      { name: "Trigger", description: "Default outline “Filters” Button, or a custom `trigger` node." },
+      { name: "Trigger", description: "Default outline “Filters” Button when `trigger` is omitted. Pass `trigger={null}` when FilterBar opens the sheet." },
       { name: "Title", description: "“Filters”." },
-      { name: "Price", description: "PriceRangeSlider min={50} max={800}. Not exposed as props." },
+      { name: "Price", description: "PriceRangeSlider. Host default min={50} max={800}. Controlled via value / onChange." },
       { name: "Amenities", description: "Checkbox + label rows from `amenities`." },
       { name: "Footer", description: "Clear (outline) and Show results (primary)." },
     ],
-    variants: "Presence of a custom trigger is composition, not a named variant. No price props — flag the gap rather than inventing them.",
+    variants: "Own trigger vs FilterBar-driven (`trigger={null}` + open). No named visual variants.",
     states: [
-      { name: "default", description: "Closed. Trigger visible." },
-      { name: "expanded", description: "Sheet open; focus trapped. Escape closes." },
-      { name: "selected", description: "Checkboxes match selectedAmenities." },
+      { name: "default", description: "Closed. Uncontrolled shows the default trigger." },
+      { name: "expanded", description: "Sheet open; focus trapped. Escape and the close control call onOpenChange(false)." },
+      { name: "selected", description: "Checkboxes match selectedAmenities. Price thumbs match value." },
       { name: "focus-visible", description: "Trigger, checkboxes, and footer buttons use their primitive rings." },
     ],
     content: "Footer primary is “Show results”, not “Apply”. Amenity labels are guest-facing. Default list (WiFi, pool, parking, breakfast, pets, AC) is a demo fallback — pass your own.",
-    a11y: "Sheet from shadcn traps focus. Consumer must handle onAmenityChange, onApply, and onClear — the sheet does not filter a SERP by itself. Don’t disable Show results with no message. Don’t claim FilterBar.onOpenSheet opens this; compose via `trigger` or use FilterSheet alone.",
+    a11y: "Sheet from shadcn traps focus and closes on Escape. Consumer must handle onAmenityChange, onApply, onClear, and price onChange — the sheet does not filter a SERP by itself. Don’t disable Show results with no message. FilterBar.onOpenSheet should set `open`.",
     doDont: {
-      do: "Pass amenities + selectedAmenities and handle Apply / Clear.",
-      dont: "Invent `open` or `priceRange` props, or dump a Carbon facet tree into this sheet.",
+      do: "Drive `open` from FilterBar.onOpenSheet, and pass PriceRangeSlider min / max / value / onChange.",
+      dont: "Leave onOpenSheet as a no-op, or invent a second slider / Carbon facet tree.",
     },
     related: [
       { title: "FilterBar", href: "/components/organisms/filter-bar/" },
@@ -801,7 +821,14 @@ const [range, setRange] = useState<[number, number]>([50, 400])
       { title: "SERP", href: "/components/pages/serp/" },
     ],
     props: [
-      { name: "trigger", type: "React.ReactNode", description: "Replaces the default Filters button." },
+      { name: "trigger", type: "React.ReactNode", description: "Replaces the default Filters button. Pass null when FilterBar drives open." },
+      { name: "open", type: "boolean", description: "Controlled open. Pair with onOpenChange." },
+      { name: "defaultOpen", type: "boolean", description: "Uncontrolled initial open. Ignored when open is passed." },
+      { name: "onOpenChange", type: "(open: boolean) => void", description: "Fires on Escape, overlay, close control, and trigger." },
+      { name: "min", type: "number", default: "50", description: "PriceRangeSlider lower bound." },
+      { name: "max", type: "number", default: "800", description: "PriceRangeSlider upper bound." },
+      { name: "value", type: "[number, number]", description: "Controlled price pair. Uncontrolled if omitted." },
+      { name: "onChange", type: "(value: [number, number]) => void", description: "Price thumb move. Same contract as PriceRangeSlider." },
       { name: "amenities", type: "string[]", description: "Checkbox labels. Default demo list if omitted." },
       { name: "selectedAmenities", type: "string[]", default: "[]", description: "Checked labels. Compare by string." },
       { name: "onAmenityChange", type: "(amenity: string, checked: boolean) => void", description: "Checkbox change." },
@@ -948,27 +975,27 @@ const [range, setRange] = useState<[number, number]>([50, 400])
 />`,
     whenToUse: [
       "PDP “compare rates” under one stay — provider, nightly price, optional policy line.",
-      "Rows that are real links (`href`). Default href is “#” — pass a destination.",
+      "Rows that are real outbound links (`href`). Omit href when the row is display-only.",
     ],
     whenNot: [
       "Your own fee stack — that’s PriceBreakdown (nights × rate + fees + tax).",
       "A fare calendar or “we have the lowest” winner state. There is no highlight prop.",
     ],
     anatomy: [
-      { name: "Row", description: "An <a>: currency + price / night, provider, optional description." },
-      { name: "View", description: "“View” + Phosphor ArrowSquareOut. Visible on hover." },
+      { name: "Row", description: "An <a> when href is set; otherwise a <div>. Currency + price / night, provider, optional description." },
+      { name: "View", description: "“View” + Phosphor ArrowSquareOut. Only when href is set. Visible on hover." },
     ],
-    variants: "No visual variants. currency is a prefix string per item (default \"$\"). No “best rate” chrome.",
+    variants: "Link vs not a link (`href` present or omitted). currency is a prefix string per item (default \"$\"). No “best rate” chrome.",
     states: [
-      { name: "default", description: "Stacked bordered rows." },
-      { name: "hover", description: "Muted wash; View fades in." },
+      { name: "default", description: "Stacked bordered rows. No href → not a link, no View affordance." },
+      { name: "hover", description: "Linked rows: muted wash; View fades in." },
       { name: "focus-visible", description: "Link focus — keep a visible ring from the page." },
     ],
-    content: "Providers are names (“Navigato Direct”, “Booking.com”). Descriptions are policy crumbs (“Free cancellation”), not legalese. Price is nightly. Don’t invent a crossed-out compare-at.",
-    a11y: "Each row is a link. Consumer must pass href — “#” is a placeholder, not a booking URL. The arrow is decorative. Don’t turn these into buttons that look like links. This organism is not composed on the PDP page demo today; add it when you have real provider rows.",
+    content: "Providers are names (“Navigato Direct”, “Booking.com”). Descriptions are policy crumbs (“Free cancellation”), not legalese. Price is nightly. Don’t invent a crossed-out compare-at. Don’t pass href=\"#\".",
+    a11y: "A row is a link only when href is a real URL. Missing href renders a div — not a button, not #. The arrow is decorative. This organism is not composed on the PDP page demo today; add it when you have real provider rows.",
     doDont: {
-      do: "Pass real provider rows with real hrefs and nightly prices.",
-      dont: "Leave href empty so every row goes to #, or invent a winner badge this API does not have.",
+      do: "Pass real hrefs for bookable providers, and omit href when the row is comparison-only.",
+      dont: "Ship href=\"#\", or invent a winner badge this API does not have.",
     },
     related: [
       { title: "PriceBreakdown", href: "/components/organisms/price-breakdown/" },
@@ -976,7 +1003,7 @@ const [range, setRange] = useState<[number, number]>([50, 400])
       { title: "PDP", href: "/components/pages/pdp/" },
     ],
     props: [
-      { name: "items", type: "RateComparisonItem[]", required: true, description: "{ provider, price, currency?, description?, href? }. href defaults to “#”." },
+      { name: "items", type: "RateComparisonItem[]", required: true, description: "{ provider, price, currency?, description?, href? }. No href → not a link. Never defaults to “#”." },
       { name: "className", type: "string", description: "Classes on the stack." },
     ],
   }),

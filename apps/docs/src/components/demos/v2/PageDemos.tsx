@@ -15,6 +15,7 @@ import {
   defaultBookingSteps,
   EmptyState,
   FilterBar,
+  FilterSheet,
   Input,
   Label,
   ListingCard,
@@ -139,6 +140,8 @@ export function SerpPageDemo() {
   const [destination, setDestination] = useState("Austin, TX");
   const [tripSummary, setTripSummary] = useState("Mar 12–15 · 2 adults · 1 room");
   const [searchNote, setSearchNote] = useState<string | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [priceRange, setPriceRange] = useState<[number, number]>([50, 400]);
 
   const filters = SERP_FILTERS.map((filter) => ({
     ...filter,
@@ -155,6 +158,10 @@ export function SerpPageDemo() {
         destination={destination}
         tripSummary={tripSummary}
         rating={4}
+        min={50}
+        max={800}
+        value={priceRange}
+        onChange={setPriceRange}
       />
       <BookingSearchBar
         onSearch={(params) => {
@@ -178,7 +185,18 @@ export function SerpPageDemo() {
             current.includes(id) ? current.filter((item) => item !== id) : [...current, id],
           )
         }
-        onOpenSheet={() => {}}
+        onOpenSheet={() => setFiltersOpen(true)}
+      />
+      <FilterSheet
+        open={filtersOpen}
+        onOpenChange={setFiltersOpen}
+        trigger={null}
+        min={50}
+        max={800}
+        value={priceRange}
+        onChange={setPriceRange}
+        onApply={() => setFiltersOpen(false)}
+        onClear={() => setPriceRange([50, 400])}
       />
 
       <div className="flex flex-wrap items-center justify-between gap-3">

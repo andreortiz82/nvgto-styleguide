@@ -28,7 +28,14 @@ Docs skeleton (when / when-not, anatomy, states, a11y, do/don’t, props matchin
 - Molecules: DestinationInput, StarRating, PriceRangeSlider, MapPriceMarker, SortSelect, FilterChip
 - Organisms: SearchHeader, FilterSheet, RateComparison, EmptyState, ListingCardSkeleton
 
-shadcn atoms (Button, Badge, Input, Card, …) stay thin. Honest gaps stay flagged (SearchHeader / FilterSheet price slider is not a public API; FilterSheet has no `open` prop; RateComparison `href` defaults to `#`).
+shadcn atoms (Button, Badge, Input, Card, …) stay thin.
+
+### API gaps closed (still unpublished)
+
+- `FilterSheet` `open` / `defaultOpen` / `onOpenChange` — FilterBar `onOpenSheet` can drive the sheet. Pass `trigger={null}` when the bar owns the Filters button. SERP demo Filters opens FilterSheet; Escape / close use the Sheet primitive.
+- `FilterSheet` and `SearchHeader` compose public `PriceRangeSlider` props: `min` / `max` / `value` / `onChange`. Host default remains 50–800. Not a second slider.
+- `SearchHeader` desktop refine row no longer uses `hidden` (docs `.hidden` was winning over package `md:block`). Slider uses `max-md:hidden`; min-rating uses `max-md:!hidden`; the stub Filters button uses `md:!hidden`.
+- `RateComparison` no longer defaults `href` to `#`. Missing `href` renders a non-link row.
 
 ### Agent surface
 
