@@ -12,7 +12,7 @@
 - **Direction:** Warm travel utility — confident orange CTAs on stone-tinted neutrals.
 - **Decoration level:** Intentional — subtle shadows, rounded corners, purposeful motion on interactive booking surfaces.
 - **Mood:** Approachable, trustworthy, action-oriented. Orange signals primary actions; warm grays keep data-dense SERP layouts readable.
-- **Logo:** Location-pin mark (`logo-mark.svg`) paired with SN Pro wordmark.
+- **Logo:** Astronaut cat mark (`logo-mark.svg`) — orange suit, cream helmet, waving paw — paired with SN Pro wordmark.
 
 ## Typography
 
@@ -98,26 +98,26 @@ A good system is a product other products ship with, not a component catalog tha
 
 ### Quality bar
 
-- **Tokens vs components is the split.** Behavior and a11y live in the primitive (Radix / shadcn). Orange vs stone vs dark live in tokens. Do not fork a Dialog because the brand is orange. Identity is tokens + the location-pin mark. Chroma on primary booking actions, not every chrome.
+- **Tokens vs components is the split.** Behavior and a11y live in the primitive (Radix / shadcn). Orange vs stone vs dark live in tokens. Do not fork a Dialog because the brand is orange. Identity is tokens + the astronaut cat mark. Chroma on primary booking actions, not every chrome.
 - **Accessibility is a foundation, not a page.** Inherit Radix keyboard and focus. Add travel-specific contracts: date-picker keyboard, live regions for price updates, never disable Pay without an explanation. Orange-on-stone contrast must meet WCAG 2.2 AA. Components are necessary but not sufficient for an accessible product.
 - **Thin semantic token layer.** Two layers: private core/option (ramps) + public semantic/decision roles (`color.text.danger`, `color.action.primary`). Pick tokens by meaning, not by matching hex. No third (component-token) layer unless a travel control truly needs a unique contract. DTCG-shaped naming is welcome; a Style Dictionary pipeline is not required while the only consumer is Tailwind v4 CSS variables.
 - **Patterns are the product.** Buttons don't differentiate this library. Date range, guest picker, price-with-fees, sold-out, layover, booking error, results skeleton do. Harvest patterns from a real booking flow, then extract. Show primitives inside page instances (SERP, PDP, checkout) with real-ish content, not only isolation.
 - **Docs answer when / when not.** A component is not `stable` without the skeleton below. Kitchen-sink stories are not documentation. Model: GOV.UK button-page judgment + shadcn copy-paste.
 
-  | Required | What it covers |
-  |----------|----------------|
-  | One-line purpose | Why this exists |
-  | Status | `draft` / `preview` / `stable` / `deprecated` |
-  | Live example + copy-paste | Something a consumer can ship |
-  | When to use / when not | Judgment, not a prop dump |
-  | Anatomy | Named parts |
-  | Variants | The intended set, not every combination |
-  | States | default, hover, focus-visible, active, disabled, loading, invalid, selected, expanded — as relevant |
-  | Content / editorial | Labels, empty copy, error copy |
-  | A11y contract | What the consumer must still do |
-  | One do / don't pair | A real booking mistake, not a generic tip |
-  | Props API | Typed, copyable |
-  | Related patterns | Where this shows up in the flow |
+| Required | What it covers |
+|----------|----------------|
+| One-line purpose | Why this exists |
+| Status | `draft` / `preview` / `stable` / `deprecated` |
+| Live example + copy-paste | Something a consumer can ship |
+| When to use / when not | Judgment, not a prop dump |
+| Anatomy | Named parts |
+| Variants | The intended set, not every combination |
+| States | default, hover, focus-visible, active, disabled, loading, invalid, selected, expanded — as relevant |
+| Content / editorial | Labels, empty copy, error copy |
+| A11y contract | What the consumer must still do |
+| One do / don't pair | A real booking mistake, not a generic tip |
+| Props API | Typed, copyable |
+| Related patterns | Where this shows up in the flow |
 
 - **Distribution is honest.** `@navigato/react` is a versioned npm package (changelog, semver, deprecations in a minor before a major). Internally, shadcn stays copy-in under `ui/` so the file is editable. Document the consumer boundary: import from the package vs override tokens vs fork. Don't do neither — black-box npm with no tokens and no fork path.
 - **Governance is twenty lines, not a committee.** Bugs and a11y always in. New primitive only if composition fails. New pattern if it appears twice in the booking flow. Breaking changes = major, with a deprecated minor first. Andre is the enforcer. Status badges; don't mix experiments with the public API.
