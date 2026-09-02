@@ -12,10 +12,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { PriceRangeSlider } from "./price-range-slider";
+import { PriceRangeSlider, type PriceRangeSliderProps } from "./price-range-slider";
 
-export interface FilterSheetProps {
+export interface FilterSheetProps extends Pick<
+  PriceRangeSliderProps,
+  "min" | "max" | "value" | "onChange"
+> {
   trigger?: React.ReactNode;
+  /** Controlled open. Pair with onOpenChange. FilterBar.onOpenSheet should set this true. */
+  open?: boolean;
+  /** Uncontrolled initial open. Ignored when `open` is passed. */
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
   amenities?: string[];
   selectedAmenities?: string[];
   onAmenityChange?: (amenity: string, checked: boolean) => void;
@@ -35,22 +43,35 @@ const defaultAmenities = [
 
 export function FilterSheet({
   trigger,
+  open,
+  defaultOpen,
+  onOpenChange,
   amenities = defaultAmenities,
   selectedAmenities = [],
   onAmenityChange,
   onApply,
   onClear,
+  min = 50,
+  max = 800,
+  value,
+  onChange,
   className,
 }: FilterSheetProps) {
+  const triggerNode = trigger === undefined ? <Button variant="outline">Filters</Button> : trigger;
+
   return (
-    <Sheet>
-      <SheetTrigger>{trigger ?? <Button variant="outline">Filters</Button>}</SheetTrigger>
+    <Sheet
+      open={open}
+      defaultOpen={defaultOpen}
+      onOpenChange={onOpenChange}
+    >
+      {triggerNode ? <SheetTrigger>{triggerNode}</SheetTrigger> : null}
       <SheetContent className={cn("overflow-y-auto", className)}>
         <SheetHeader>
           <SheetTitle>Filters</SheetTitle>
         </SheetHeader>
         <div className="space-y-6 px-4">
-          <PriceRangeSlider min={50} max={800} />
+          <PriceRangeSlider min={min} max={max} value={value} onChange={onChange} />
           <div className="space-y-3">
             <Label className="normal-case font-semibold">Amenities</Label>
             {amenities.map((amenity) => (

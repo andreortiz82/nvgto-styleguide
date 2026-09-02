@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AmenityGrid,
   BookingSearchBar,
@@ -99,31 +100,59 @@ export function ListingCardSoldOutDemo() {
 }
 
 export function SearchHeaderDefaultDemo() {
+  const [priceRange, setPriceRange] = useState<[number, number]>([50, 400]);
   return (
     <SearchHeader
       destination="Austin, TX"
       tripSummary="Mar 12–15 · 2 adults · 1 room"
       rating={4}
+      min={50}
+      max={800}
+      value={priceRange}
+      onChange={setPriceRange}
     />
   );
 }
 
 export function FilterBarDefaultDemo() {
+  const [open, setOpen] = useState(false);
+  const [priceRange, setPriceRange] = useState<[number, number]>([50, 400]);
   return (
-    <FilterBar
-      resultCount={248}
-      filters={[
-        { id: "wifi", label: "WiFi", active: true },
-        { id: "pool", label: "Pool" },
-        { id: "breakfast", label: "Breakfast" },
-      ]}
-      onOpenSheet={() => {}}
-    />
+    <div className="w-full">
+      <FilterBar
+        resultCount={248}
+        filters={[
+          { id: "wifi", label: "WiFi", active: true },
+          { id: "pool", label: "Pool" },
+          { id: "breakfast", label: "Breakfast" },
+        ]}
+        onOpenSheet={() => setOpen(true)}
+      />
+      <FilterSheet
+        open={open}
+        onOpenChange={setOpen}
+        trigger={null}
+        min={50}
+        max={800}
+        value={priceRange}
+        onChange={setPriceRange}
+        onApply={() => setOpen(false)}
+        onClear={() => setPriceRange([50, 400])}
+      />
+    </div>
   );
 }
 
 export function FilterSheetDefaultDemo() {
-  return <FilterSheet />;
+  const [priceRange, setPriceRange] = useState<[number, number]>([50, 400]);
+  return (
+    <FilterSheet
+      min={50}
+      max={800}
+      value={priceRange}
+      onChange={setPriceRange}
+    />
+  );
 }
 
 export function BookingWidgetDefaultDemo() {
@@ -169,7 +198,7 @@ export function RateComparisonDefaultDemo() {
     <RateComparison
       className="max-w-md w-full"
       items={[
-        { provider: "Navigato Direct", price: 220, description: "Free cancellation" },
+        { provider: "Navigato Direct", price: 220, description: "Free cancellation", href: "https://example.com/book" },
         { provider: "Booking.com", price: 235, description: "Pay at property" },
         { provider: "Expedia", price: 228, description: "Non-refundable" },
       ]}

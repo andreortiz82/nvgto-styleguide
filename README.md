@@ -137,7 +137,7 @@ npm publish --workspace=@navigato/react
 
 `publishConfig.access` is `public`. `files` is `dist` only. After the first publish, consumers can `npm install @navigato/react` and the snippet above becomes the install path. Until then, consume from this repo.
 
-See [CHANGELOG.md](./CHANGELOG.md) for what 0.2.x already contains (SERP `soldOut`, BookingWidget contract, agent surface, remaining booking docs).
+See [CHANGELOG.md](./CHANGELOG.md) for what 0.2.x already contains (SERP `soldOut`, BookingWidget contract, remaining booking docs, FilterSheet / price / RateComparison API).
 
 ## Author
 
