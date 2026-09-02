@@ -103,6 +103,7 @@ export function GuestSelector({
         render={
           <Button
             variant="outline"
+            aria-label={`Guests: ${summary}`}
             className={cn("w-full justify-start font-normal", className)}
           />
         }

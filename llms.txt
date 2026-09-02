@@ -1,0 +1,23 @@
+# Navigato
+
+> MIT travel-booking React library (`@navigato/react`) and docs. Index only — query the linked files before generating UI. Never emit `@/components/ui` from memory.
+
+## Repo
+
+- [DESIGN.md](./DESIGN.md): quality bar, tokens, density, agent control plane
+- [AGENTS.md](./AGENTS.md): standing agent rules
+- [Public exports](./packages/navigato/src/index.ts): `@navigato/react` API
+- [Component registry](./apps/docs/src/content/components/registry.ts): purpose, status, when/when-not, props
+- [SERP demo](./apps/docs/src/components/demos/v2/PageDemos.tsx): mixed results, loading, empty
+
+## Docs site (`/nvgto-styleguide/`)
+
+- [ListingCard](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/listing-card/)
+- [BookingSearchBar](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/booking-search-bar/)
+- [FilterBar](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/filter-bar/)
+- [DateRangePicker](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/date-range-picker/)
+- [GuestSelector](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/guest-selector/)
+- [SERP](https://andreortiz82.github.io/nvgto-styleguide/components/pages/serp/)
+- [EmptyState](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/empty-state/)
+- [ListingCardSkeleton](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/listing-card-skeleton/)
+- [llms.txt (public)](https://andreortiz82.github.io/nvgto-styleguide/llms.txt)

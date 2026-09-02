@@ -23,21 +23,24 @@ export function BookingSearchBar({ className, onSearch }: BookingSearchBarProps)
   const [guests, setGuests] = useState<GuestCounts>({ adults: 2, children: 0, rooms: 1 });
 
   return (
-    <div
+    <form
+      role="search"
+      aria-label="Search stays"
       className={cn(
         "grid gap-2 rounded-2xl border bg-card p-2 shadow-sm md:grid-cols-[1.4fr_1.2fr_1.2fr_auto] md:items-center",
         className,
       )}
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSearch?.({ destination, dateRange, guests });
+      }}
     >
       <DestinationInput value={destination} onChange={(v) => setDestination(v)} />
       <DateRangePicker value={dateRange} onChange={setDateRange} />
       <GuestSelector value={guests} onChange={setGuests} />
-      <Button
-        className="h-9 md:px-8"
-        onClick={() => onSearch?.({ destination, dateRange, guests })}
-      >
+      <Button type="submit" className="h-9 md:px-8">
         Search
       </Button>
-    </div>
+    </form>
   );
 }

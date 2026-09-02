@@ -70,6 +70,22 @@ export function ListingCardVariantsDemo() {
   );
 }
 
+export function ListingCardSoldOutDemo() {
+  return (
+    <div className="max-w-sm w-full">
+      <ListingCard
+        title="Rainey Street Studio"
+        location="Rainey Street, Austin"
+        pricePerNight={210}
+        rating={4.4}
+        reviewCount={61}
+        imageUrl={GALLERY[3]}
+        soldOut
+      />
+    </div>
+  );
+}
+
 export function SearchHeaderDefaultDemo() {
   return (
     <SearchHeader

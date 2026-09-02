@@ -38,6 +38,7 @@ export function DateRangePicker({
         render={
           <Button
             variant="outline"
+            aria-label="Check-in and check-out dates"
             className={cn("w-full justify-start font-normal", className)}
           />
         }
