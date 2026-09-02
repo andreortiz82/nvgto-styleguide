@@ -45,7 +45,7 @@ export interface ComponentDocMeta {
   usage: string;
   props: PropDoc[];
   examples?: DocExample[];
-  /** When set, the DESIGN.md docs skeleton renders. Other catalog entries stay preview + usage + props. */
+  /** When set, the DESIGN.md docs skeleton renders. shadcn atoms stay thin (usage + props). */
   status?: DocStatus;
   whenToUse?: string[];
   whenNot?: string[];

@@ -15,7 +15,7 @@ Read `DESIGN.md` (quality bar + How AI changes this) before writing UI. Query th
 ## Plan against the system API
 
 1. Public exports: `packages/navigato/src/index.ts`
-2. Props and when/when-not: `apps/docs/src/content/components/registry.ts` (SERP + PDP/checkout parts have the full docs skeleton)
+2. Props and when/when-not: `apps/docs/src/content/components/registry.ts` (booking-domain parts have the DESIGN.md skeleton; shadcn atoms stay thin)
 3. Page instances: SERP, PDP, and checkout at `apps/docs/src/components/demos/v2/PageDemos.tsx`
 4. Index: `llms.txt` (repo) and `/nvgto-styleguide/llms.txt` (docs site). Index, not a teacher.
 

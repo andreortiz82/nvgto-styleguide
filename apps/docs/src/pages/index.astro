@@ -24,7 +24,8 @@ const base = import.meta.env.BASE_URL;
     <h2>What is Navigato?</h2>
     <p>
       Navigato started as an internal Middleman styleguide for a travel product team. This revival
-      packages the same design language as <code>@navigato/react</code> — an MIT-licensed npm package
+      packages the same design language as <code>@navigato/react</code> — an MIT-licensed
+      React library (workspace <code>0.2.0</code>, not on the public npm registry yet)
       with live documentation.
     </p>
     <ul class="list-disc pl-5 space-y-1">
@@ -59,15 +60,17 @@ const base = import.meta.env.BASE_URL;
       class="block rounded-lg border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30 hover:nvg-shadow-sm"
     >
       <h3 class="m-0 text-base font-semibold text-primary">Getting started</h3>
-      <p class="m-0 mt-1 text-sm text-muted-foreground">Install, import styles, first component</p>
+      <p class="m-0 mt-1 text-sm text-muted-foreground">Consume from the repo, import styles, first component</p>
     </a>
   </section>
 
   <section class="mt-10">
-    <h2>Quick install</h2>
-    <pre><code>{`npm install @navigato/react
-
-import '@navigato/react/styles.css'
+    <h2>Quick start</h2>
+    <p>
+      The package is <strong>not on npm yet</strong>. Consume from this repo (workspace or copy-in).
+      Booking parts are <code>preview</code>, not <code>stable</code>.
+    </p>
+    <pre><code>{`import '@navigato/react/styles.css'
 import { BookingSearchBar, ListingCard } from '@navigato/react'`}</code></pre>
     <p class="mt-4">
       <a href={`${base}getting-started/`} class="text-primary font-semibold no-underline hover:underline">
