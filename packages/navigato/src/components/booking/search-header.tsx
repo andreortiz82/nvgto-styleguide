@@ -65,14 +65,14 @@ export function SearchHeader({
           </span>
           <span className="text-sm text-muted-foreground">{tripSummary}</span>
         </button>
-        <div className="hidden min-w-[12rem] flex-1 md:block">
+        <div className="min-w-[12rem] flex-1 max-md:hidden">
           <PriceRangeSlider min={min} max={max} value={value} onChange={onChange} />
         </div>
-        <div className="hidden flex-col md:flex">
+        <div className="flex flex-col max-md:hidden">
           <span className="text-xs text-muted-foreground">Min rating</span>
           <StarRating value={rating} onChange={onRatingChange} size="sm" />
         </div>
-        <Button variant="outline" size="sm" className="ml-auto md:hidden">
+        <Button variant="outline" size="sm" className="ml-auto md:!hidden">
           Filters
         </Button>
       </div>
