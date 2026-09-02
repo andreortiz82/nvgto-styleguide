@@ -137,10 +137,49 @@ A 200-person federated system, a three-tier token thesaurus, or a mandate withou
 
 Sources: Brad Frost (tokens vs components); Nathan Curtis (product serving products; doc is a step); NN/g maturity (library ≠ system); Sparkbox 2022 (onboarding, a11y guidelines, docs pain); GOV.UK (when / when not); Atlassian (tokens by meaning); Lightning (patterns layer); shadcn/ui (copy-in vs npm); DTCG 2025.10.
 
+## How AI changes this
+
+AI does not replace the system. It turns it into a control plane. Unconstrained generation is vibe coding. DS+AI means models may only use production-grade Navigato materials. When those materials are incomplete or unreadable, agents invent lookalikes — stock shadcn, fabricated steppers, Inter/purple slop.
+
+### Four axes
+
+- **Made.** Humans set contracts; agents execute inside them. Skills, this file, and `AGENTS.md` are the system-for-agents. Figma↔code is an MCP loop when a Figma library exists (Code Connect = real imports vs invented UI). Coded first drafts are expected; review asks "did they use the right pattern?" (see Patterns are the product).
+- **Distributed.** "Install" for an agent is connect + retrieve, not only npm. Copy-in registry + skill beat a sealed package for LLMs. On-demand beats dumping the whole system into context. `llms.txt` is an index, not a teacher. Human install path stays in Distribution is honest.
+- **Documented.** Docs are an API. Anatomy, states, when/when-not, a11y, and real import paths must be fetchable as markdown/JSON — the skeleton in What good looks like. Pretty Astro HTML alone is invisible to agents. If the same generated mistake repeats, encode it as a generation rule.
+- **Adopted.** Agents are a new adopter class, often the first reader. Measure whether generated UI stays on-system (real primitives, real tokens, documented props), not npm downloads. Types/lint are a zero-token enforcer.
+
+### Navigato-specific risk
+
+This library looks like shadcn. v0 and similar tools are trained on default shadcn. Standing rule: use `@navigato/react` or copied Navigato files — never emit `@/components/ui` from memory. Document gaps; if there is no match, flag it. Do not invent a fare calendar or itinerary stepper.
+
+### What lives where
+
+Do not duplicate the full system in every layer.
+
+| Layer | Job |
+|-------|-----|
+| DESIGN.md (this file) | Portable snapshot: semantic tokens, density, do/don't, contrast, the quality bar. Not prop tables. Not how to rebuild Button (that causes forks). |
+| Astro docs | Humans. Add a markdown twin per page + `/llms.txt` so agents can parse. |
+| Skill(s) | Highest leverage for cloud agents. Narrow: never invent props/tokens/icons; copy-in vs package; Phosphor names only from the catalog (see Icons); never emit `@/components/ui` from memory; booking a11y as in Accessibility is a foundation. `AGENTS.md` is two screens pointing at skills + "query docs/registry before any prop." |
+| Registry | How copy-in consumers install (`registry.json`, model-written descriptions). |
+| npm `@navigato/react` | Canonical runtime for teams that import. Types are the linter. |
+| MCP / Code Connect / Storybook MCP | Later. Skills + registry + markdown first. |
+
+### Standing agent rules
+
+1. Never invent component names, props, tokens, utility classes, or Phosphor icon names.
+2. Prefer existing primitives; new primitive only if composition fails (same as Governance).
+3. Restyle via tokens, never fork Button/Dialog for orange (same as Tokens vs components).
+4. If unverifiable, do not use it; flag the gap.
+5. Plan against the system API before generating.
+
+Sources: parked 2026-09-01 from the DS+AI research (control plane; agent as adopter class; `llms.txt` as index).
+
 ## Decisions Log
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
+| 2026-09-01 | AI control-plane note parked next to the quality bar | Agents are an adopter class; unconstrained generation is vibe coding |
 | 2026-09-01 | Quality bar parked in DESIGN.md | Source of truth for what "good" means; vertical reuse over catalog coverage |
 | 2026-06-29 | Orange primary + warm stone neutrals | Revived Navigato brand identity |
 | 2026-06-29 | SN Pro single-family typography | Modern, cohesive travel product feel |
