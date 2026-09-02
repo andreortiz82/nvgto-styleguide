@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { differenceInCalendarDays } from "date-fns";
 import type { DateRange } from "react-day-picker";
 import { cn } from "@/lib/utils";
@@ -88,6 +88,10 @@ export function BookingWidget({
   const guests = guestsProp ?? uncontrolledGuests;
   const nights = nightsFromRange(dateRange);
   const blocker = reserveBlockReason(dateRange, nights, soldOut);
+
+  useEffect(() => {
+    setAttempted(false);
+  }, [dateRange?.from, dateRange?.to, soldOut]);
 
   const setDateRange = (next: DateRange | undefined) => {
     if (!isRangeControlled) setUncontrolledRange(next);
