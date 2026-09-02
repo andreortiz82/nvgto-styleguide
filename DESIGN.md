@@ -92,10 +92,56 @@ Not exported from `@navigato/react` public API (used inside library only):
 
 - `textarea`, `switch`, `avatar`, `command`, `input-group`
 
+## What good looks like
+
+A good system is a product other products ship with, not a component catalog that launched. Navigato is a small MIT travel-booking library — optimize vertical reuse inside SERP, PDP, and checkout, not Carbon-scale coverage. Component count is a weak health signal.
+
+### Quality bar
+
+- **Tokens vs components is the split.** Behavior and a11y live in the primitive (Radix / shadcn). Orange vs stone vs dark live in tokens. Do not fork a Dialog because the brand is orange. Identity is tokens + the location-pin mark. Chroma on primary booking actions, not every chrome.
+- **Accessibility is a foundation, not a page.** Inherit Radix keyboard and focus. Add travel-specific contracts: date-picker keyboard, live regions for price updates, never disable Pay without an explanation. Orange-on-stone contrast must meet WCAG 2.2 AA. Components are necessary but not sufficient for an accessible product.
+- **Thin semantic token layer.** Two layers: private core/option (ramps) + public semantic/decision roles (`color.text.danger`, `color.action.primary`). Pick tokens by meaning, not by matching hex. No third (component-token) layer unless a travel control truly needs a unique contract. DTCG-shaped naming is welcome; a Style Dictionary pipeline is not required while the only consumer is Tailwind v4 CSS variables.
+- **Patterns are the product.** Buttons don't differentiate this library. Date range, guest picker, price-with-fees, sold-out, layover, booking error, results skeleton do. Harvest patterns from a real booking flow, then extract. Show primitives inside page instances (SERP, PDP, checkout) with real-ish content, not only isolation.
+- **Docs answer when / when not.** A component is not `stable` without the skeleton below. Kitchen-sink stories are not documentation. Model: GOV.UK button-page judgment + shadcn copy-paste.
+
+  | Required | What it covers |
+  |----------|----------------|
+  | One-line purpose | Why this exists |
+  | Status | `draft` / `preview` / `stable` / `deprecated` |
+  | Live example + copy-paste | Something a consumer can ship |
+  | When to use / when not | Judgment, not a prop dump |
+  | Anatomy | Named parts |
+  | Variants | The intended set, not every combination |
+  | States | default, hover, focus-visible, active, disabled, loading, invalid, selected, expanded — as relevant |
+  | Content / editorial | Labels, empty copy, error copy |
+  | A11y contract | What the consumer must still do |
+  | One do / don't pair | A real booking mistake, not a generic tip |
+  | Props API | Typed, copyable |
+  | Related patterns | Where this shows up in the flow |
+
+- **Distribution is honest.** `@navigato/react` is a versioned npm package (changelog, semver, deprecations in a minor before a major). Internally, shadcn stays copy-in under `ui/` so the file is editable. Document the consumer boundary: import from the package vs override tokens vs fork. Don't do neither — black-box npm with no tokens and no fork path.
+- **Governance is twenty lines, not a committee.** Bugs and a11y always in. New primitive only if composition fails. New pattern if it appears twice in the booking flow. Breaking changes = major, with a deprecated minor first. Andre is the enforcer. Status badges; don't mix experiments with the public API.
+
+### Definition of done
+
+A part is not done until these exist together (Curtis: Discover → Design → Build → Doc → Publish):
+
+- **Design** — states in the skeleton above.
+- **Build** — Radix + Tailwind; tokens, not a brand fork.
+- **Doc** — the skeleton above.
+- **Publish** — versioned `@navigato/react` path (changelog / status).
+
+### What this repo is not
+
+A 200-person federated system, a three-tier token thesaurus, or a mandate without support. First release shows value in a travel pattern, not completeness of the shadcn catalog.
+
+Sources: Brad Frost (tokens vs components); Nathan Curtis (product serving products; doc is a step); NN/g maturity (library ≠ system); Sparkbox 2022 (onboarding, a11y guidelines, docs pain); GOV.UK (when / when not); Atlassian (tokens by meaning); Lightning (patterns layer); shadcn/ui (copy-in vs npm); DTCG 2025.10.
+
 ## Decisions Log
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
+| 2026-09-01 | Quality bar parked in DESIGN.md | Source of truth for what "good" means; vertical reuse over catalog coverage |
 | 2026-06-29 | Orange primary + warm stone neutrals | Revived Navigato brand identity |
 | 2026-06-29 | SN Pro single-family typography | Modern, cohesive travel product feel |
 | 2026-06-29 | shadcn copy-in under `ui/` | Full control, no npm blob |
