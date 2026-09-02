@@ -68,7 +68,7 @@ export function SearchHeader({
         <div className="min-w-[12rem] flex-1 max-md:hidden">
           <PriceRangeSlider min={min} max={max} value={value} onChange={onChange} />
         </div>
-        <div className="flex flex-col max-md:hidden">
+        <div className="flex flex-col max-md:!hidden">
           <span className="text-xs text-muted-foreground">Min rating</span>
           <StarRating value={rating} onChange={onRatingChange} size="sm" />
         </div>
