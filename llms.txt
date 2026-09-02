@@ -2,28 +2,50 @@
 
 > MIT travel-booking React library (`@navigato/react`) and docs. Index only — query the linked files before generating UI. Never emit `@/components/ui` from memory.
 
+`@navigato/react@0.2.0` is unpublished. Booking parts are `preview`, not `stable`. Changelog: [CHANGELOG.md](./CHANGELOG.md).
+
 ## Repo
 
 - [DESIGN.md](./DESIGN.md): quality bar, tokens, density, agent control plane
 - [AGENTS.md](./AGENTS.md): standing agent rules
+- [CHANGELOG.md](./CHANGELOG.md): 0.2.x SERP / PDP floor + remaining booking docs (unpublished)
 - [Public exports](./packages/navigato/src/index.ts): `@navigato/react` API
 - [Component registry](./apps/docs/src/content/components/registry.ts): purpose, status, when/when-not, props
 - [Page demos](./apps/docs/src/components/demos/v2/PageDemos.tsx): SERP, PDP, checkout
+- [Getting started](./apps/docs/src/pages/getting-started.astro): consume from the repo; do not assume npm
 
 ## Docs site (`/nvgto-styleguide/`)
+
+### SERP parts
 
 - [ListingCard](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/listing-card/)
 - [BookingSearchBar](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/booking-search-bar/)
 - [FilterBar](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/filter-bar/)
 - [DateRangePicker](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/date-range-picker/)
 - [GuestSelector](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/guest-selector/)
+- [DestinationInput](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/destination-input/)
+- [StarRating](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/star-rating/)
+- [PriceRangeSlider](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/price-range-slider/)
+- [MapPriceMarker](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/map-price-marker/)
+- [SortSelect](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/sort-select/)
+- [FilterChip](https://andreortiz82.github.io/nvgto-styleguide/components/molecules/filter-chip/)
+- [SearchHeader](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/search-header/)
+- [FilterSheet](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/filter-sheet/)
+- [EmptyState](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/empty-state/)
+- [ListingCardSkeleton](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/listing-card-skeleton/)
+- [SERP](https://andreortiz82.github.io/nvgto-styleguide/components/pages/serp/)
+
+### PDP and checkout parts
+
 - [BookingWidget](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/booking-widget/)
 - [PriceBreakdown](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/price-breakdown/)
 - [PhotoGallery](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/photo-gallery/)
+- [AmenityGrid](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/amenity-grid/)
+- [ReviewSummary](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/review-summary/)
 - [BookingSteps](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/booking-steps/)
-- [SERP](https://andreortiz82.github.io/nvgto-styleguide/components/pages/serp/)
+- [RateComparison](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/rate-comparison/)
 - [PDP](https://andreortiz82.github.io/nvgto-styleguide/components/pages/pdp/)
 - [Checkout](https://andreortiz82.github.io/nvgto-styleguide/components/pages/checkout/)
-- [EmptyState](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/empty-state/)
-- [ListingCardSkeleton](https://andreortiz82.github.io/nvgto-styleguide/components/organisms/listing-card-skeleton/)
+
+- [Getting started](https://andreortiz82.github.io/nvgto-styleguide/getting-started/)
 - [llms.txt (public)](https://andreortiz82.github.io/nvgto-styleguide/llms.txt)

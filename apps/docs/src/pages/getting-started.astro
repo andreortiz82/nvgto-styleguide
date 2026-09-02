@@ -5,19 +5,50 @@ import DocsLayout from "../layouts/DocsLayout.astro";
 <DocsLayout title="Getting started" description="Install and use @navigato/react">
   <h1>Getting started</h1>
 
-  <h2>Install</h2>
-  <pre><code>npm install @navigato/react</code></pre>
+  <p class="nvg-lead">
+    <code>@navigato/react</code> is <strong>0.2.0</strong> in this repo. It is
+    <strong>not on the public npm registry</strong>. Public booking parts are
+    <code>preview</code>, not <code>stable</code>.
+  </p>
+
+  <h2>Status</h2>
+  <p>
+    Peer React is <code>&gt;=18</code> (<code>react</code> / <code>react-dom</code>).
+    Package exports: <code>.</code>, <code>./styles.css</code> (built
+    <code>dist/navigato.css</code>), and <code>./theme.css</code> (source
+    <code>src/styles/global.css</code>). See the repo
+    <a href="https://github.com/andreortiz82/nvgto-styleguide/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for the SERP / PDP floor and remaining booking docs. Do not expect
+    <code>npm install @navigato/react</code> to resolve until Andre publishes.
+  </p>
+
+  <h2>Consume today</h2>
+  <p>
+    Clone the monorepo and import from the workspace, or copy
+    <code>packages/navigato/src</code> when you must edit files. Override tokens
+    before forking.
+  </p>
+  <pre><code>{`git clone https://github.com/andreortiz82/nvgto-styleguide.git
+cd nvgto-styleguide
+npm install`}</code></pre>
 
   <h2>Import styles &amp; fonts</h2>
-  <p>Add the Navigato stylesheet and SN Pro font in your app entry:</p>
-  <pre><code>{`import '@navigato/react/styles.css'`}</code></pre>
-  <p>In your HTML head (or root layout):</p>
+  <p>Add the Navigato stylesheet (and optionally the theme file) in your app entry:</p>
+  <pre><code>{`import '@navigato/react/styles.css'
+// optional tokens-only path:
+// import '@navigato/react/theme.css'`}</code></pre>
+  <p>In your HTML head (or root layout) — the package does not inject SN Pro:</p>
   <pre><code>{`<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />`}</code></pre>
 
   <h2>Use components</h2>
-  <p>Navigato v0.2 ships shadcn/ui primitives plus booking-specific composites:</p>
+  <p>
+    0.2.0 ships shadcn/ui primitives plus booking composites. Booking entries in
+    the registry that set <code>status: "preview"</code> render the DESIGN.md
+    skeleton (when / when-not, anatomy, states, a11y, do/don’t, typed props).
+    Atoms stay thin.
+  </p>
   <pre><code>{`import {
   BookingSearchBar,
   ListingCard,
@@ -47,11 +78,26 @@ export function SearchPage() {
   </p>
   <pre><code>{`<div className="navigato-root">{children}</div>`}</code></pre>
 
+  <h2>Publish later</h2>
+  <p>
+    When the package goes to npm (Andre), the install becomes
+    <code>npm install @navigato/react</code>. Until then, do not treat that
+    snippet as live. Publish path (do not run from a docs PR):
+  </p>
+  <pre><code>{`npm run build:lib
+npm publish --workspace=@navigato/react`}</code></pre>
+  <p>
+    <code>publishConfig.access</code> is <code>public</code>. Do not bump to 1.0
+    while booking parts are <code>preview</code>. 0.x may break; prefer a
+    deprecation first.
+  </p>
+
   <h2>shadcn/ui foundation</h2>
   <p>
     Primitives live under <code>components/ui/</code> in the package source. To add more shadcn
     components, run the CLI from <code>packages/navigato</code> — see
-    <a href="https://ui.shadcn.com/">shadcn/ui docs</a>.
+    <a href="https://ui.shadcn.com/">shadcn/ui docs</a>. Restyle via tokens. Do not fork Button
+    or Dialog because the brand is orange.
   </p>
 
   <h2>Accessibility</h2>

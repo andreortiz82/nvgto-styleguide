@@ -201,51 +201,303 @@ const [guests, setGuests] = useState<GuestCounts>({ adults: 2, children: 0, room
     slug: "destination-input",
     tier: "molecules",
     title: "DestinationInput",
-    description: "Searchable destination combobox.",
-    usage: `import { DestinationInput } from '@navigato/react'\n\n<DestinationInput onChange={setDest} />`,
-    props: [{ name: "options", type: "DestinationOption[]", description: "Autocomplete options." }],
+    description: "Where-to combobox for a stay search.",
+    status: "preview",
+    usage: `import { DestinationInput } from "@navigato/react"
+import type { DestinationOption } from "@navigato/react"
+
+const [dest, setDest] = useState<string>()
+
+<DestinationInput
+  value={dest}
+  onChange={(value) => setDest(value)}
+/>`,
+    whenToUse: [
+      "Stay search for a city or neighborhood — inside BookingSearchBar or a SERP header.",
+      "A single destination, paired with DateRangePicker and GuestSelector.",
+    ],
+    whenNot: [
+      "Airport / IATA pickers or a multi-city itinerary. Don’t invent flight legs.",
+      "A free-text Input that doesn’t resolve to an option. This is a combobox, not a geocoder.",
+    ],
+    anatomy: [
+      { name: "Trigger", description: "Shows placeholder or the selected label. Phosphor MapPin — not Lucide." },
+      { name: "Search", description: "Command input inside the popover (“Search destinations…”)." },
+      { name: "Option", description: "label + optional subtitle. Selecting fires onChange and closes." },
+    ],
+    variants: "No visual variants. Width is layout (`className`). Default options are a demo list, not a geo API.",
+    states: [
+      { name: "default", description: "Placeholder “Where to?” until a value matches an option." },
+      { name: "selected", description: "Trigger shows the option label." },
+      { name: "expanded", description: "Popover open; typeahead filters labels." },
+      { name: "empty", description: "“No destination found.” when the query matches nothing." },
+      { name: "focus-visible", description: "Trigger uses the ring token." },
+    ],
+    content: "Placeholder is “Where to?”, not “Location” or “City”. Option labels are places (“Austin, TX”), values are slugs (`austin-tx`). Don’t ship the four demo cities as production inventory.",
+    a11y: "Combobox behavior comes from Command + Popover. Consumer must keep this in a labeled search form (BookingSearchBar does). Don’t disable the trigger without saying why destination can’t change. Command is internal — don’t import `@/components/ui/command`.",
+    doDont: {
+      do: "Pass options from your destination list and let BookingSearchBar submit the selected value.",
+      dont: "Emit a shadcn Input + Command from `@/components/ui` and call it a search field.",
+    },
+    related: [
+      { title: "BookingSearchBar", href: "/components/organisms/booking-search-bar/" },
+      { title: "DateRangePicker", href: "/components/molecules/date-range-picker/" },
+      { title: "GuestSelector", href: "/components/molecules/guest-selector/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
+    props: [
+      { name: "options", type: "DestinationOption[]", description: "{ label, value, subtitle? }. Defaults to Austin, Barcelona, Tokyo, Paris." },
+      { name: "value", type: "string", description: "Selected option value. Uncontrolled if omitted." },
+      { name: "onChange", type: "(value: string, option?: DestinationOption) => void", description: "Fires with the option value and the option object." },
+      { name: "placeholder", type: "string", default: '"Where to?"', description: "Trigger label when nothing is selected." },
+      { name: "className", type: "string", description: "Classes on the trigger button." },
+    ],
   }),
   "star-rating": doc({
     slug: "star-rating",
     tier: "molecules",
     title: "StarRating",
-    description: "Display or filter by star rating.",
-    usage: `import { StarRating } from '@navigato/react'\n\n<StarRating value={4.5} showValue reviewCount={128} readOnly />`,
-    props: [{ name: "value", type: "number", description: "Star value 0–5." }],
+    description: "Stay rating stars — display on a card, or a min-rating filter.",
+    status: "preview",
+    usage: `import { StarRating } from "@navigato/react"
+
+<StarRating value={4.5} showValue reviewCount={128} readOnly />`,
+    whenToUse: [
+      "Read-only score on ListingCard, PDP header, or ReviewSummary.",
+      "A min-rating control (SearchHeader) — omit readOnly and handle onChange.",
+    ],
+    whenNot: [
+      "A 10-point hotel scale or Airbnb category scores. This is 0–max stars.",
+      "The full PDP reviews block — that’s ReviewSummary, which composes this.",
+    ],
+    anatomy: [
+      { name: "Stars", description: "Phosphor Star, fill vs regular. Fill is Math.round(value), not half-star clicks." },
+      { name: "Value", description: "Optional one-decimal number when showValue." },
+      { name: "Count", description: "Optional “({reviewCount})” in muted text." },
+    ],
+    variants: "Size only: sm / md / lg (14 / 18 / 24). readOnly vs interactive is a mode, not chrome. Orange is the filled star token — don’t fork Star.",
+    states: [
+      { name: "default", description: "value={0} — all regular (empty) stars." },
+      { name: "selected", description: "Stars up to Math.round(value) are filled primary." },
+      { name: "disabled", description: "readOnly disables each star button; cursor stays default." },
+      { name: "focus-visible", description: "Interactive stars are buttons; keep a visible focus ring from the page." },
+    ],
+    content: "showValue prints one decimal (4.5). Review count is the integer in parens, not “128 reviews” — ListingCard and ReviewSummary add that noun. Don’t write ASCII stars.",
+    a11y: "readOnly uses role=\"img\"; interactive uses role=\"group\". The group label is “{value} out of {max} stars”. Each star has aria-label “{n} stars”. Prefer readOnly on SERP/PDP display. onChange fires the integer 1…max, not a half.",
+    doDont: {
+      do: "Pass the stay’s average with readOnly + showValue + reviewCount on a tile or PDP.",
+      dont: "Drop Lucide stars from memory, or invent clickable half-stars this API does not have.",
+    },
+    related: [
+      { title: "ListingCard", href: "/components/organisms/listing-card/" },
+      { title: "ReviewSummary", href: "/components/organisms/review-summary/" },
+      { title: "SearchHeader", href: "/components/organisms/search-header/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
+    ],
+    examples: [{ id: "interactive", title: "Interactive filter" }],
+    props: [
+      { name: "value", type: "number", default: "0", description: "Score. Display fill uses Math.round(value)." },
+      { name: "max", type: "number", default: "5", description: "Star count." },
+      { name: "onChange", type: "(value: number) => void", description: "Fires the clicked integer 1…max. Ignored when readOnly." },
+      { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Icon size." },
+      { name: "showValue", type: "boolean", default: "false", description: "Print value.toFixed(1) next to the stars." },
+      { name: "reviewCount", type: "number", description: "Muted count in parentheses. Hidden if omitted." },
+      { name: "readOnly", type: "boolean", default: "false", description: "Display mode. Disables star buttons." },
+      { name: "className", type: "string", description: "Classes on the row." },
+    ],
   }),
   "price-range-slider": doc({
     slug: "price-range-slider",
     tier: "molecules",
     title: "PriceRangeSlider",
     description: "Dual-thumb nightly price filter.",
-    usage: `import { PriceRangeSlider } from '@navigato/react'\n\n<PriceRangeSlider min={50} max={800} />`,
-    props: [{ name: "min", type: "number", default: "0", description: "Minimum price." }],
+    status: "preview",
+    usage: `import { PriceRangeSlider } from "@navigato/react"
+
+const [range, setRange] = useState<[number, number]>([50, 400])
+
+<PriceRangeSlider min={50} max={800} value={range} onChange={setRange} />`,
+    whenToUse: [
+      "A SERP price facet you actually filter with — controlled value + onChange.",
+      "Inside FilterSheet as the price block (that host hardcodes 50–800 today).",
+    ],
+    whenNot: [
+      "A stay total — that’s PriceBreakdown after dates exist.",
+      "A fare calendar or price histogram. Don’t invent one. SearchHeader embeds this slider with no onChange — do not treat that as a connected filter API.",
+    ],
+    anatomy: [
+      { name: "Label", description: "Default “Price range”." },
+      { name: "Range text", description: "formatValue(min) – formatValue(max), tabular-nums, en dash." },
+      { name: "Slider", description: "shadcn Slider, two thumbs, step 10 (not a prop)." },
+    ],
+    variants: "No branded chrome variants. Currency is formatValue, not a locale prop. SearchHeader and FilterSheet do not expose price props — don’t invent them.",
+    states: [
+      { name: "default", description: "Uncontrolled starts at [min, round(max × 0.5)]." },
+      { name: "selected", description: "Thumbs sit on the current pair." },
+      { name: "focus-visible", description: "Thumb focus comes from Slider." },
+    ],
+    content: "Label is “Price range”, not “Budget”. Nightly unless you say otherwise in formatValue. Don’t print a made-up “median $210”.",
+    a11y: "The Label primitive marks the group. Consumer must still update FilterBar’s stay count when the range changes. Don’t hide the numeric range. Step is fixed at 10.",
+    doDont: {
+      do: "Control value and onChange when this slider filters the SERP.",
+      dont: "Drop a raw Slider from `@/components/ui` and call it a price filter, or invent a distribution chart.",
+    },
+    related: [
+      { title: "FilterSheet", href: "/components/organisms/filter-sheet/" },
+      { title: "SearchHeader", href: "/components/organisms/search-header/" },
+      { title: "FilterBar", href: "/components/organisms/filter-bar/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
+    props: [
+      { name: "min", type: "number", default: "0", description: "Lower bound." },
+      { name: "max", type: "number", default: "1000", description: "Upper bound." },
+      { name: "value", type: "[number, number]", description: "Controlled pair. Uncontrolled default is [min, round(max × 0.5)]." },
+      { name: "onChange", type: "(value: [number, number]) => void", description: "Fires on thumb move." },
+      { name: "formatValue", type: "(value: number) => string", default: '(v) => `$${v}`', description: "How each end is printed." },
+      { name: "label", type: "string", default: '"Price range"', description: "Visible label." },
+      { name: "className", type: "string", description: "Classes on the stack." },
+    ],
   }),
   "map-price-marker": doc({
     slug: "map-price-marker",
     tier: "molecules",
     title: "MapPriceMarker",
-    description: "Map pin showing nightly price.",
-    usage: `import { MapPriceMarker } from '@navigato/react'\n\n<MapPriceMarker price="$189" saved />`,
-    props: [{ name: "price", type: "string", required: true, description: "Formatted price label." }],
+    description: "Map pin with a formatted nightly price.",
+    status: "preview",
+    usage: `import { MapPriceMarker } from "@navigato/react"
+
+<MapPriceMarker price="$189" saved={false} onClick={selectStay} />`,
+    whenToUse: [
+      "SERP map panel for bookable stays — price as a string, not a number.",
+      "A selected pin (`selected`) that matches the highlighted card.",
+    ],
+    whenNot: [
+      "Sold-out inventory. The SERP demo omits sold-out stays from the map — don’t pin a live price on an unavailable stay.",
+      "The listing tile itself — that’s ListingCard.",
+    ],
+    anatomy: [
+      { name: "Price", description: "Formatted label (`\"$189\"`). Not formatted inside the component." },
+      { name: "Heart", description: "Phosphor Heart fill when saved. aria-hidden." },
+      { name: "Caret", description: "CSS triangle in primary, or foreground when selected." },
+    ],
+    variants: "Content states, not style variants: default (primary), selected (foreground + pulse), saved (heart). Orange is the default pin — don’t fork a second marker.",
+    states: [
+      { name: "default", description: "Primary fill, nightly price." },
+      { name: "hover", description: "Slight scale + shadow." },
+      { name: "selected", description: "Foreground fill and `.nvg-animate-pulse`. Reduced motion disables the pulse." },
+      { name: "saved", description: "Filled heart before the price." },
+      { name: "focus-visible", description: "Button ring." },
+    ],
+    content: "Pass a formatted string (“$189”), not `189`. Don’t invent a crossed-out compare-at — the API has no originalPrice.",
+    a11y: "Rendered as a button. Consumer must wire onClick to the listing and keep keyboard access. selected is visual only — add aria-pressed if this is a toggle. Heart is decorative. Don’t put this inside another button.",
+    doDont: {
+      do: "Show formatted nightly prices for stays that can still be booked.",
+      dont: "Pin a sold-out stay with a live rate, or emit a Google Maps InfoWindow from memory.",
+    },
+    related: [
+      { title: "ListingCard", href: "/components/organisms/listing-card/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
+    props: [
+      { name: "price", type: "string", required: true, description: "Formatted price label shown on the pin." },
+      { name: "saved", type: "boolean", default: "false", description: "Shows a filled heart." },
+      { name: "selected", type: "boolean", default: "false", description: "Foreground treatment and pulse." },
+      { name: "onClick", type: "() => void", description: "Pin click. Consumer routes or highlights the card." },
+      { name: "className", type: "string", description: "Classes on the button." },
+    ],
   }),
   "sort-select": doc({
     slug: "sort-select",
     tier: "molecules",
     title: "SortSelect",
-    description: "SERP sort dropdown.",
-    usage: `import { SortSelect } from '@navigato/react'\n\n<SortSelect value="price-asc" onChange={setSort} />`,
-    props: [{ name: "value", type: "string", description: "Selected sort key." }],
+    description: "SERP sort for stays: recommended, price, rating, distance.",
+    status: "preview",
+    usage: `import { SortSelect } from "@navigato/react"
+
+<SortSelect value="recommended" onChange={setSort} />`,
+    whenToUse: [
+      "SERP sort, usually composed by FilterBar (`sortValue` / `onSortChange`).",
+      "A short list of stay-search sorts — not a generic form Select.",
+    ],
+    whenNot: [
+      "Amenity or type filters — those are FilterChip.",
+      "Flight sorts (duration, layover). Don’t invent those keys here.",
+    ],
+    anatomy: [
+      { name: "Trigger", description: "shadcn SelectTrigger; placeholder “Sort by”." },
+      { name: "Items", description: "label + value. Defaults: recommended, price-asc, price-desc, rating, distance." },
+    ],
+    variants: "No visual variants. Pass `options` to relabel. Width is `className`.",
+    states: [
+      { name: "default", description: "value defaults to \"recommended\"." },
+      { name: "selected", description: "Trigger shows the matching label." },
+      { name: "expanded", description: "List open. Keyboard from Select." },
+      { name: "focus-visible", description: "Trigger ring from Select." },
+    ],
+    content: "Labels stay human (“Price: low to high”), not raw keys. Don’t print “sort_price_asc”.",
+    a11y: "Keyboard and focus come from Select. Consumer owns the sort and must update the stay list. FilterBar is the usual host. Don’t disable the trigger with no explanation.",
+    doDont: {
+      do: "Keep the five stay-search sorts unless the product truly has another.",
+      dont: "Fork Select because the brand is orange, or drop a native <select> next to FilterChips from memory.",
+    },
+    related: [
+      { title: "FilterBar", href: "/components/organisms/filter-bar/" },
+      { title: "FilterChip", href: "/components/molecules/filter-chip/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
+    props: [
+      { name: "value", type: "string", default: '"recommended"', description: "Selected sort key." },
+      { name: "onChange", type: "(value: string) => void", description: "Fires the next key." },
+      { name: "options", type: "SortOption[]", description: "{ label, value }[]. Default recommended / price / rating / distance." },
+      { name: "className", type: "string", description: "Classes on the trigger." },
+    ],
   }),
   "filter-chip": doc({
     slug: "filter-chip",
     tier: "molecules",
     title: "FilterChip",
-    description: "Toggleable filter badge with optional remove.",
-    usage: `import { FilterChip } from '@navigato/react'\n\n<FilterChip label="Pool" active onToggle={() => {}} />`,
+    description: "Toggleable amenity or trip-fact chip, with optional remove.",
+    status: "preview",
+    usage: `import { FilterChip } from "@navigato/react"
+
+<FilterChip label="Pool" active onToggle={togglePool} onRemove={clearPool} />`,
+    whenToUse: [
+      "SERP refine chips on FilterBar (amenities, free cancellation, pets).",
+      "An active chip that can clear itself (`onRemove` only renders when active).",
+    ],
+    whenNot: [
+      "PDP amenity facts — that’s AmenityGrid.",
+      "A tag input or a 40-item facet encyclopedia. Don’t invent one.",
+    ],
+    anatomy: [
+      { name: "Badge", description: "outline when inactive; default (primary) when active." },
+      { name: "Remove", description: "Phosphor X. Only if active and onRemove is passed." },
+    ],
+    variants: "Active vs inactive is state, not a named variant. No size prop — layout is `className`.",
+    states: [
+      { name: "default", description: "Outline badge, not selected." },
+      { name: "selected", description: "Primary badge. Remove appears only with onRemove." },
+      { name: "hover", description: "Cursor pointer; remove has a light wash." },
+      { name: "focus-visible", description: "The outer control is a button." },
+    ],
+    content: "Labels are guest-facing (“Pool”, “Free cancellation”), not ids (`pool_outdoor`). Don’t use this as a “Sold out” badge on ListingCard.",
+    a11y: "The chip is a button that calls onToggle. Remove is a nested control with aria-label “Remove {label}” (Enter). Don’t nest FilterChip inside another button. Consumer updates FilterBar’s live stay count.",
+    doDont: {
+      do: "Toggle the chip and keep the FilterBar stay count in sync.",
+      dont: "Use a lone Badge as a fake chip, or dump twenty ungrouped checkboxes into the bar.",
+    },
+    related: [
+      { title: "FilterBar", href: "/components/organisms/filter-bar/" },
+      { title: "FilterSheet", href: "/components/organisms/filter-sheet/" },
+      { title: "AmenityGrid", href: "/components/organisms/amenity-grid/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
     props: [
-      { name: "label", type: "string", required: true, description: "Chip label." },
-      { name: "active", type: "boolean", description: "Selected state." },
+      { name: "label", type: "string", required: true, description: "Chip text." },
+      { name: "active", type: "boolean", default: "false", description: "Selected. Switches Badge to default." },
+      { name: "onToggle", type: "() => void", description: "Click on the chip (not the X)." },
+      { name: "onRemove", type: "() => void", description: "X click when active. Hidden if omitted." },
+      { name: "className", type: "string", description: "Classes on the outer button." },
     ],
   }),
   "booking-search-bar": doc({
@@ -444,17 +696,119 @@ const [guests, setGuests] = useState<GuestCounts>({ adults: 2, children: 0, room
     slug: "search-header",
     tier: "organisms",
     title: "SearchHeader",
-    description: "SERP sticky header with trip summary and filters.",
-    usage: `import { SearchHeader } from '@navigato/react'\n\n<SearchHeader destination="Austin, TX" tripSummary="2 adults" />`,
-    props: [{ name: "destination", type: "string", required: true, description: "Trip destination." }],
+    description: "SERP chrome: brand, trip summary, and a few refine controls.",
+    status: "preview",
+    usage: `import { SearchHeader } from "@navigato/react"
+
+<SearchHeader
+  destination="Austin, TX"
+  tripSummary="Mar 12–15 · 2 adults · 1 room"
+  onEditTrip={focusSearch}
+  rating={4}
+  onRatingChange={setMinRating}
+/>`,
+    whenToUse: [
+      "SERP top chrome above BookingSearchBar — destination + trip summary from the last search.",
+      "A min-rating filter you actually handle (`rating` / `onRatingChange`).",
+    ],
+    whenNot: [
+      "The search form itself — that’s BookingSearchBar (destination, dates, guests, Search).",
+      "A complete filter system. PriceRangeSlider inside is hardcoded 50–800 with no onChange. There is no price prop. The small-screen “Filters” button is a visual stub — it does not open FilterSheet.",
+    ],
+    anatomy: [
+      { name: "Logo", description: "String default “Navigato” plus a pin mark, or a custom node (SERP demo passes a wordmark)." },
+      { name: "Trip", description: "destination + Phosphor PencilSimple; tripSummary on the second line. Clicks call onEditTrip." },
+      { name: "PriceRangeSlider", description: "md+ only. 50–800, not wired. Not a public price API." },
+      { name: "Min rating", description: "md+ StarRating. This pair is the connected refine control." },
+      { name: "Filters", description: "outline Button, md:hidden. No onClick. Use FilterBar.onOpenSheet for a real sheet." },
+    ],
+    variants: "logo string vs React node. No compact fork — hide pieces with composition, not a second header.",
+    states: [
+      { name: "default", description: "Shows destination and tripSummary. rating defaults to 0." },
+      { name: "focus-visible", description: "Edit-trip is a button; rating stars are buttons when not read-only." },
+    ],
+    content: "tripSummary is “Mar 12–15 · 2 adults · 1 room”, not a JSON blob. destination is a place name. Default logo mark is a pin, not the astronaut cat — pass `logo` if you need the brand mark.",
+    a11y: "onEditTrip must do something (focus BookingSearchBar or reopen it). Don’t advertise the inner price slider as a live filter. The Filters button cannot be the a11y path to FilterSheet — it has no handler. Min-rating is the only refine that can announce via StarRating.",
+    doDont: {
+      do: "Keep destination and tripSummary in sync with the last BookingSearchBar submit.",
+      dont: "Invent `priceRange` / `openFilters` props, or fork this into a generic shadcn navbar from memory.",
+    },
+    related: [
+      { title: "BookingSearchBar", href: "/components/organisms/booking-search-bar/" },
+      { title: "FilterBar", href: "/components/organisms/filter-bar/" },
+      { title: "FilterSheet", href: "/components/organisms/filter-sheet/" },
+      { title: "StarRating", href: "/components/molecules/star-rating/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
+    props: [
+      { name: "logo", type: "React.ReactNode", default: '"Navigato"', description: "Wordmark string (built-in pin) or a custom node." },
+      { name: "destination", type: "string", required: true, description: "Place name on the trip button." },
+      { name: "tripSummary", type: "string", required: true, description: "Dates and occupancy line under destination." },
+      { name: "onEditTrip", type: "() => void", description: "Trip button click. Consumer focuses or opens search." },
+      { name: "rating", type: "number", default: "0", description: "Min-rating StarRating value." },
+      { name: "onRatingChange", type: "(value: number) => void", description: "Min-rating change." },
+      { name: "className", type: "string", description: "Classes on the header." },
+    ],
   }),
   "filter-sheet": doc({
     slug: "filter-sheet",
     tier: "organisms",
     title: "FilterSheet",
-    description: "Mobile filter sheet with amenities and price.",
-    usage: `import { FilterSheet } from '@navigato/react'\n\n<FilterSheet />`,
-    props: [{ name: "amenities", type: "string[]", description: "Amenity checklist." }],
+    description: "Slide-over filters: nightly price and amenity checkboxes.",
+    status: "preview",
+    usage: `import { FilterSheet } from "@navigato/react"
+
+<FilterSheet
+  amenities={["Free WiFi", "Pool", "Parking"]}
+  selectedAmenities={selected}
+  onAmenityChange={(amenity, checked) => toggle(amenity, checked)}
+  onApply={apply}
+  onClear={clear}
+/>`,
+    whenToUse: [
+      "A full filter surface with its own trigger — mobile or “all filters”.",
+      "Amenity checkboxes you actually store in `selectedAmenities`.",
+    ],
+    whenNot: [
+      "The desktop chip row — that’s FilterBar + FilterChip.",
+      "A controlled sheet driven by FilterBar.onOpenSheet. There is no `open` / `onOpenChange`. The SERP demo’s Filters button is a no-op — don’t invent a bridge prop. PriceRangeSlider inside is hardcoded 50–800 with no onChange.",
+    ],
+    anatomy: [
+      { name: "Trigger", description: "Default outline “Filters” Button, or a custom `trigger` node." },
+      { name: "Title", description: "“Filters”." },
+      { name: "Price", description: "PriceRangeSlider min={50} max={800}. Not exposed as props." },
+      { name: "Amenities", description: "Checkbox + label rows from `amenities`." },
+      { name: "Footer", description: "Clear (outline) and Show results (primary)." },
+    ],
+    variants: "Presence of a custom trigger is composition, not a named variant. No price props — flag the gap rather than inventing them.",
+    states: [
+      { name: "default", description: "Closed. Trigger visible." },
+      { name: "expanded", description: "Sheet open; focus trapped. Escape closes." },
+      { name: "selected", description: "Checkboxes match selectedAmenities." },
+      { name: "focus-visible", description: "Trigger, checkboxes, and footer buttons use their primitive rings." },
+    ],
+    content: "Footer primary is “Show results”, not “Apply”. Amenity labels are guest-facing. Default list (WiFi, pool, parking, breakfast, pets, AC) is a demo fallback — pass your own.",
+    a11y: "Sheet from shadcn traps focus. Consumer must handle onAmenityChange, onApply, and onClear — the sheet does not filter a SERP by itself. Don’t disable Show results with no message. Don’t claim FilterBar.onOpenSheet opens this; compose via `trigger` or use FilterSheet alone.",
+    doDont: {
+      do: "Pass amenities + selectedAmenities and handle Apply / Clear.",
+      dont: "Invent `open` or `priceRange` props, or dump a Carbon facet tree into this sheet.",
+    },
+    related: [
+      { title: "FilterBar", href: "/components/organisms/filter-bar/" },
+      { title: "FilterChip", href: "/components/molecules/filter-chip/" },
+      { title: "PriceRangeSlider", href: "/components/molecules/price-range-slider/" },
+      { title: "Sheet", href: "/components/atoms/sheet/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
+    props: [
+      { name: "trigger", type: "React.ReactNode", description: "Replaces the default Filters button." },
+      { name: "amenities", type: "string[]", description: "Checkbox labels. Default demo list if omitted." },
+      { name: "selectedAmenities", type: "string[]", default: "[]", description: "Checked labels. Compare by string." },
+      { name: "onAmenityChange", type: "(amenity: string, checked: boolean) => void", description: "Checkbox change." },
+      { name: "onApply", type: "() => void", description: "Show results. Consumer applies and typically closes." },
+      { name: "onClear", type: "() => void", description: "Clear. Consumer empties selectedAmenities." },
+      { name: "className", type: "string", description: "Classes on SheetContent." },
+    ],
   }),
   "booking-widget": doc({
     slug: "booking-widget",
@@ -582,9 +936,49 @@ const [guests, setGuests] = useState<GuestCounts>({ adults: 2, children: 0, room
     slug: "rate-comparison",
     tier: "organisms",
     title: "RateComparison",
-    description: "Compare OTA / provider rates.",
-    usage: `import { RateComparison } from '@navigato/react'\n\n<RateComparison items={rates} />`,
-    props: [{ name: "items", type: "RateComparisonItem[]", required: true, description: "Provider rows." }],
+    description: "Other-site nightly rates for one stay.",
+    status: "preview",
+    usage: `import { RateComparison } from "@navigato/react"
+
+<RateComparison
+  items={[
+    { provider: "Navigato Direct", price: 220, description: "Free cancellation", href: "/book" },
+    { provider: "Booking.com", price: 235, description: "Pay at property", href: "https://example.com" },
+  ]}
+/>`,
+    whenToUse: [
+      "PDP “compare rates” under one stay — provider, nightly price, optional policy line.",
+      "Rows that are real links (`href`). Default href is “#” — pass a destination.",
+    ],
+    whenNot: [
+      "Your own fee stack — that’s PriceBreakdown (nights × rate + fees + tax).",
+      "A fare calendar or “we have the lowest” winner state. There is no highlight prop.",
+    ],
+    anatomy: [
+      { name: "Row", description: "An <a>: currency + price / night, provider, optional description." },
+      { name: "View", description: "“View” + Phosphor ArrowSquareOut. Visible on hover." },
+    ],
+    variants: "No visual variants. currency is a prefix string per item (default \"$\"). No “best rate” chrome.",
+    states: [
+      { name: "default", description: "Stacked bordered rows." },
+      { name: "hover", description: "Muted wash; View fades in." },
+      { name: "focus-visible", description: "Link focus — keep a visible ring from the page." },
+    ],
+    content: "Providers are names (“Navigato Direct”, “Booking.com”). Descriptions are policy crumbs (“Free cancellation”), not legalese. Price is nightly. Don’t invent a crossed-out compare-at.",
+    a11y: "Each row is a link. Consumer must pass href — “#” is a placeholder, not a booking URL. The arrow is decorative. Don’t turn these into buttons that look like links. This organism is not composed on the PDP page demo today; add it when you have real provider rows.",
+    doDont: {
+      do: "Pass real provider rows with real hrefs and nightly prices.",
+      dont: "Leave href empty so every row goes to #, or invent a winner badge this API does not have.",
+    },
+    related: [
+      { title: "PriceBreakdown", href: "/components/organisms/price-breakdown/" },
+      { title: "BookingWidget", href: "/components/organisms/booking-widget/" },
+      { title: "PDP", href: "/components/pages/pdp/" },
+    ],
+    props: [
+      { name: "items", type: "RateComparisonItem[]", required: true, description: "{ provider, price, currency?, description?, href? }. href defaults to “#”." },
+      { name: "className", type: "string", description: "Classes on the stack." },
+    ],
   }),
   "photo-gallery": doc({
     slug: "photo-gallery",
@@ -778,17 +1172,98 @@ import { WifiHigh } from "@phosphor-icons/react"
     slug: "empty-state",
     tier: "organisms",
     title: "EmptyState",
-    description: "Zero-results placeholder with optional action.",
-    usage: `import { EmptyState } from '@navigato/react'\n\n<EmptyState onAction={clearFilters} />`,
-    props: [{ name: "title", type: "string", default: "No stays found", description: "Heading." }],
+    description: "Zero stays after a search or filter — heading, help, optional clear.",
+    status: "preview",
+    usage: `import { EmptyState } from "@navigato/react"
+
+<EmptyState
+  title="No stays in Austin for these dates"
+  description="Try different dates, drop a filter, or widen the map."
+  actionLabel="Clear filters"
+  onAction={clearFilters}
+/>`,
+    whenToUse: [
+      "SERP when the filtered list is empty. Pair with FilterBar resultCount={0}.",
+      "A clear action the guest can take (`onAction`). The button renders only if that handler exists.",
+    ],
+    whenNot: [
+      "Loading — that’s ListingCardSkeleton in the same grid.",
+      "PDP sold-out — that’s BookingWidget `soldOut`, not this illustration.",
+    ],
+    anatomy: [
+      { name: "Icon", description: "Phosphor MagnifyingGlass. Decorative." },
+      { name: "Title", description: "Default “No stays found”." },
+      { name: "Description", description: "Default “Try adjusting your dates, destination, or filters.”" },
+      { name: "Action", description: "Outline Button. Hidden unless onAction is passed." },
+    ],
+    variants: "With or without action. No illustration variants — don’t fork a second empty for “no map results”.",
+    states: [
+      { name: "default", description: "Title + description; no button." },
+      { name: "with action", description: "Outline button labeled actionLabel." },
+    ],
+    content: "Title names the miss (“No stays in Austin for these dates”). Action is “Clear filters”, not “Reset” or “Submit”. Noun is stays, not “hits”.",
+    a11y: "Heading + supporting text. Consumer should keep FilterBar’s live count at 0 and move focus here or to the clear control. Icon is not the name. Don’t replace this with a spinner.",
+    doDont: {
+      do: "Show this when the stay list is empty, and let Clear filters bring results back.",
+      dont: "Hide zero results behind ListingCardSkeleton, or reuse this for a sold-out card.",
+    },
+    related: [
+      { title: "FilterBar", href: "/components/organisms/filter-bar/" },
+      { title: "ListingCardSkeleton", href: "/components/organisms/listing-card-skeleton/" },
+      { title: "ListingCard", href: "/components/organisms/listing-card/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
+    props: [
+      { name: "title", type: "string", default: '"No stays found"', description: "Heading." },
+      { name: "description", type: "string", default: '"Try adjusting your dates, destination, or filters."', description: "Help line under the heading." },
+      { name: "actionLabel", type: "string", default: '"Clear filters"', description: "Button label when onAction is set." },
+      { name: "onAction", type: "() => void", description: "If passed, renders the outline button." },
+      { name: "className", type: "string", description: "Classes on the dashed panel." },
+    ],
   }),
   "listing-card-skeleton": doc({
     slug: "listing-card-skeleton",
     tier: "organisms",
     title: "ListingCardSkeleton",
-    description: "Loading placeholder matching listing card layout.",
-    usage: `import { ListingCardSkeleton } from '@navigato/react'\n\n<ListingCardSkeleton />`,
-    props: [{ name: "className", type: "string", description: "Layout classes." }],
+    description: "Loading tile that matches ListingCard’s 4:3 photo + text block.",
+    status: "preview",
+    usage: `import { ListingCardSkeleton } from "@navigato/react"
+
+<div className="grid grid-cols-2 gap-4">
+  <ListingCardSkeleton />
+  <ListingCardSkeleton />
+</div>`,
+    whenToUse: [
+      "SERP grid while results are in flight. Same columns as ListingCard.",
+      "A known loading state — swap these out when cards arrive.",
+    ],
+    whenNot: [
+      "A `loading` prop on ListingCard. That prop does not exist; don’t add a second card.",
+      "Zero results — that’s EmptyState. Failed search is not a forever skeleton.",
+    ],
+    anatomy: [
+      { name: "Photo", description: "Skeleton at aspect 4:3, flush to the Card." },
+      { name: "Lines", description: "Three text Skeletons (title, location, price widths)." },
+    ],
+    variants: "None. Pulse comes from Skeleton. Width is layout (`className`).",
+    states: [
+      { name: "loading", description: "The whole component. Respects prefers-reduced-motion via Skeleton." },
+    ],
+    content: "No copy. Don’t print “Loading…” on the tile. Don’t put real titles under a pulsing photo.",
+    a11y: "Visual only. Consumer should set aria-busy on the results grid and replace skeletons when data arrives. Don’t leave these up for an empty or error response.",
+    doDont: {
+      do: "Render a grid of these while the stay request is in flight, then ListingCards or EmptyState.",
+      dont: "Add a loading prop to ListingCard, or keep skeletons on screen after the list is empty.",
+    },
+    related: [
+      { title: "ListingCard", href: "/components/organisms/listing-card/" },
+      { title: "EmptyState", href: "/components/organisms/empty-state/" },
+      { title: "Skeleton", href: "/components/atoms/skeleton/" },
+      { title: "SERP", href: "/components/pages/serp/" },
+    ],
+    props: [
+      { name: "className", type: "string", description: "Layout classes on the Card." },
+    ],
   }),
 };
 
