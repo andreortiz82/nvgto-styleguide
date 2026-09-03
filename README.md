@@ -85,13 +85,13 @@ Set `data-brand="navigato"` or `data-brand="nox-vale"` on `<html>`. Dark mode is
 Built on shadcn/ui primitives with Navigato brand tokens:
 
 - **Atoms:** Button, Badge, Input, Skeleton, Card, Tabs, Select, Sheet, Dialog (thin docs — themed shadcn)
-- **Molecules:** DateRangePicker, GuestSelector, DestinationInput, StarRating, PriceRangeSlider, MapPriceMarker, SortSelect, FilterChip
-- **Organisms:** BookingSearchBar, ListingCard, SearchHeader, FilterBar, FilterSheet, BookingWidget, PriceBreakdown, RateComparison, PhotoGallery, AmenityGrid, ReviewSummary, BookingSteps, EmptyState, ListingCardSkeleton
+- **Molecules:** DateRangePicker, GuestSelector, DestinationInput, StarRating, PriceRangeSlider, MapPriceMarker, SortSelect, FilterChip; shopping SizeSelector, ColorSwatch, QuantityStepper, ProductPrice, WishlistButton, ProductBadge (preview)
+- **Organisms:** BookingSearchBar, ListingCard, SearchHeader, FilterBar, FilterSheet, BookingWidget, PriceBreakdown, RateComparison, PhotoGallery, AmenityGrid, ReviewSummary, BookingSteps, EmptyState, ListingCardSkeleton; shopping ProductCard, ProductGallery, CartLine, CartDrawer, LookbookRow, ProductGrid (preview)
 - **Pages:** SERP, PDP, Checkout, and Nox & Vale Gallery compositions
 
 ### Design tokens
 
-Obsidian (Navigato) and Gallery (Nox & Vale) palettes on shadcn CSS variables in `global.css`. Sharp corners. Switch with `data-brand` + `.dark`.
+Obsidian (Navigato) and Gallery (Nox & Vale) palettes on shadcn CSS variables in `global.css`. Sharp corners. Cool elevation shadows. Switch with `data-brand` + `.dark`. Docs chrome is Leo Design System.
 
 ## Development
 

@@ -17,19 +17,11 @@ import {
   SearchHeader,
 } from "@navigato/react";
 
-const IMG = "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop";
-const GALLERY = [
-  IMG,
-  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1611892440504-42a792e284d7?w=800&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop",
-];
+import { STAY_GALLERY, STAY_PDP_GALLERY, STAY_PHOTOS } from "../../../lib/photos";
 
-const PDP_GALLERY = [
-  ...GALLERY,
-  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&h=600&fit=crop",
-];
+const IMG = STAY_PHOTOS.pool;
+const GALLERY = STAY_GALLERY;
+const PDP_GALLERY = STAY_PDP_GALLERY;
 
 /** Mar 12–15 — same stay copy as the SERP header. Not invented by BookingWidget. */
 const DEMO_STAY_RANGE = {

@@ -1,0 +1,13 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { IconsPage } from "../../components/demos/IconsDemo";
+---
+
+<DocsLayout title="Icons">
+  <h1>Icons</h1>
+  <p>
+    Phosphor Icons (<code>@phosphor-icons/react</code>) for UI. Regular and bold are the kit weights.
+    Brand marks (globe, disc, brush N) stay original SVG in <code>packages/navigato/src/marks/</code>.
+  </p>
+  <IconsPage client:load />
+</DocsLayout>

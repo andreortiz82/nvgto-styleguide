@@ -46,6 +46,13 @@ shadcn atoms (Button, Badge, Input, Card, …) stay thin.
 
 ### Polish (still unpublished)
 
+- Docs chrome is **Leo Design System**; mark + subline follow the active brand. Brand switcher is labeled. Sidebar scroll persists across docs navigations.
+- Named palette ramps + semantic roles in light and dark (hex labels) on Tokens → Colors.
+- Elevation scale is cool, low-spread shadows (not hairline-only). Cards, popovers, dialogs consume it.
+- Tokens → Icons (Phosphor, regular/bold) and Tokens → Motion live examples (bounce, fade, spin, ping, pulse, slide, scale). Tokens → Charts (bar, line, occupancy/sales example data).
+- Shopping composites in `packages/navigato/src/components/shopping/` (preview): SizeSelector, ColorSwatch, QuantityStepper, ProductPrice, WishlistButton, ProductBadge, ProductCard, ProductGallery, CartLine, CartDrawer, LookbookRow, ProductGrid. Nox & Vale gallery PDP demo uses them.
+- License-safe Unsplash/Pexels photography in `apps/docs/public/photos/` with credits on SERP, PDP, and Gallery.
+
 - Dark `--chart-3` / `--chart-4` use the light chart hues (blue 240, gold 85) instead of leftover shadcn purple/gold.
 - `FilterBar` `resultCount` copy: 0 stays / 1 stay / N stays.
 

@@ -2,6 +2,7 @@
 import DocsLayout from "../../../layouts/DocsLayout.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import { SerpPageDemo } from "../../../components/demos/v2/PageDemos";
+import { PhotoCredits } from "../../../components/PhotoCredits";
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -11,4 +12,13 @@ const base = import.meta.env.BASE_URL;
   <h1>SERP — Search results</h1>
   <p>Search, price range, min rating, and sort change which fixture stays show (sold-out stays remain when they match). Skeleton and empty states stay. Map markers stay decorative.</p>
   <SerpPageDemo client:load />
+  <PhotoCredits
+    files={[
+      "hotel-pool.jpg",
+      "hotel-suite.jpg",
+      "hotel-bedroom.jpg",
+      "resort-terrace.jpg",
+      "beach.jpg",
+    ]}
+  />
 </DocsLayout>

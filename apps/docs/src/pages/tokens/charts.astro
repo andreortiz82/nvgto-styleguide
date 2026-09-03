@@ -1,0 +1,13 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { ChartsPage } from "../../components/demos/ChartsDemo";
+---
+
+<DocsLayout title="Charts">
+  <h1>Charts</h1>
+  <p>
+    Data visualization on existing chart tokens. Champagne-led for Navigato, cobalt-led for Nox
+    &amp; Vale. CSS and SVG only — no chart library. Example data, labeled as such.
+  </p>
+  <ChartsPage client:load />
+</DocsLayout>

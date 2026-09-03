@@ -60,6 +60,24 @@ import {
   ReviewSummaryDefaultDemo,
   SearchHeaderDefaultDemo,
 } from "./organisms";
+import {
+  CartDrawerDefaultDemo,
+  CartDrawerEmptyDemo,
+  CartLineDefaultDemo,
+  ColorSwatchDefaultDemo,
+  LookbookRowDefaultDemo,
+  ProductBadgeDefaultDemo,
+  ProductCardDefaultDemo,
+  ProductCardSoldOutDemo,
+  ProductGalleryDefaultDemo,
+  ProductGridDefaultDemo,
+  ProductGridEmptyDemo,
+  ProductGridLoadingDemo,
+  ProductPriceDefaultDemo,
+  QuantityStepperDefaultDemo,
+  SizeSelectorDefaultDemo,
+  WishlistButtonDefaultDemo,
+} from "./shopping";
 
 export interface ExampleEntry {
   id: string;
@@ -100,6 +118,18 @@ export const previewDemos: Record<string, ComponentType> = {
   "booking-steps": BookingStepsDefaultDemo,
   "empty-state": EmptyStateDefaultDemo,
   "listing-card-skeleton": ListingCardSkeletonDefaultDemo,
+  "size-selector": SizeSelectorDefaultDemo,
+  "color-swatch": ColorSwatchDefaultDemo,
+  "quantity-stepper": QuantityStepperDefaultDemo,
+  "product-price": ProductPriceDefaultDemo,
+  "wishlist-button": WishlistButtonDefaultDemo,
+  "product-badge": ProductBadgeDefaultDemo,
+  "product-card": ProductCardDefaultDemo,
+  "product-gallery": ProductGalleryDefaultDemo,
+  "cart-line": CartLineDefaultDemo,
+  "cart-drawer": CartDrawerDefaultDemo,
+  "lookbook-row": LookbookRowDefaultDemo,
+  "product-grid": ProductGridDefaultDemo,
 };
 
 export const componentExamples: Record<string, ExampleEntry[]> = {
@@ -136,5 +166,15 @@ export const componentExamples: Record<string, ExampleEntry[]> = {
   "booking-widget": [
     { id: "ready", title: "Dates selected", description: "A real range. Total and nights follow the calendar, not a default of 3.", Demo: BookingWidgetReadyDemo },
     { id: "sold-out", title: "Sold out", description: "Reserve stays enabled and explains why it cannot run.", Demo: BookingWidgetSoldOutDemo },
+  ],
+  "product-card": [
+    { id: "sold-out", title: "Sold out", description: "Unavailable SKU — save still works; click is suppressed.", Demo: ProductCardSoldOutDemo },
+  ],
+  "cart-drawer": [
+    { id: "empty", title: "Empty bag", description: "Shopping empty, not “No stays found”.", Demo: CartDrawerEmptyDemo },
+  ],
+  "product-grid": [
+    { id: "empty", title: "Empty", Demo: ProductGridEmptyDemo },
+    { id: "loading", title: "Loading", Demo: ProductGridLoadingDemo },
   ],
 };

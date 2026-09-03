@@ -1,4 +1,5 @@
 import type { ComponentDocMeta } from "./types";
+import { shoppingDocs } from "./registry-shopping";
 
 function doc(
   partial: ComponentDocMeta & { usage: string; props: ComponentDocMeta["props"] },
@@ -6,7 +7,7 @@ function doc(
   return partial;
 }
 
-export const componentDocs: Record<string, ComponentDocMeta> = {
+const bookingAndAtomDocs: Record<string, ComponentDocMeta> = {
   button: doc({
     slug: "button",
     tier: "atoms",
@@ -1292,6 +1293,11 @@ import { WifiHigh } from "@phosphor-icons/react"
       { name: "className", type: "string", description: "Layout classes on the Card." },
     ],
   }),
+};
+
+export const componentDocs: Record<string, ComponentDocMeta> = {
+  ...bookingAndAtomDocs,
+  ...shoppingDocs,
 };
 
 export function getDocsByTier(tier: ComponentDocMeta["tier"]) {

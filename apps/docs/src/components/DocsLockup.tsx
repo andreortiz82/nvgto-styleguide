@@ -53,16 +53,34 @@ export function NoxValeLockup({
   );
 }
 
+/** Docs chrome: kit title is Leo; mark + subline follow `data-brand`. */
 export function DocsBrandLockup({ compact = false }: { compact?: boolean }) {
-  const size = compact ? 22 : 32;
+  const globeSize = compact ? 22 : 32;
+  const discSize = compact ? 16 : 20;
   return (
-    <>
-      <span className="docs-lockup docs-lockup--navigato">
-        <NavigatoLockup size={size} sublabel={compact ? undefined : "Design system"} />
+    <span className="flex items-center gap-2.5 min-w-0">
+      <span
+        className="docs-mark docs-mark--globe shrink-0 text-foreground"
+        style={{ width: globeSize, height: globeSize }}
+      >
+        <GlobeMark className="size-full" title="Navigato" />
       </span>
-      <span className="docs-lockup docs-lockup--nox">
-        <NoxValeLockup size={compact ? 18 : 22} mark="disc" sublabel={compact ? undefined : "Design system"} />
+      <span className="docs-mark docs-mark--disc shrink-0" style={{ width: discSize, height: discSize }}>
+        <DiscMark className="size-full" title="Nox & Vale" />
       </span>
-    </>
+      <span className="min-w-0">
+        <span className="nvg-wordmark block text-[0.65rem] text-foreground">Leo Design System</span>
+        {compact ? null : (
+          <>
+            <span className="docs-brand-sub docs-brand-sub--navigato nvg-uppercase text-muted-foreground mt-0.5">
+              Navigato
+            </span>
+            <span className="docs-brand-sub docs-brand-sub--nox nvg-uppercase text-muted-foreground mt-0.5">
+              Nox & Vale
+            </span>
+          </>
+        )}
+      </span>
+    </span>
   );
 }

@@ -12,6 +12,7 @@
   --ink: #1c1917;
   --champagne: #c4b59a;
   --obsidian: #0c0a09;
+  --black: #0c0a09;
   --silver: #b8b4ae;
 
   /* Gallery — Nox & Vale */
@@ -73,14 +74,15 @@
   --tracking-display: 0.22em;
   --heading-weight: 500;
 
-  --shadow-2xs: 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
-  --shadow-xs: 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent);
-  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
-  --shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 14%, transparent);
-  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--ink) 16%, transparent);
-  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--ink) 20%, transparent);
-  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--ink) 24%, transparent);
-  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--ink) 28%, transparent);
+  /* Quiet luxury: hairline ring + cool, low-spread ink shadow. Not Material blobs. */
+  --shadow-2xs: 0 1px 1px color-mix(in srgb, var(--ink) 5%, transparent);
+  --shadow-xs: 0 1px 2px color-mix(in srgb, var(--ink) 6%, transparent);
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent), 0 1px 2px color-mix(in srgb, var(--ink) 7%, transparent), 0 1px 3px color-mix(in srgb, var(--ink) 4%, transparent);
+  --shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent), 0 2px 4px -1px color-mix(in srgb, var(--ink) 8%, transparent);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent), 0 4px 10px -2px color-mix(in srgb, var(--ink) 12%, transparent), 0 2px 4px -1px color-mix(in srgb, var(--ink) 6%, transparent);
+  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent), 0 8px 16px -4px color-mix(in srgb, var(--ink) 14%, transparent), 0 4px 6px -2px color-mix(in srgb, var(--ink) 6%, transparent);
+  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent), 0 16px 28px -6px color-mix(in srgb, var(--ink) 16%, transparent), 0 6px 10px -4px color-mix(in srgb, var(--ink) 7%, transparent);
+  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent), 0 24px 40px -8px color-mix(in srgb, var(--ink) 20%, transparent);
 }
 
 .dark,
@@ -120,14 +122,14 @@
   --sidebar-border: color-mix(in srgb, var(--champagne) 28%, transparent);
   --sidebar-ring: var(--champagne);
 
-  --shadow-2xs: 0 0 0 1px color-mix(in srgb, var(--champagne) 12%, transparent);
-  --shadow-xs: 0 0 0 1px color-mix(in srgb, var(--champagne) 14%, transparent);
-  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--champagne) 16%, transparent);
-  --shadow: 0 0 0 1px color-mix(in srgb, var(--champagne) 18%, transparent);
-  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--champagne) 22%, transparent);
-  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--champagne) 26%, transparent);
-  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--champagne) 30%, transparent);
-  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--champagne) 36%, transparent);
+  --shadow-2xs: 0 1px 1px rgb(0 0 0 / 0.28);
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.32);
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--champagne) 14%, transparent), 0 1px 3px rgb(0 0 0 / 0.4);
+  --shadow: 0 0 0 1px color-mix(in srgb, var(--champagne) 16%, transparent), 0 2px 6px rgb(0 0 0 / 0.42);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--champagne) 18%, transparent), 0 6px 14px -2px rgb(0 0 0 / 0.5), 0 2px 4px rgb(0 0 0 / 0.28);
+  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--champagne) 20%, transparent), 0 12px 22px -4px rgb(0 0 0 / 0.55), 0 4px 8px rgb(0 0 0 / 0.3);
+  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--champagne) 22%, transparent), 0 20px 32px -6px rgb(0 0 0 / 0.6), 0 8px 12px rgb(0 0 0 / 0.32);
+  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--champagne) 24%, transparent), 0 28px 48px -8px rgb(0 0 0 / 0.68);
 }
 
 /* ——— Brand 2: Nox & Vale ——— */
@@ -172,14 +174,15 @@
   --tracking-display: 0.32em;
   --heading-weight: 500;
 
-  --shadow-2xs: 0 0 0 1px color-mix(in srgb, var(--night) 8%, transparent);
-  --shadow-xs: 0 0 0 1px color-mix(in srgb, var(--night) 10%, transparent);
-  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--night) 12%, transparent);
-  --shadow: 0 0 0 1px color-mix(in srgb, var(--night) 14%, transparent);
-  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--night) 16%, transparent);
-  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--night) 20%, transparent);
-  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--night) 24%, transparent);
-  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--night) 28%, transparent);
+  /* White-cube gallery: cool night-tinted, low-spread. Cobalt is not a glow. */
+  --shadow-2xs: 0 1px 1px color-mix(in srgb, var(--night) 6%, transparent);
+  --shadow-xs: 0 1px 2px color-mix(in srgb, var(--night) 7%, transparent);
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--night) 8%, transparent), 0 1px 2px color-mix(in srgb, var(--night) 8%, transparent), 0 1px 3px color-mix(in srgb, var(--night) 4%, transparent);
+  --shadow: 0 0 0 1px color-mix(in srgb, var(--night) 8%, transparent), 0 2px 4px -1px color-mix(in srgb, var(--night) 9%, transparent);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--night) 10%, transparent), 0 4px 10px -2px color-mix(in srgb, var(--night) 12%, transparent), 0 2px 4px -1px color-mix(in srgb, var(--night) 6%, transparent);
+  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--night) 10%, transparent), 0 8px 16px -4px color-mix(in srgb, var(--night) 14%, transparent), 0 4px 6px -2px color-mix(in srgb, var(--night) 6%, transparent);
+  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--night) 12%, transparent), 0 16px 28px -6px color-mix(in srgb, var(--night) 16%, transparent), 0 6px 10px -4px color-mix(in srgb, var(--night) 7%, transparent);
+  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--night) 12%, transparent), 0 24px 40px -8px color-mix(in srgb, var(--night) 20%, transparent);
 }
 
 [data-brand="nox-vale"].dark {
@@ -217,14 +220,14 @@
   --sidebar-border: color-mix(in srgb, var(--plaster) 18%, transparent);
   --sidebar-ring: var(--cobalt);
 
-  --shadow-2xs: 0 0 0 1px color-mix(in srgb, var(--plaster) 10%, transparent);
-  --shadow-xs: 0 0 0 1px color-mix(in srgb, var(--plaster) 12%, transparent);
-  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--plaster) 14%, transparent);
-  --shadow: 0 0 0 1px color-mix(in srgb, var(--plaster) 16%, transparent);
-  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--plaster) 20%, transparent);
-  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--plaster) 24%, transparent);
-  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--plaster) 28%, transparent);
-  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--plaster) 34%, transparent);
+  --shadow-2xs: 0 1px 1px rgb(0 0 0 / 0.3);
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.34);
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--plaster) 12%, transparent), 0 1px 3px rgb(0 0 0 / 0.42);
+  --shadow: 0 0 0 1px color-mix(in srgb, var(--plaster) 14%, transparent), 0 2px 6px rgb(0 0 0 / 0.44);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--plaster) 16%, transparent), 0 6px 14px -2px rgb(0 0 0 / 0.52), 0 2px 4px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--plaster) 18%, transparent), 0 12px 22px -4px rgb(0 0 0 / 0.58), 0 4px 8px rgb(0 0 0 / 0.32);
+  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--plaster) 20%, transparent), 0 20px 32px -6px rgb(0 0 0 / 0.62), 0 8px 12px rgb(0 0 0 / 0.34);
+  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--plaster) 22%, transparent), 0 28px 48px -8px rgb(0 0 0 / 0.7);
 }
 
 @theme inline {
@@ -420,8 +423,31 @@
     box-shadow: var(--shadow-sm);
   }
 
+  .nvg-shadow-md {
+    box-shadow: var(--shadow-md);
+  }
+
   .nvg-shadow-lg {
     box-shadow: var(--shadow-lg);
+  }
+
+  .nvg-shadow-xl {
+    box-shadow: var(--shadow-xl);
+  }
+
+  .nvg-duration-micro {
+    animation-duration: 150ms;
+    transition-duration: 150ms;
+  }
+
+  .nvg-duration-short {
+    animation-duration: 200ms;
+    transition-duration: 200ms;
+  }
+
+  .nvg-duration-medium {
+    animation-duration: 300ms;
+    transition-duration: 300ms;
   }
 }
 
@@ -429,9 +455,11 @@
   0%,
   100% {
     transform: scale(1);
+    opacity: 1;
   }
   50% {
     transform: scale(1.05);
+    opacity: 0.85;
   }
 }
 
@@ -441,8 +469,74 @@
     opacity: 1;
   }
   to {
-    transform: scale(2.5) rotate(30deg);
+    transform: scale(2.5);
     opacity: 0;
+  }
+}
+
+@keyframes nvg-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18%);
+  }
+}
+
+@keyframes nvg-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nvg-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes nvg-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nvg-slide {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nvg-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nvg-reduced-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
   }
 }
 
@@ -452,21 +546,52 @@
   }
 
   .nvg-animate-ping {
-    animation: nvg-ping 1.5s ease-out;
+    animation: nvg-ping 1.5s ease-out infinite;
+  }
+
+  .nvg-animate-bounce {
+    animation: nvg-bounce 0.7s ease-in-out infinite;
+  }
+
+  .nvg-animate-fade-in {
+    animation: nvg-fade-in 200ms ease-out both;
+  }
+
+  .nvg-animate-fade-out {
+    animation: nvg-fade-out 200ms ease-in both;
+  }
+
+  .nvg-animate-spin {
+    animation: nvg-spin 0.9s linear infinite;
+  }
+
+  .nvg-animate-slide {
+    animation: nvg-slide 300ms ease-out both;
+  }
+
+  .nvg-animate-scale {
+    animation: nvg-scale 250ms ease-out both;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nvg-animate-pulse,
+  .nvg-animate-bounce,
+  .nvg-animate-spin,
+  .nvg-animate-slide,
+  .nvg-animate-scale,
   .nvg-animate-ping {
-    animation: none;
+    animation: nvg-fade-in 200ms ease-out both;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .nvg-animate-pulse {
+    animation: nvg-reduced-pulse 0.8s ease-in-out infinite;
+  }
+
+  .nvg-animate-fade-in {
+    animation: nvg-fade-in 200ms ease-out both;
+  }
+
+  .nvg-animate-fade-out {
+    animation: nvg-fade-out 200ms ease-in both;
   }
 }
