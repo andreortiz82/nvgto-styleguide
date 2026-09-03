@@ -76,10 +76,16 @@ function Swatch({ token }: { token: TokenSwatch }) {
 
   useEffect(() => {
     const root = document.documentElement;
-    setValue(getComputedStyle(root).getPropertyValue(token.cssVar).trim());
-    if (token.foreground) {
-      setFgValue(getComputedStyle(root).getPropertyValue(token.foreground).trim());
-    }
+    const read = () => {
+      setValue(getComputedStyle(root).getPropertyValue(token.cssVar).trim());
+      if (token.foreground) {
+        setFgValue(getComputedStyle(root).getPropertyValue(token.foreground).trim());
+      }
+    };
+    read();
+    const obs = new MutationObserver(read);
+    obs.observe(root, { attributes: true, attributeFilter: ["class", "data-brand"] });
+    return () => obs.disconnect();
   }, [token.cssVar, token.foreground]);
 
   return (
@@ -118,10 +124,17 @@ function Swatch({ token }: { token: TokenSwatch }) {
 }
 
 function RadiusDemo() {
-  const [radius, setRadius] = useState("0.875rem");
+  const [radius, setRadius] = useState("0px");
 
   useEffect(() => {
-    setRadius(getComputedStyle(document.documentElement).getPropertyValue("--radius").trim() || "0.875rem");
+    const root = document.documentElement;
+    const read = () => {
+      setRadius(getComputedStyle(root).getPropertyValue("--radius").trim() || "0px");
+    };
+    read();
+    const obs = new MutationObserver(read);
+    obs.observe(root, { attributes: true, attributeFilter: ["class", "data-brand"] });
+    return () => obs.disconnect();
   }, []);
 
   const scales = [
@@ -161,11 +174,11 @@ export function ThemeColorsPage() {
     <div className="space-y-10 mt-8">
       <Card className="border-dashed">
         <CardHeader>
-          <CardTitle className="text-base">Navigato theme</CardTitle>
+          <CardTitle className="text-base">Active brand</CardTitle>
           <CardDescription>
-            Warm orange primary with stone-tinted neutrals. Light mode default. Add{" "}
-            <code className="text-xs">.dark</code> on <code className="text-xs">html</code> to enable
-            dark tokens.
+            Semantic roles remap per <code className="text-xs">data-brand</code> and{" "}
+            <code className="text-xs">.dark</code>. Navigato is ink/mist or champagne/obsidian.
+            Nox &amp; Vale is night/plaster with cobalt as the only accent. Radius is 0.
           </CardDescription>
         </CardHeader>
       </Card>

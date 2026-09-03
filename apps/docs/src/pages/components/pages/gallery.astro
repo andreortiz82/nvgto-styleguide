@@ -1,0 +1,18 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import { NoxValeGalleryDemo } from "../../../components/demos/v2/NoxValeDemo";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout title="Gallery">
+  <Breadcrumb base={base} tier="Pages" tierHref="/components/pages/" />
+  <h1>Nox &amp; Vale — Gallery</h1>
+  <p>
+    A small fashion/object product page — disc in the header, brush N as the signature,
+    outline bag action, sharp corners. Not a hotel SERP. Switch brand and mode in the
+    sidebar to see Gallery tokens on this composition.
+  </p>
+  <NoxValeGalleryDemo client:load />
+</DocsLayout>

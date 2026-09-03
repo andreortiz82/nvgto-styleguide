@@ -1,7 +1,8 @@
 ---
 import { siteNav, withBase, isActive, type NavItem } from "../lib/nav";
 import { MobileNav } from "../components/MobileNav";
-import { ThemeToggle } from "../components/ThemeToggle";
+import { DocsThemeControls } from "../components/ThemeToggle";
+import { DocsBrandLockup } from "../components/DocsLockup";
 import "@navigato/react/styles.css";
 
 const base = import.meta.env.BASE_URL;
@@ -24,35 +25,50 @@ function groupActive(item: NavItem) {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-brand="navigato">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description ?? "Navigato design system documentation"} />
+    <meta name="description" content={description ?? "Navigato multi-brand design system documentation"} />
     <title>{title ? `${title} · Navigato` : "Navigato Design System"}</title>
     <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      (function () {
+        try {
+          var brand = localStorage.getItem("navigato-brand");
+          if (brand === "navigato" || brand === "nox-vale") {
+            document.documentElement.setAttribute("data-brand", brand);
+          }
+          var theme = localStorage.getItem("navigato-theme");
+          var dark =
+            theme === "dark" ||
+            (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class="navigato-root min-h-screen bg-background text-foreground">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:outline-none"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:outline-none"
     >
       Skip to content
     </a>
 
     <header class="sticky top-0 z-40 flex items-center justify-between gap-3 border-b border-border bg-background/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/80 lg:hidden">
-      <a href={base} class="flex items-center gap-2 no-underline">
-        <img src={`${base}logo-mark.svg`} alt="" width="28" height="28" class="shrink-0" />
-        <span class="nvg-font-heading font-bold text-foreground tracking-tight">Navigato</span>
+      <a href={base} class="flex items-center gap-2 no-underline text-foreground">
+        <DocsBrandLockup compact client:load />
       </a>
-      <div class="flex items-center gap-1">
-        <ThemeToggle client:load />
+      <div class="flex items-center gap-2">
+        <DocsThemeControls compact client:load />
         <MobileNav client:load base={base} currentPath={currentPath} />
       </div>
     </header>
@@ -60,22 +76,10 @@ function groupActive(item: NavItem) {
     <div class="flex min-h-screen">
       <aside class="w-72 shrink-0 border-r border-sidebar-border bg-sidebar p-6 hidden lg:block sticky top-0 h-screen overflow-y-auto">
         <div class="flex items-start justify-between gap-2 mb-8">
-          <a href={base} class="flex items-center gap-3 no-underline group min-w-0">
-            <img
-              src={`${base}logo-mark.svg`}
-              alt=""
-              width="36"
-              height="36"
-              class="shrink-0 transition-transform duration-200 group-hover:scale-105"
-            />
-            <div>
-              <span class="nvg-font-heading font-bold text-lg text-foreground tracking-tight group-hover:text-primary transition-colors">
-                Navigato
-              </span>
-              <span class="block text-xs text-muted-foreground font-medium">Design System</span>
-            </div>
+          <a href={base} class="no-underline text-foreground group min-w-0">
+            <DocsBrandLockup client:load />
           </a>
-          <ThemeToggle client:load />
+          <DocsThemeControls client:load />
         </div>
         <nav class="space-y-5 text-sm" aria-label="Documentation">
           {
@@ -119,7 +123,7 @@ function groupActive(item: NavItem) {
                                     class:list={[
                                       "block py-0.5 no-underline transition-colors text-sm",
                                       itemActive(grand.href)
-                                        ? "text-primary font-bold"
+                                        ? "text-primary font-medium"
                                         : "text-muted-foreground hover:text-primary",
                                     ]}
                                   >
@@ -135,7 +139,7 @@ function groupActive(item: NavItem) {
                             class:list={[
                               "block py-0.5 no-underline transition-colors",
                               itemActive(child.href)
-                                ? "text-primary font-bold"
+                                ? "text-primary font-medium"
                                 : "text-foreground hover:text-primary",
                             ]}
                           >
@@ -151,7 +155,7 @@ function groupActive(item: NavItem) {
                   href={withBase(base, item.href!)}
                   class:list={[
                     "block py-1 no-underline transition-colors font-medium",
-                    itemActive(item.href) ? "text-primary font-bold" : "text-foreground hover:text-primary",
+                    itemActive(item.href) ? "text-primary font-medium" : "text-foreground hover:text-primary",
                   ]}
                 >
                   {item.label}
@@ -173,4 +177,17 @@ function groupActive(item: NavItem) {
 
 <style is:global>
   @import "../styles/global.css";
+
+  .docs-lockup {
+    display: none;
+  }
+
+  :root[data-brand="navigato"] .docs-lockup--navigato,
+  :root:not([data-brand]) .docs-lockup--navigato {
+    display: flex;
+  }
+
+  :root[data-brand="nox-vale"] .docs-lockup--nox {
+    display: flex;
+  }
 </style>

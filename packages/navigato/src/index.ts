@@ -2,6 +2,8 @@ import "./styles/global.css";
 
 export { cn } from "./lib/utils";
 
+export { GlobeMark, DiscMark, BrushNMark } from "./components/marks";
+
 // shadcn ui primitives
 export { Button, buttonVariants } from "./components/ui/button";
 export { Badge, badgeVariants } from "./components/ui/badge";

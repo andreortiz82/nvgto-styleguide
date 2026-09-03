@@ -4,99 +4,234 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Named palettes — always available. Semantic roles remap per brand + mode. */
 :root {
-  --brand: oklch(0.705 0.213 47.604);
-  --brand-foreground: oklch(0.99 0.005 47);
+  /* Obsidian — Navigato */
+  --mist: #f4f2ee;
+  --graphite: #44403c;
+  --ink: #1c1917;
+  --champagne: #c4b59a;
+  --obsidian: #0c0a09;
+  --silver: #b8b4ae;
 
-  --background: oklch(0.995 0.004 85);
-  --foreground: oklch(0.20 0.022 50);
-  --card: oklch(1 0.002 85);
-  --card-foreground: oklch(0.20 0.022 50);
-  --popover: oklch(1 0.002 85);
-  --popover-foreground: oklch(0.20 0.022 50);
-  --primary: oklch(0.705 0.213 47.604);
-  --primary-foreground: oklch(0.99 0.005 47);
-  --secondary: oklch(0.955 0.018 75);
-  --secondary-foreground: oklch(0.28 0.04 50);
-  --muted: oklch(0.955 0.012 75);
-  --muted-foreground: oklch(0.50 0.028 55);
-  --accent: oklch(0.94 0.048 47);
-  --accent-foreground: oklch(0.32 0.09 47);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.90 0.016 75);
-  --input: oklch(0.90 0.016 75);
-  --ring: oklch(0.705 0.213 47.604);
-  --chart-1: oklch(0.705 0.213 47.604);
-  --chart-2: oklch(0.62 0.14 180);
-  --chart-3: oklch(0.48 0.08 240);
-  --chart-4: oklch(0.78 0.16 85);
-  --chart-5: oklch(0.58 0.18 25);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0.008 80);
-  --sidebar-foreground: oklch(0.24 0.025 50);
-  --sidebar-primary: oklch(0.705 0.213 47.604);
-  --sidebar-primary-foreground: oklch(0.99 0.005 47);
-  --sidebar-accent: oklch(0.94 0.048 47);
-  --sidebar-accent-foreground: oklch(0.32 0.09 47);
-  --sidebar-border: oklch(0.91 0.018 75);
-  --sidebar-ring: oklch(0.705 0.213 47.604);
-  --shadow-2xs: 0 1px 2px 0px oklch(0.20 0.02 50 / 0.04);
-  --shadow-xs: 0 1px 3px 0px oklch(0.20 0.02 50 / 0.06);
-  --shadow-sm: 0 1px 3px 0px oklch(0.20 0.02 50 / 0.08), 0 1px 2px -1px oklch(0.20 0.02 50 / 0.06);
-  --shadow: 0 2px 4px 0px oklch(0.20 0.02 50 / 0.06), 0 1px 2px -1px oklch(0.20 0.02 50 / 0.08);
-  --shadow-md: 0 4px 8px -1px oklch(0.20 0.02 50 / 0.08), 0 2px 4px -2px oklch(0.20 0.02 50 / 0.06);
-  --shadow-lg: 0 8px 16px -2px oklch(0.20 0.02 50 / 0.1), 0 4px 6px -2px oklch(0.20 0.02 50 / 0.06);
-  --shadow-xl: 0 12px 24px -4px oklch(0.20 0.02 50 / 0.12), 0 8px 10px -4px oklch(0.20 0.02 50 / 0.06);
-  --shadow-2xl: 0 20px 40px -8px oklch(0.20 0.02 50 / 0.18);
+  /* Gallery — Nox & Vale */
+  --plaster: #f4f2ef;
+  --night: #111318;
+  --cobalt: #1e4fd6;
+  --pewter: #9a9aa3;
+  --pearl: #e7e4de;
+
+  --destructive: #9f2d2d;
+  --radius: 0px;
+
+  /* Inscribed: Cinzel for display/wordmark. Neue Haas substitute: Helvetica Neue stack. */
+  --font-display: "Cinzel", "Times New Roman", serif;
+  --font-ui: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --tracking-display: 0.22em;
+  --heading-weight: 500;
 }
 
-.dark {
-  --background: oklch(0.16 0.018 50);
-  --foreground: oklch(0.96 0.008 85);
-  --card: oklch(0.20 0.02 50);
-  --card-foreground: oklch(0.96 0.008 85);
-  --popover: oklch(0.20 0.02 50);
-  --popover-foreground: oklch(0.96 0.008 85);
-  --primary: oklch(0.75 0.19 47.604);
-  --primary-foreground: oklch(0.18 0.04 47);
-  --secondary: oklch(0.26 0.022 50);
-  --secondary-foreground: oklch(0.96 0.008 85);
-  --muted: oklch(0.26 0.018 50);
-  --muted-foreground: oklch(0.68 0.025 75);
-  --accent: oklch(0.28 0.045 47);
-  --accent-foreground: oklch(0.92 0.04 47);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0.01 85 / 12%);
-  --input: oklch(1 0.01 85 / 16%);
-  --ring: oklch(0.75 0.19 47.604);
-  --chart-1: oklch(0.75 0.19 47.604);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.72 0.10 240);
-  --chart-4: oklch(0.80 0.14 85);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.18 0.02 50);
-  --sidebar-foreground: oklch(0.96 0.008 85);
-  --sidebar-primary: oklch(0.75 0.19 47.604);
-  --sidebar-primary-foreground: oklch(0.18 0.04 47);
-  --sidebar-accent: oklch(0.28 0.045 47);
-  --sidebar-accent-foreground: oklch(0.92 0.04 47);
-  --sidebar-border: oklch(1 0.01 85 / 12%);
-  --sidebar-ring: oklch(0.75 0.19 47.604);
-  --shadow-2xs: 0 1px 2px 0px oklch(0 0 0 / 0.2);
-  --shadow-xs: 0 1px 3px 0px oklch(0 0 0 / 0.25);
-  --shadow-sm: 0 1px 3px 0px oklch(0 0 0 / 0.3), 0 1px 2px -1px oklch(0 0 0 / 0.25);
-  --shadow: 0 2px 4px 0px oklch(0 0 0 / 0.25), 0 1px 2px -1px oklch(0 0 0 / 0.3);
-  --shadow-md: 0 4px 8px -1px oklch(0 0 0 / 0.35), 0 2px 4px -2px oklch(0 0 0 / 0.25);
-  --shadow-lg: 0 8px 16px -2px oklch(0 0 0 / 0.4), 0 4px 6px -2px oklch(0 0 0 / 0.25);
-  --shadow-xl: 0 12px 24px -4px oklch(0 0 0 / 0.45), 0 8px 10px -4px oklch(0 0 0 / 0.25);
-  --shadow-2xl: 0 20px 40px -8px oklch(0 0 0 / 0.55);
+/* ——— Brand 1: Navigato (default) ——— */
+:root,
+[data-brand="navigato"] {
+  --brand: var(--champagne);
+  --brand-foreground: var(--ink);
+
+  --background: var(--mist);
+  --foreground: var(--ink);
+  --card: var(--mist);
+  --card-foreground: var(--ink);
+  --popover: var(--mist);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--mist);
+  --secondary: color-mix(in srgb, var(--mist) 82%, var(--ink));
+  --secondary-foreground: var(--ink);
+  --muted: color-mix(in srgb, var(--mist) 88%, var(--ink));
+  --muted-foreground: var(--graphite);
+  --accent: color-mix(in srgb, var(--mist) 78%, var(--champagne));
+  --accent-foreground: var(--ink);
+  --border: color-mix(in srgb, var(--silver) 72%, var(--ink) 28%);
+  --input: color-mix(in srgb, var(--silver) 72%, var(--ink) 28%);
+  --ring: var(--ink);
+  --chart-1: var(--champagne);
+  --chart-2: var(--graphite);
+  --chart-3: var(--silver);
+  --chart-4: var(--ink);
+  --chart-5: color-mix(in srgb, var(--champagne) 55%, var(--ink));
+  --sidebar: color-mix(in srgb, var(--mist) 94%, var(--ink));
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--mist);
+  --sidebar-accent: color-mix(in srgb, var(--mist) 78%, var(--champagne));
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: color-mix(in srgb, var(--silver) 72%, var(--ink) 28%);
+  --sidebar-ring: var(--ink);
+
+  --font-display: "Cinzel", "Times New Roman", serif;
+  --font-ui: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --tracking-display: 0.22em;
+  --heading-weight: 500;
+
+  --shadow-2xs: 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+  --shadow-xs: 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent);
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
+  --shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 14%, transparent);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--ink) 16%, transparent);
+  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--ink) 20%, transparent);
+  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--ink) 24%, transparent);
+  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--ink) 28%, transparent);
+}
+
+.dark,
+:root.dark,
+[data-brand="navigato"].dark {
+  --brand: var(--champagne);
+  --brand-foreground: var(--obsidian);
+
+  --background: var(--obsidian);
+  --foreground: var(--champagne);
+  --card: var(--obsidian);
+  --card-foreground: var(--champagne);
+  --popover: var(--obsidian);
+  --popover-foreground: var(--champagne);
+  --primary: var(--champagne);
+  --primary-foreground: var(--obsidian);
+  --secondary: color-mix(in srgb, var(--obsidian) 82%, var(--champagne));
+  --secondary-foreground: var(--champagne);
+  --muted: color-mix(in srgb, var(--obsidian) 86%, var(--champagne));
+  --muted-foreground: var(--silver);
+  --accent: color-mix(in srgb, var(--obsidian) 78%, var(--champagne));
+  --accent-foreground: var(--champagne);
+  --border: color-mix(in srgb, var(--champagne) 28%, transparent);
+  --input: color-mix(in srgb, var(--champagne) 32%, transparent);
+  --ring: var(--champagne);
+  --chart-1: var(--champagne);
+  --chart-2: var(--silver);
+  --chart-3: var(--graphite);
+  --chart-4: color-mix(in srgb, var(--champagne) 70%, var(--mist));
+  --chart-5: var(--mist);
+  --sidebar: var(--obsidian);
+  --sidebar-foreground: var(--champagne);
+  --sidebar-primary: var(--champagne);
+  --sidebar-primary-foreground: var(--obsidian);
+  --sidebar-accent: color-mix(in srgb, var(--obsidian) 78%, var(--champagne));
+  --sidebar-accent-foreground: var(--champagne);
+  --sidebar-border: color-mix(in srgb, var(--champagne) 28%, transparent);
+  --sidebar-ring: var(--champagne);
+
+  --shadow-2xs: 0 0 0 1px color-mix(in srgb, var(--champagne) 12%, transparent);
+  --shadow-xs: 0 0 0 1px color-mix(in srgb, var(--champagne) 14%, transparent);
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--champagne) 16%, transparent);
+  --shadow: 0 0 0 1px color-mix(in srgb, var(--champagne) 18%, transparent);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--champagne) 22%, transparent);
+  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--champagne) 26%, transparent);
+  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--champagne) 30%, transparent);
+  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--champagne) 36%, transparent);
+}
+
+/* ——— Brand 2: Nox & Vale ——— */
+[data-brand="nox-vale"] {
+  --brand: var(--cobalt);
+  --brand-foreground: var(--plaster);
+
+  --background: var(--plaster);
+  --foreground: var(--night);
+  --card: var(--plaster);
+  --card-foreground: var(--night);
+  --popover: var(--plaster);
+  --popover-foreground: var(--night);
+  --primary: var(--night);
+  --primary-foreground: var(--plaster);
+  --secondary: var(--pearl);
+  --secondary-foreground: var(--night);
+  --muted: var(--pearl);
+  --muted-foreground: var(--pewter);
+  --accent: var(--cobalt);
+  --accent-foreground: var(--plaster);
+  --border: color-mix(in srgb, var(--night) 18%, transparent);
+  --input: color-mix(in srgb, var(--night) 18%, transparent);
+  --ring: var(--night);
+  --chart-1: var(--cobalt);
+  --chart-2: var(--night);
+  --chart-3: var(--pewter);
+  --chart-4: var(--pearl);
+  --chart-5: color-mix(in srgb, var(--cobalt) 45%, var(--night));
+  --sidebar: var(--plaster);
+  --sidebar-foreground: var(--night);
+  --sidebar-primary: var(--night);
+  --sidebar-primary-foreground: var(--plaster);
+  --sidebar-accent: color-mix(in srgb, var(--plaster) 88%, var(--cobalt));
+  --sidebar-accent-foreground: var(--night);
+  --sidebar-border: color-mix(in srgb, var(--night) 18%, transparent);
+  --sidebar-ring: var(--cobalt);
+
+  /* Geometric sans — Jost is the OFL Futura substitute. */
+  --font-display: "Jost", "Futura", "Century Gothic", sans-serif;
+  --font-ui: "Jost", "Futura", "Century Gothic", sans-serif;
+  --tracking-display: 0.32em;
+  --heading-weight: 500;
+
+  --shadow-2xs: 0 0 0 1px color-mix(in srgb, var(--night) 8%, transparent);
+  --shadow-xs: 0 0 0 1px color-mix(in srgb, var(--night) 10%, transparent);
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--night) 12%, transparent);
+  --shadow: 0 0 0 1px color-mix(in srgb, var(--night) 14%, transparent);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--night) 16%, transparent);
+  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--night) 20%, transparent);
+  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--night) 24%, transparent);
+  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--night) 28%, transparent);
+}
+
+[data-brand="nox-vale"].dark {
+  --brand: var(--cobalt);
+  --brand-foreground: var(--plaster);
+
+  --background: var(--night);
+  --foreground: var(--plaster);
+  --card: var(--night);
+  --card-foreground: var(--plaster);
+  --popover: var(--night);
+  --popover-foreground: var(--plaster);
+  --primary: var(--plaster);
+  --primary-foreground: var(--night);
+  --secondary: color-mix(in srgb, var(--night) 86%, var(--plaster));
+  --secondary-foreground: var(--plaster);
+  --muted: color-mix(in srgb, var(--night) 86%, var(--plaster));
+  --muted-foreground: var(--pewter);
+  --accent: var(--cobalt);
+  --accent-foreground: var(--plaster);
+  --border: color-mix(in srgb, var(--plaster) 18%, transparent);
+  --input: color-mix(in srgb, var(--plaster) 22%, transparent);
+  --ring: var(--plaster);
+  --chart-1: var(--cobalt);
+  --chart-2: var(--plaster);
+  --chart-3: var(--pewter);
+  --chart-4: var(--pearl);
+  --chart-5: color-mix(in srgb, var(--cobalt) 60%, var(--plaster));
+  --sidebar: var(--night);
+  --sidebar-foreground: var(--plaster);
+  --sidebar-primary: var(--plaster);
+  --sidebar-primary-foreground: var(--night);
+  --sidebar-accent: color-mix(in srgb, var(--night) 82%, var(--cobalt));
+  --sidebar-accent-foreground: var(--plaster);
+  --sidebar-border: color-mix(in srgb, var(--plaster) 18%, transparent);
+  --sidebar-ring: var(--cobalt);
+
+  --shadow-2xs: 0 0 0 1px color-mix(in srgb, var(--plaster) 10%, transparent);
+  --shadow-xs: 0 0 0 1px color-mix(in srgb, var(--plaster) 12%, transparent);
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--plaster) 14%, transparent);
+  --shadow: 0 0 0 1px color-mix(in srgb, var(--plaster) 16%, transparent);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, var(--plaster) 20%, transparent);
+  --shadow-lg: 0 0 0 1px color-mix(in srgb, var(--plaster) 24%, transparent);
+  --shadow-xl: 0 0 0 1px color-mix(in srgb, var(--plaster) 28%, transparent);
+  --shadow-2xl: 0 0 0 1px color-mix(in srgb, var(--plaster) 34%, transparent);
 }
 
 @theme inline {
-  --font-sans: "SN Pro", system-ui, sans-serif;
-  --font-heading: "SN Pro", system-ui, sans-serif;
-  --font-body: "SN Pro", system-ui, sans-serif;
-  --font-quote: "SN Pro", system-ui, sans-serif;
+  --font-sans: var(--font-ui);
+  --font-heading: var(--font-ui);
+  --font-body: var(--font-ui);
+  --font-quote: var(--font-ui);
   --color-brand: var(--brand);
   --color-silver: var(--muted-foreground);
   --color-mid: var(--border);
@@ -131,13 +266,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
   --shadow-2xs: var(--shadow-2xs);
   --shadow-xs: var(--shadow-xs);
   --shadow-sm: var(--shadow-sm);
@@ -178,42 +313,46 @@
   }
 
   .docs-prose > h1 {
-    font-family: var(--font-heading);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-weight: var(--heading-weight);
     font-size: 2.25rem;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
+    line-height: 1.2;
+    letter-spacing: var(--tracking-display);
+    text-transform: uppercase;
     margin: 0 0 1rem;
   }
 
   .docs-prose > h2,
   .docs-prose > section > h2 {
-    font-family: var(--font-heading);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-weight: var(--heading-weight);
     font-size: 1.5rem;
-    line-height: 1.25;
-    letter-spacing: -0.025em;
+    line-height: 1.3;
+    letter-spacing: calc(var(--tracking-display) * 0.7);
+    text-transform: uppercase;
     margin: 2rem 0 0.75rem;
   }
 
   .docs-prose > h3,
   .docs-prose > section > h3 {
-    font-family: var(--font-heading);
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-weight: var(--heading-weight);
     font-size: 1.125rem;
     line-height: 1.35;
-    letter-spacing: -0.015em;
+    letter-spacing: calc(var(--tracking-display) * 0.45);
+    text-transform: uppercase;
     margin: 1.5rem 0 0.5rem;
   }
 
   .docs-prose > h4,
   .docs-prose > h5,
   .docs-prose > section > h4 {
-    font-family: var(--font-heading);
-    font-weight: 600;
+    font-family: var(--font-ui);
+    font-weight: 500;
     font-size: 1rem;
     line-height: 1.4;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     margin: 1.25rem 0 0.375rem;
   }
 
@@ -236,29 +375,37 @@
 
   .docs-prose > a:hover,
   .docs-prose > section > a:hover {
-    color: color-mix(in oklch, var(--primary), var(--foreground) 15%);
+    color: color-mix(in srgb, var(--primary), var(--foreground) 15%);
   }
 }
 
 @layer utilities {
   .nvg-font-heading {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
   }
 
   .nvg-font-body {
-    font-family: var(--font-body);
+    font-family: var(--font-ui);
   }
 
   .nvg-font-quote {
-    font-family: var(--font-quote);
+    font-family: var(--font-ui);
     font-style: italic;
     font-weight: 400;
   }
 
+  .nvg-wordmark {
+    font-family: var(--font-heading);
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--tracking-display);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
   .nvg-uppercase {
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 600;
+    letter-spacing: 0.14em;
+    font-weight: 500;
     font-size: 0.6875rem;
   }
 

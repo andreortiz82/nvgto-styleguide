@@ -3,31 +3,27 @@
 import { Moon, Sun } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { Button } from "@navigato/react";
-
-const STORAGE_KEY = "navigato-theme";
-
-function getInitialDark(): boolean {
-  if (typeof window === "undefined") return false;
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === "dark") return true;
-  if (stored === "light") return false;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
+import {
+  applyBrand,
+  applyDark,
+  BRANDS,
+  readBrand,
+  readDark,
+  type BrandId,
+} from "../lib/brand";
 
 export function ThemeToggle() {
   const [dark, setDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setDark(getInitialDark());
+    setDark(readDark());
     setMounted(true);
   }, []);
 
   useEffect(() => {
     if (!mounted) return;
-    document.documentElement.classList.toggle("dark", dark);
-    document.documentElement.style.colorScheme = dark ? "dark" : "light";
-    localStorage.setItem(STORAGE_KEY, dark ? "dark" : "light");
+    applyDark(dark);
   }, [dark, mounted]);
 
   if (!mounted) {
@@ -47,5 +43,53 @@ export function ThemeToggle() {
     >
       {dark ? <Sun size={18} /> : <Moon size={18} />}
     </Button>
+  );
+}
+
+export function BrandSwitch() {
+  const [brand, setBrand] = useState<BrandId>("navigato");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setBrand(readBrand());
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    applyBrand(brand);
+  }, [brand, mounted]);
+
+  return (
+    <div
+      className="inline-flex border border-border"
+      role="group"
+      aria-label="Brand"
+    >
+      {BRANDS.map((option) => (
+        <button
+          key={option.id}
+          type="button"
+          className={`px-2 py-1 text-[0.625rem] uppercase tracking-[0.14em] transition-colors ${
+            brand === option.id
+              ? "bg-primary text-primary-foreground"
+              : "bg-background text-muted-foreground hover:text-foreground"
+          }`}
+          aria-pressed={brand === option.id}
+          onClick={() => setBrand(option.id)}
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export function DocsThemeControls({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className={compact ? "flex items-center gap-2" : "flex flex-col items-end gap-2"}>
+      <BrandSwitch />
+      <ThemeToggle />
+    </div>
   );
 }

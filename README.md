@@ -1,8 +1,8 @@
 # Navigato Design System
 
-**Navigato** is a React component library for hotel and short-term rental booking UIs — search heroes, date pickers, listing cards, sticky booking widgets, and checkout flows in the style of Airbnb, Booking.com, and Vrbo.
+**Navigato** is a multi-brand React kit: luxury hotel booking UIs (Navigato) and a New York fashion/object gallery (Nox & Vale) on the same shadcn primitives and booking composites.
 
-Originally built as a [Middleman](https://middlemanapp.com) styleguide, this repo is now a modern npm monorepo: **`@navigato/react` 0.2.0** on **shadcn/ui + Tailwind CSS v4**, with live documentation.
+Originally built as a [Middleman](https://middlemanapp.com) styleguide, this repo is now a modern npm monorepo: **`@navigato/react` 0.2.0** on **shadcn/ui + Tailwind CSS v4**, with live documentation. Identity is tokens + marks (globe, disc, brush N), not orange or SN Pro.
 
 - **Documentation:** [andreortiz82.github.io/nvgto-styleguide](https://andreortiz82.github.io/nvgto-styleguide/)
 - **Changelog:** [CHANGELOG.md](./CHANGELOG.md)
@@ -65,12 +65,12 @@ Package exports (see `packages/navigato/package.json`):
 | `@navigato/react/styles.css` | `dist/navigato.css` |
 | `@navigato/react/theme.css` | `dist/theme.css` (source tokens copied from `src/styles/global.css`) |
 
-Add SN Pro yourself (the package does not inject the font):
+Set `data-brand="navigato"` or `data-brand="nox-vale"` on `<html>`. Dark mode is the `.dark` class. Add Cinzel + Jost yourself (the package does not inject fonts). Neue Haas and Futura are commercial — UI uses the Helvetica Neue system stack and Jost respectively; see DESIGN.md.
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 ```
 
 ## What's inside
@@ -87,11 +87,11 @@ Built on shadcn/ui primitives with Navigato brand tokens:
 - **Atoms:** Button, Badge, Input, Skeleton, Card, Tabs, Select, Sheet, Dialog (thin docs — themed shadcn)
 - **Molecules:** DateRangePicker, GuestSelector, DestinationInput, StarRating, PriceRangeSlider, MapPriceMarker, SortSelect, FilterChip
 - **Organisms:** BookingSearchBar, ListingCard, SearchHeader, FilterBar, FilterSheet, BookingWidget, PriceBreakdown, RateComparison, PhotoGallery, AmenityGrid, ReviewSummary, BookingSteps, EmptyState, ListingCardSkeleton
-- **Pages:** SERP, PDP, and Checkout demo compositions
+- **Pages:** SERP, PDP, Checkout, and Nox & Vale Gallery compositions
 
 ### Design tokens
 
-Brand orange `oklch(0.705 0.213 47.604)`, SN Pro typography — applied via shadcn CSS variables in `global.css`.
+Obsidian (Navigato) and Gallery (Nox & Vale) palettes on shadcn CSS variables in `global.css`. Sharp corners. Switch with `data-brand` + `.dark`.
 
 ## Development
 

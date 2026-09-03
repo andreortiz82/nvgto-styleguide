@@ -113,7 +113,7 @@ const [range, setRange] = useState<DateRange>()
       { name: "Calendar icon", description: "Phosphor CalendarBlank. Not Lucide in booking UI." },
       { name: "Popover", description: "Range calendar; closes when from and to are set." },
     ],
-    variants: "Layout only: one month vs two (`numberOfMonths`). No branded chrome variants — orange lives on Search, not on the calendar.",
+    variants: "Layout only: one month vs two (`numberOfMonths`). No branded chrome variants — tokens carry identity, not the calendar.",
     states: [
       { name: "default", description: "Placeholder “Check in — Check out”." },
       { name: "selected", description: "From-only shows one date; from+to shows “MMM d — MMM d”." },
@@ -438,7 +438,7 @@ const [range, setRange] = useState<[number, number]>([50, 400])
     a11y: "Keyboard and focus come from Select. Consumer owns the sort and must update the stay list. FilterBar is the usual host. Don’t disable the trigger with no explanation.",
     doDont: {
       do: "Keep the five stay-search sorts unless the product truly has another.",
-      dont: "Fork Select because the brand is orange, or drop a native <select> next to FilterChips from memory.",
+      dont: "Fork Select because the brand changed, or drop a native <select> next to FilterChips from memory.",
     },
     related: [
       { title: "FilterBar", href: "/components/organisms/filter-bar/" },
@@ -1032,7 +1032,7 @@ const [open, setOpen] = useState(false)
       { name: "Secondary", description: "Up to four more tiles from index 1–4. Hidden below md. Each opens the lightbox at that index." },
       { name: "Lightbox", description: "Dialog with the active image and a thumbnail strip for the full `images` list." },
     ],
-    variants: "Layout only: mosaic vs stacked on small screens. No branded chrome — orange is the active thumbnail ring.",
+    variants: "Layout only: mosaic vs stacked on small screens. No branded chrome — the active thumbnail ring uses primary.",
     states: [
       { name: "default", description: "Primary plus up to four secondaries." },
       { name: "empty", description: "No first image → render null." },

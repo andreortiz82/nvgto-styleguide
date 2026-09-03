@@ -6,6 +6,7 @@ import {
   BookingSteps,
   BookingSearchBar,
   BookingWidget,
+  GlobeMark,
   Button,
   Card,
   CardContent,
@@ -47,39 +48,39 @@ type SerpListing = {
 
 const SERP_LISTINGS: SerpListing[] = [
   {
-    title: "Navigato Loft",
-    location: "South Congress, Austin",
-    pricePerNight: 189,
+    title: "Villa Aurelia",
+    location: "Pincio, Rome",
+    pricePerNight: 2400,
     rating: 4.9,
     reviewCount: 128,
     imageUrl: IMG,
     images: GALLERY,
-    badge: "Guest favorite",
-    mapPrice: "$189",
+    badge: "Members",
+    mapPrice: "$2,400",
   },
   {
-    title: "East Side Bungalow",
-    location: "East Austin",
-    pricePerNight: 142,
+    title: "Maison Solenne",
+    location: "Saint-Germain, Paris",
+    pricePerNight: 1850,
     rating: 4.6,
     reviewCount: 87,
     imageUrl: GALLERY[1],
-    mapPrice: "$142",
+    mapPrice: "$1,850",
   },
   {
-    title: "Hill Country Cabin",
-    location: "Dripping Springs",
-    pricePerNight: 320,
+    title: "Casa del Mare",
+    location: "Positano",
+    pricePerNight: 3200,
     rating: 5,
     reviewCount: 18,
     imageUrl: GALLERY[2],
     saved: true,
-    mapPrice: "$320",
+    mapPrice: "$3,200",
   },
   {
-    title: "Rainey Street Studio",
-    location: "Rainey Street, Austin",
-    pricePerNight: 210,
+    title: "The Obsidian Suite",
+    location: "Kyoto",
+    pricePerNight: 2100,
     rating: 4.4,
     reviewCount: 61,
     imageUrl: GALLERY[3],
@@ -126,9 +127,9 @@ const SERP_FILTERS = [
   { id: "parking", label: "Parking" },
 ];
 
-const SERP_PRICE_MIN = 50;
-const SERP_PRICE_MAX = 800;
-const SERP_PRICE_DEFAULT: [number, number] = [50, 400];
+const SERP_PRICE_MIN = 200;
+const SERP_PRICE_MAX = 5000;
+const SERP_PRICE_DEFAULT: [number, number] = [200, 4000];
 
 const SERP_VIEWS = [
   { id: "results", label: "Results" },
@@ -168,7 +169,7 @@ export function SerpPageDemo() {
   const searchRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<SerpView>("results");
   const [activeFilters, setActiveFilters] = useState<string[]>(["wifi"]);
-  const [destination, setDestination] = useState("Austin, TX");
+  const [destination, setDestination] = useState("Rome, Italy");
   const [tripSummary, setTripSummary] = useState("Mar 12–15 · 2 adults · 1 room");
   const [searchNote, setSearchNote] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -197,7 +198,12 @@ export function SerpPageDemo() {
   return (
     <div className="space-y-6">
       <SearchHeader
-        logo={<span className="nvg-font-heading text-lg font-bold tracking-tight">Navigato</span>}
+        logo={
+          <span className="flex items-center gap-2">
+            <GlobeMark className="size-7 text-foreground" />
+            <span className="nvg-wordmark text-sm">Navigato</span>
+          </span>
+        }
         destination={destination}
         tripSummary={tripSummary}
         onEditTrip={() => {
@@ -272,7 +278,7 @@ export function SerpPageDemo() {
 
       {showEmpty ? (
         <EmptyState
-          title="No stays in Austin for these dates"
+          title={`No stays in ${destination} for these dates`}
           description="Try different dates, drop a filter, or widen the map."
           actionLabel="Clear filters"
           onAction={resetFilters}
@@ -298,7 +304,7 @@ export function SerpPageDemo() {
                   />
                 ))}
           </div>
-          <div className="rounded-xl border bg-muted/30 p-6 min-h-[320px] flex flex-col items-center justify-center gap-4">
+          <div className="border bg-muted/30 p-6 min-h-[320px] flex flex-col items-center justify-center gap-4">
             <p className="text-sm text-muted-foreground m-0">Map panel</p>
             <div className="flex flex-wrap justify-center gap-3">
               {mapMarkers.map((listing) => (
@@ -364,25 +370,25 @@ export function PdpPageDemo() {
         </div>
       </div>
 
-      <PhotoGallery images={PDP_GALLERY} title="Navigato Loft" />
+      <PhotoGallery images={PDP_GALLERY} title="Villa Aurelia" />
 
       <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-8">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
-              <h2 className="text-2xl font-bold m-0">Navigato Loft</h2>
-              <Badge>Guest favorite</Badge>
+              <h2 className="nvg-wordmark text-2xl m-0">Villa Aurelia</h2>
+              <Badge>Members</Badge>
             </div>
-            <p className="text-muted-foreground m-0">South Congress, Austin</p>
+            <p className="text-muted-foreground m-0">Pincio, Rome</p>
             <div className="flex flex-wrap items-center gap-3">
               <StarRating value={4.9} readOnly showValue reviewCount={128} size="sm" />
               <span className="text-sm text-muted-foreground">Entire loft · 4 guests · 2 bedrooms</span>
             </div>
           </div>
           <p className="text-sm m-0 max-w-2xl">
-            A high-ceiling loft two blocks from South Congress. Morning light in the kitchen, a
-            pull-out sofa for a third guest, and coffee within walking distance. This demo is one
-            stay, not a tabbed collage of default widgets.
+            A private stay held above the Pincio. Morning light in the salone, a terrace over the
+            gardens, and a kitchen that is actually used. This demo is one stay, not a tabbed
+            collage of default widgets.
           </p>
           <section className="space-y-3">
             <h3 className="text-lg font-semibold m-0">Amenities</h3>
@@ -418,7 +424,7 @@ export function PdpPageDemo() {
           </section>
         </div>
         <BookingWidget
-          pricePerNight={189}
+          pricePerNight={2400}
           dateRange={dateRange}
           onDateRangeChange={setDateRange}
           soldOut={view === "sold-out"}
@@ -531,7 +537,7 @@ export function CheckoutPageDemo() {
             handleConfirm();
           }}
         >
-          <fieldset className="space-y-4 rounded-xl border p-5">
+          <fieldset className="space-y-4 border p-5">
             <legend className="px-1 text-sm font-semibold">Guest details</legend>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
@@ -565,7 +571,7 @@ export function CheckoutPageDemo() {
             </div>
           </fieldset>
 
-          <fieldset className="space-y-4 rounded-xl border p-5">
+          <fieldset className="space-y-4 border p-5">
             <legend className="px-1 text-sm font-semibold">Payment (demo)</legend>
             <p className="text-sm text-muted-foreground m-0">
               Demo fields only — not processed, no Stripe, no card is sent anywhere.
@@ -623,14 +629,14 @@ export function CheckoutPageDemo() {
 
         <Card className="sticky top-4">
           <CardHeader>
-            <CardTitle>Navigato Loft</CardTitle>
-            <CardDescription>South Congress, Austin · Mar 12–15 · 2 adults · 1 room</CardDescription>
+            <CardTitle className="nvg-wordmark text-sm">Villa Aurelia</CardTitle>
+            <CardDescription>Pincio, Rome · Mar 12–15 · 2 adults · 1 room</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <Separator />
             <PriceBreakdown
               lineItems={[
-                { label: "$189 × 3 nights", amount: 567 },
+                { label: "$2,400 × 3 nights", amount: 7200 },
                 { label: "Cleaning fee", amount: 75 },
                 { label: "Service fee", amount: 120 },
               ]}

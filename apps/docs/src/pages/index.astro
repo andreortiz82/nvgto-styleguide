@@ -8,31 +8,52 @@ const base = import.meta.env.BASE_URL;
 <DocsLayout title="Overview">
   <h1>Navigato Design System</h1>
   <p class="nvg-lead">
-    A React component library for travel booking, trip planning, and short-term rental products —
-    built for engineers who need consistent UI patterns across search, map, and booking flows.
+    A multi-brand React kit: Navigato for private stays, Nox &amp; Vale for gallery objects —
+    same primitives, tokens, and booking composites. Switch brand and mode in the sidebar.
   </p>
 
-  <div class="not-prose my-8 flex items-center gap-4 rounded-xl border border-border bg-card p-5 nvg-shadow-sm">
-    <div class="size-12 shrink-0 rounded-lg bg-primary" aria-hidden="true"></div>
-    <div>
-      <p class="m-0 text-sm font-semibold text-foreground">Brand primary</p>
-      <p class="m-0 mt-0.5 text-xs text-muted-foreground font-mono">oklch(0.705 0.213 47.604)</p>
+  <div class="not-prose my-8 grid gap-4 sm:grid-cols-2">
+    <div class="border border-border bg-card p-5">
+      <p class="nvg-uppercase text-muted-foreground m-0 mb-3">Obsidian</p>
+      <p class="nvg-wordmark m-0 text-lg">Navigato</p>
+      <p class="m-0 mt-3 text-sm text-muted-foreground">
+        Light: ink on mist. Dark: champagne on obsidian. Cinzel + Helvetica Neue stack. Globe mark.
+      </p>
+      <div class="mt-4 flex gap-2" aria-hidden="true">
+        <span class="size-8 border border-border" style="background:#F4F2EE"></span>
+        <span class="size-8 border border-border" style="background:#1C1917"></span>
+        <span class="size-8 border border-border" style="background:#C4B59A"></span>
+        <span class="size-8 border border-border" style="background:#0C0A09"></span>
+      </div>
+    </div>
+    <div class="border border-border bg-card p-5">
+      <p class="nvg-uppercase text-muted-foreground m-0 mb-3">Gallery</p>
+      <p class="nvg-wordmark m-0 text-lg">Nox &amp; Vale</p>
+      <p class="m-0 mt-3 text-sm text-muted-foreground">
+        Light: night on plaster. Dark: plaster on night. Jost. Disc + Brush N. Cobalt only as accent.
+      </p>
+      <div class="mt-4 flex gap-2" aria-hidden="true">
+        <span class="size-8 border border-border" style="background:#F4F2EF"></span>
+        <span class="size-8 border border-border" style="background:#111318"></span>
+        <span class="size-8 border border-border" style="background:#1E4FD6"></span>
+        <span class="size-8 border border-border" style="background:#9A9AA3"></span>
+      </div>
     </div>
   </div>
 
   <section class="mt-10 space-y-4">
-    <h2>What is Navigato?</h2>
+    <h2>What is this kit?</h2>
     <p>
-      Navigato started as an internal Middleman styleguide for a travel product team. This revival
-      packages the same design language as <code>@navigato/react</code> — an MIT-licensed
-      React library (workspace <code>0.2.0</code>, not on the public npm registry yet)
-      with live documentation.
+      Navigato started as an internal Middleman styleguide. This revival packages the same
+      component architecture as <code>@navigato/react</code> — an MIT-licensed React library
+      (workspace <code>0.2.0</code>, not on the public npm registry yet) with live documentation.
+      Identity is tokens and marks, not a fork of Button.
     </p>
     <ul class="list-disc pl-5 space-y-1">
-      <li>shadcn/ui primitives + booking composites on Tailwind CSS v4</li>
+      <li>Two brands, each with light and dark, on Tailwind v4 CSS variables (<code>data-brand</code> + <code>.dark</code>)</li>
+      <li>shadcn/ui primitives + booking composites — sharp corners, hairline borders</li>
       <li>Date range pickers, guest selectors, listing cards, booking widgets, price breakdowns</li>
-      <li>Accessible Radix/Base UI patterns with keyboard support</li>
-      <li>Live demos, copy-paste usage, and props API tables for every component</li>
+      <li>A Nox &amp; Vale product page — not a fake hotel SERP</li>
     </ul>
   </section>
 
@@ -50,17 +71,31 @@ const base = import.meta.env.BASE_URL;
   <section class="mt-10 grid gap-4 sm:grid-cols-2 not-prose">
     <a
       href={`${base}tokens/colors/`}
-      class="block rounded-lg border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30 hover:nvg-shadow-sm"
+      class="block border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30"
     >
       <h3 class="m-0 text-base font-semibold text-primary">Colors</h3>
-      <p class="m-0 mt-1 text-sm text-muted-foreground">Semantic tokens, charts, sidebar</p>
+      <p class="m-0 mt-1 text-sm text-muted-foreground">Obsidian and Gallery palettes on semantic roles</p>
     </a>
     <a
       href={`${base}getting-started/`}
-      class="block rounded-lg border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30 hover:nvg-shadow-sm"
+      class="block border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30"
     >
       <h3 class="m-0 text-base font-semibold text-primary">Getting started</h3>
-      <p class="m-0 mt-1 text-sm text-muted-foreground">Consume from the repo, import styles, first component</p>
+      <p class="m-0 mt-1 text-sm text-muted-foreground">Consume from the repo, set data-brand, first component</p>
+    </a>
+    <a
+      href={`${base}components/pages/serp/`}
+      class="block border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30"
+    >
+      <h3 class="m-0 text-base font-semibold text-primary">SERP</h3>
+      <p class="m-0 mt-1 text-sm text-muted-foreground">Navigato private stays — live filters, sold-out stays</p>
+    </a>
+    <a
+      href={`${base}components/pages/gallery/`}
+      class="block border border-border bg-card p-5 no-underline transition-all duration-200 hover:border-primary/30"
+    >
+      <h3 class="m-0 text-base font-semibold text-primary">Gallery</h3>
+      <p class="m-0 mt-1 text-sm text-muted-foreground">Nox &amp; Vale product page — hoop, belt, add to bag</p>
     </a>
   </section>
 
@@ -71,7 +106,7 @@ const base = import.meta.env.BASE_URL;
       Booking parts are <code>preview</code>, not <code>stable</code>.
     </p>
     <pre><code>{`import '@navigato/react/styles.css'
-import { BookingSearchBar, ListingCard } from '@navigato/react'`}</code></pre>
+import { BookingSearchBar, ListingCard, GlobeMark } from '@navigato/react'`}</code></pre>
     <p class="mt-4">
       <a href={`${base}getting-started/`} class="text-primary font-semibold no-underline hover:underline">
         Read the getting started guide →

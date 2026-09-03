@@ -10,6 +10,7 @@
 - [Accessibility](/nvgto-styleguide/getting-started/accessibility/): what consumers must still do
 - [Tokens — color](/nvgto-styleguide/tokens/colors/)
 - [Tokens — type](/nvgto-styleguide/tokens/typography/)
+- [Gallery](/nvgto-styleguide/components/pages/gallery/)
 - DESIGN.md, AGENTS.md, and CHANGELOG.md live at the repo root. They are not HTML pages.
 
 ## SERP parts (docs skeleton)
@@ -30,6 +31,7 @@
 - [EmptyState](/nvgto-styleguide/components/organisms/empty-state/)
 - [ListingCardSkeleton](/nvgto-styleguide/components/organisms/listing-card-skeleton/)
 - [SERP](/nvgto-styleguide/components/pages/serp/)
+- [Gallery](/nvgto-styleguide/components/pages/gallery/)
 
 ## PDP and checkout parts (docs skeleton)
 

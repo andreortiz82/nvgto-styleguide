@@ -89,14 +89,16 @@ export function MobileNav({ base, currentPath }: MobileNavProps) {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
-        className="inline-flex lg:hidden h-9 w-9 items-center justify-center rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+        className="inline-flex lg:hidden h-9 w-9 items-center justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground"
         aria-label="Open navigation menu"
       >
         <List size={20} />
       </SheetTrigger>
       <SheetContent side="left" className="w-72 overflow-y-auto">
         <SheetHeader>
-          <SheetTitle className="text-left font-bold tracking-tight">Navigato</SheetTitle>
+          <SheetTitle className="text-left">
+            <span className="nvg-wordmark text-sm">Navigato</span>
+          </SheetTitle>
         </SheetHeader>
         <div className="mt-6">
           <NavLinks base={base} currentPath={currentPath} onNavigate={() => setOpen(false)} />

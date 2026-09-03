@@ -60,13 +60,13 @@ const typeScale: TypeSample[] = [
     sample: "Find your next stay",
     as: "h1",
     className:
-      "nvg-font-heading text-5xl font-bold leading-[1.08] tracking-[-0.035em] m-0 text-foreground",
+      "nvg-wordmark text-5xl leading-[1.15] m-0 text-foreground",
     specs: [
       { label: "Size", value: "3rem / 48px" },
-      { label: "Line height", value: "1.08" },
-      { label: "Weight", value: "700" },
-      { label: "Tracking", value: "-0.035em" },
-      { label: "Class", value: "text-5xl font-bold" },
+      { label: "Line height", value: "1.15" },
+      { label: "Weight", value: "heading-weight" },
+      { label: "Tracking", value: "--tracking-display" },
+      { label: "Class", value: ".nvg-wordmark text-5xl" },
     ],
   },
   {
@@ -75,12 +75,12 @@ const typeScale: TypeSample[] = [
     sample: "Navigato Design System",
     as: "h1",
     className:
-      "nvg-font-heading text-4xl font-bold leading-[1.15] tracking-[-0.03em] m-0 text-foreground",
+      "nvg-wordmark text-4xl leading-[1.2] m-0 text-foreground",
     specs: [
       { label: "Size", value: "2.25rem / 36px" },
-      { label: "Line height", value: "1.15" },
-      { label: "Weight", value: "700" },
-      { label: "Tracking", value: "-0.03em" },
+      { label: "Line height", value: "1.2" },
+      { label: "Weight", value: "heading-weight" },
+      { label: "Tracking", value: "--tracking-display" },
       { label: "Context", value: ".docs-prose > h1" },
     ],
   },
@@ -199,7 +199,7 @@ const typeScale: TypeSample[] = [
   {
     name: "Monospace",
     role: "Code snippets, token names, prop values",
-    sample: "oklch(0.705 0.213 47.604)",
+    sample: "oklch / hex tokens",
     className: "font-mono text-sm m-0 text-foreground",
     specs: [
       { label: "Size", value: "0.875rem / 14px" },
@@ -244,12 +244,12 @@ function TravelUiExample() {
         <CardHeader className="pb-3">
           <p className="nvg-uppercase text-muted-foreground m-0 mb-2">Search header</p>
           <div className="flex items-center gap-2">
-            <span className="inline-flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shrink-0">
+            <span className="inline-flex size-8 items-center justify-center bg-primary text-primary-foreground shrink-0">
               <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden>
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" />
               </svg>
             </span>
-            <span className="nvg-font-heading text-lg font-bold tracking-tight">Navigato</span>
+            <span className="nvg-wordmark text-lg">Navigato</span>
           </div>
         </CardHeader>
         <CardContent className="space-y-1 pt-0">
@@ -317,14 +317,14 @@ export function TypographyPage() {
     <div className="space-y-10 mt-8 not-prose">
       <Card className="border-dashed">
         <CardHeader>
-          <CardTitle className="text-base">SN Pro</CardTitle>
+          <CardTitle className="text-base">Display vs UI</CardTitle>
           <CardDescription>
-            Single family for headings, body, and UI. Loaded from Google Fonts with weights 300–800.
-            Headings use negative letter-spacing; labels use uppercase with wide tracking.
+            Navigato: Cinzel for the wordmark, Helvetica Neue stack for UI. Nox &amp; Vale: Jost for
+            both. Switch brand in the sidebar to see the faces change.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-6xl nvg-font-heading font-bold tracking-tight m-0 text-foreground/90">
+          <p className="text-5xl nvg-wordmark m-0 text-foreground/90">
             Aa Bb Cc
           </p>
           <p className="text-sm text-muted-foreground mt-3 mb-0 font-mono">
@@ -353,7 +353,7 @@ export function TypographyPage() {
         <div>
           <h2 className="text-lg font-semibold m-0">Font weights</h2>
           <p className="text-sm text-muted-foreground mt-1 mb-0">
-            SN Pro at 24px — use 700 for headings, 600 for emphasis, 400 for body.
+            Display face at 24px — Cinzel or Jost depending on brand. UI copy stays on the grotesk / geometric stack.
           </p>
         </div>
         <Card>
@@ -385,7 +385,7 @@ export function TypographyPage() {
             </a>
             ,{" "}
             <strong className="font-semibold text-foreground">semibold emphasis</strong>, and{" "}
-            <code className="font-mono text-sm bg-muted px-1.5 py-0.5 rounded border border-border">
+            <code className="font-mono text-sm bg-muted px-1.5 py-0.5 border border-border">
               inline code
             </code>
             .
@@ -405,7 +405,7 @@ export function TypographyPage() {
               </li>
             </ul>
             <blockquote className="nvg-font-quote text-lg text-muted-foreground border-l-4 border-primary pl-4 m-0">
-              Block quotes use italic SN Pro with a brand accent border — ideal for guest reviews.
+              Block quotes use italic UI type with a brand accent border — spare, not decorative.
             </blockquote>
           </CardContent>
         </Card>
