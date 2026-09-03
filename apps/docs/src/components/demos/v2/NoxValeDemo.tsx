@@ -7,7 +7,7 @@ import { useState } from "react";
 const HOOP =
   "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=900&h=1100&fit=crop";
 const BELT =
-  "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=900&h=1100&fit=crop";
+  "https://images.unsplash.com/photo-1664286074176-5206ee5dc878?w=900&h=1100&fit=crop";
 
 type Product = {
   id: "hoop" | "belt";
@@ -30,7 +30,7 @@ const PRODUCTS: Product[] = [
     name: "The Column Belt",
     price: "$920",
     image: BELT,
-    alt: "Black leather belt with a silver buckle on a pedestal",
+    alt: "Black leather belt with a silver buckle",
   },
 ];
 
