@@ -4,7 +4,7 @@
 
 Originally built as a [Middleman](https://middlemanapp.com) styleguide, this repo is now a modern npm monorepo: **`@navigato/react` 0.2.0** on **shadcn/ui + Tailwind CSS v4**, with live documentation. Identity is tokens + marks (globe, disc, brush N), not orange or SN Pro.
 
-- **Documentation:** [andreortiz82.github.io/nvgto-styleguide](https://andreortiz82.github.io/nvgto-styleguide/)
+- **Documentation:** [andreortiz82.github.io/leo-design-system](https://andreortiz82.github.io/leo-design-system/)
 - **Changelog:** [CHANGELOG.md](./CHANGELOG.md)
 - **License:** [MIT](./LICENSE) — free to use with no limitations
 
@@ -21,8 +21,8 @@ Peer dependencies: **React 18+** (`react` / `react-dom` `>=18`). The package is 
 Use the workspace, or copy `packages/navigato/src` when the consumer must edit files. Override tokens before forking.
 
 ```bash
-git clone https://github.com/andreortiz82/nvgto-styleguide.git
-cd nvgto-styleguide
+git clone https://github.com/andreortiz82/leo-design-system.git
+cd leo-design-system
 npm install
 ```
 
@@ -96,8 +96,8 @@ Obsidian (Navigato) and Gallery (Nox & Vale) palettes on shadcn CSS variables in
 ## Development
 
 ```bash
-git clone https://github.com/andreortiz82/nvgto-styleguide.git
-cd nvgto-styleguide
+git clone https://github.com/andreortiz82/leo-design-system.git
+cd leo-design-system
 npm install
 npm run dev          # docs site at localhost:4321
 npm run dev:lib      # watch library build
@@ -107,7 +107,7 @@ npm run build        # build library + docs
 ## Monorepo structure
 
 ```
-nvgto-styleguide/
+leo-design-system/
 ├── packages/navigato/   @navigato/react (shadcn ui/ + booking/)
 ├── apps/docs/           Astro documentation site
 ├── docs/                Legacy design reference screenshots

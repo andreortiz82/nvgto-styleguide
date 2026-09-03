@@ -27,5 +27,5 @@ Key routing rules:
 ## Conventions
 
 - npm workspaces; build lib before docs
-- Docs base path: `/nvgto-styleguide/`
+- Docs base path: `/leo-design-system/`
 - Deploy: GitHub Actions → GitHub Pages

@@ -17,7 +17,7 @@ const STATUS_VARIANT: Record<DocStatus, "default" | "secondary" | "outline" | "d
 };
 
 function withBase(href: string) {
-  const base = import.meta.env.BASE_URL ?? "/nvgto-styleguide/";
+  const base = import.meta.env.BASE_URL;
   const normalized = href.startsWith("/") ? href.slice(1) : href;
   return `${base}${normalized}`;
 }

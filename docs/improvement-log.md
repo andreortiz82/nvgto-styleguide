@@ -1,6 +1,6 @@
 # Navigato gstack Improvement Log
 
-Audit date: 2026-06-29. Target: https://andreortiz82.github.io/nvgto-styleguide/
+Audit date: 2026-06-29. Target: https://andreortiz82.github.io/leo-design-system/
 
 ## plan-design-review (7 dimensions)
 

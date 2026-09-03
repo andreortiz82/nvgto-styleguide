@@ -17,7 +17,7 @@ Read `DESIGN.md` (quality bar + How AI changes this) before writing UI. Query th
 1. Public exports: `packages/navigato/src/index.ts`
 2. Props and when/when-not: `apps/docs/src/content/components/registry.ts` (booking-domain parts have the DESIGN.md skeleton; shadcn atoms stay thin)
 3. Page instances: SERP, PDP, and checkout at `apps/docs/src/components/demos/v2/PageDemos.tsx`; Nox & Vale gallery at `apps/docs/src/components/demos/v2/NoxValeDemo.tsx`
-4. Index: `llms.txt` (repo) and `/nvgto-styleguide/llms.txt` (docs site). Index, not a teacher.
+4. Index: `llms.txt` (repo) and `/leo-design-system/llms.txt` (docs site). Index, not a teacher.
 
 Prefer existing primitives. New primitive only if composition fails. New pattern if it appears twice in the booking flow.
 

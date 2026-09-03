@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://andreortiz82.github.io",
-  base: "/nvgto-styleguide/",
+  base: "/leo-design-system/",
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
