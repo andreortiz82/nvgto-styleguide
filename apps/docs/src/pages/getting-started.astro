@@ -37,10 +37,21 @@ npm install`}</code></pre>
   <pre><code>{`import '@navigato/react/styles.css'
 // optional tokens-only path:
 // import '@navigato/react/theme.css'`}</code></pre>
-  <p>In your HTML head (or root layout) — the package does not inject SN Pro:</p>
+  <p>
+    In your HTML head (or root layout) — the package does not inject fonts. Cinzel and Jost are
+    SIL OFL Google Fonts. Neue Haas and Futura are commercial; do not vendor them. Navigato UI
+    uses the Helvetica Neue system stack.
+  </p>
   <pre><code>{`<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />`}</code></pre>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />`}</code></pre>
+  <p>
+    Set the brand on <code>html</code>. Dark is still the <code>.dark</code> class.
+  </p>
+  <pre><code>{`<html data-brand="navigato">
+<!-- or data-brand="nox-vale" -->
+<!-- class="dark" for dark mode -->
+</html>`}</code></pre>
 
   <h2>Use components</h2>
   <p>
@@ -97,7 +108,7 @@ npm publish --workspace=@navigato/react`}</code></pre>
     Primitives live under <code>components/ui/</code> in the package source. To add more shadcn
     components, run the CLI from <code>packages/navigato</code> — see
     <a href="https://ui.shadcn.com/">shadcn/ui docs</a>. Restyle via tokens. Do not fork Button
-    or Dialog because the brand is orange.
+    or Dialog because the brand changed. Set <code>data-brand</code> and tokens instead.
   </p>
 
   <h2>Accessibility</h2>

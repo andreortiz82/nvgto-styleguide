@@ -6,9 +6,13 @@ import { ThemeColorsPage } from "../../components/demos/ColorsDemo";
 <DocsLayout title="Colors">
   <h1>Colors</h1>
   <p>
-    Warm orange brand theme in <code>oklch</code>. Primary is
-    <code>oklch(0.705 0.213 47.604)</code>. Tokens live in
-    <code>packages/navigato/src/styles/global.css</code>.
+    Two named palettes mapped onto the same semantic roles in
+    <code>packages/navigato/src/styles/global.css</code>. Switch brand and mode in the sidebar —
+    swatches reread <code>data-brand</code> and <code>.dark</code>.
   </p>
+  <ul>
+    <li><strong>Navigato / Obsidian:</strong> light = ink on mist; dark = champagne on obsidian.</li>
+    <li><strong>Nox &amp; Vale / Gallery:</strong> light = night on plaster; dark = plaster on night. Cobalt is the only accent.</li>
+  </ul>
   <ThemeColorsPage client:load />
 </DocsLayout>

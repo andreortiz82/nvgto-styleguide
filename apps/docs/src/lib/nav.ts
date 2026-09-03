@@ -62,11 +62,12 @@ export const componentsNav: NavItem = {
     {
       label: "Pages",
       href: "/components/pages/",
-      description: "Demoable SERP, PDP, and checkout compositions.",
+      description: "Demoable SERP, PDP, checkout, and gallery compositions.",
       children: [
         { label: "SERP", href: "/components/pages/serp/" },
         { label: "PDP", href: "/components/pages/pdp/" },
         { label: "Checkout", href: "/components/pages/checkout/" },
+        { label: "Gallery", href: "/components/pages/gallery/" },
       ],
     },
   ],

@@ -2,70 +2,109 @@
 
 ## Product Context
 
-- **What this is:** MIT-licensed React component library and documentation site for travel booking, trip planning, and short-term rental UIs.
-- **Who it's for:** Product engineers building SERP, PDP, checkout, and map flows; portfolio viewers evaluating design-system craft.
-- **Space/industry:** Travel / hospitality — peers include Airbnb, Booking.com, Google Hotels.
+- **What this is:** MIT-licensed React component library and documentation site. The kit is multi-brand: **Navigato** (global luxury hotels and travel) and **Nox & Vale** (New York high-end fashion and accessories). Booking composites stay on the same stack.
+- **Who it's for:** Product engineers building SERP, PDP, checkout, and (for Nox & Vale) product/object pages; portfolio viewers evaluating design-system craft.
+- **Space/industry:** Travel / hospitality for Navigato; fashion / objects for Nox & Vale.
 - **Project type:** Design system docs site + npm package (`@navigato/react`).
+
+## Brands
+
+Two brands, each with light and dark. Switch with `data-brand` on `<html>` (`navigato` | `nox-vale`) plus the existing `.dark` class. This is the same CSS-variable layer as `theme.css` / Tailwind v4 `@theme` — not a third theming library.
+
+There is **no Navigato Black brand**. Dark Navigato is champagne on obsidian.
+
+Orange, SN Pro, and the astronaut cat are out of the identity. They must not be the default look.
+
+### Brand 1 — Navigato
+
+Global luxury hotels and travel. Quiet luxury: hairline strokes, sharp corners, generous space.
+
+- **Palette Obsidian**
+  - mist `#F4F2EE`
+  - graphite `#44403C`
+  - ink `#1C1917`
+  - champagne `#C4B59A`
+  - black / obsidian `#0C0A09`
+  - silver `#B8B4AE`
+- **Light:** ink on mist.
+- **Dark:** champagne on obsidian.
+- **Type Inscribed:** Cinzel (Google Fonts, SIL OFL), all-caps, wide tracking — wordmark and display. **Neue Haas Grotesk is commercial; do not vendor it.** UI/body uses the **Helvetica Neue system stack** (`"Helvetica Neue", Helvetica, Arial, sans-serif`) as the licensed grotesk substitute.
+- **Mark:** globe — perfect circle, horizontal equator, vertical meridian, two curved longitudes (one ellipse), eight-pointed compass star at center (four long cardinal, four short diagonal). Hairline stroke. Files: `packages/navigato/src/marks/globe.svg`, `GlobeMark`.
+
+### Brand 2 — Nox & Vale
+
+New York high-end fashion and accessories, men and women. White-cube gallery: cobalt as the only accent, geometric sans, sharp corners.
+
+- **Palette Gallery**
+  - plaster `#F4F2EF`
+  - night `#111318`
+  - cobalt `#1E4FD6`
+  - pewter `#9A9AA3`
+  - pearl `#E7E4DE`
+- **Light:** night on plaster.
+- **Dark:** plaster on night. Cobalt is the only accent — marks and small cues, not every chrome.
+- **Type:** geometric sans, tracked, all-caps for the wordmark. No Didone. **Futura is commercial.** **Jost** (Google Fonts, SIL OFL) is the shippable Futura substitute.
+- **Marks:** **Disc** — filled cobalt circle, quiet/header (`DiscMark`). **Brush N** — original calligraphic capital N in an open enso/brush circle, cobalt, hero/signature (`BrushNMark`). Redrawn as original SVG; do not embed or trace stock assets.
+
+Phosphor is for UI icons. Phosphor is not the brand mark.
 
 ## Aesthetic Direction
 
-- **Direction:** Warm travel utility — confident orange CTAs on stone-tinted neutrals.
-- **Decoration level:** Intentional — subtle shadows, rounded corners, purposeful motion on interactive booking surfaces.
-- **Mood:** Approachable, trustworthy, action-oriented. Orange signals primary actions; warm grays keep data-dense SERP layouts readable.
-- **Logo:** Astronaut cat mark (`logo-mark.svg`) — orange suit, cream helmet, waving paw — paired with SN Pro wordmark.
+- **Direction:** Quiet luxury (Navigato) and white-cube fashion (Nox & Vale). Identity is palettes + type roles + marks + **0px radius**.
+- **Decoration level:** Restrained — hairline borders, almost no elevation. Shadows are 1px rings, not warm drop shadows.
+- **Mood:** Inscribed travel vs gallery objects. Never approachable-orange utility.
+- **Corners:** Sharp everywhere (`--radius: 0`). `rounded-full` stays only where geometry is a circle (switch, slider thumb, disc).
 
 ## Typography
 
-- **Display / Hero / Body / UI:** SN Pro — single-family system for headings and body.
-- **Data / Tables:** SN Pro with `tabular-nums` where prices align.
+- **Navigato display / wordmark:** Cinzel, all-caps, `--tracking-display: 0.22em`.
+- **Navigato UI / body / data:** Helvetica Neue stack with `tabular-nums` where prices align.
+- **Nox & Vale display / wordmark / UI:** Jost, all-caps on wordmark and display, `--tracking-display: 0.32em`.
 - **Code:** System monospace stack (`ui-monospace`, Cascadia Code, Source Code Pro).
-- **Loading:** Google Fonts CDN — `https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap`
+- **Loading:** Google Fonts CDN for Cinzel + Jost. Helvetica Neue is system — the package does not inject it. Consumers add the Cinzel/Jost `<link>` when they need those faces.
 - **Scale (docs-prose):**
-  - h1: 2.25rem / 700 / -0.03em tracking
-  - h2: 1.5rem / 700 / -0.025em
-  - h3: 1.125rem / 600 / -0.015em
+  - h1: 2.25rem / heading-weight / uppercase / `--tracking-display`
+  - h2: 1.5rem / uppercase / 0.7× tracking
+  - h3: 1.125rem / uppercase / 0.45× tracking
   - body: 0.9375rem / 1.65 line-height
   - lead (`.nvg-lead`): 1.125rem / muted-foreground
-  - uppercase labels (`.nvg-uppercase`): 0.6875rem / 600 / 0.06em tracking
+  - uppercase labels (`.nvg-uppercase`): 0.6875rem / 500 / 0.14em tracking
+  - wordmark (`.nvg-wordmark`): display face, uppercase, `--tracking-display`
 
 ## Color
 
-- **Approach:** Expressive primary on restrained warm neutrals (oklch, stone hue ~50–85).
-- **Primary / Brand:** `oklch(0.705 0.213 47.604)` — CTAs, links, focus rings, active nav.
-- **Primary foreground:** `oklch(0.99 0.005 47)` — text on orange buttons.
-- **Background:** `oklch(0.995 0.004 85)` — page canvas (light).
-- **Foreground:** `oklch(0.20 0.022 50)` — primary text.
-- **Muted / Secondary:** warm stone tints for chips, sidebar, secondary buttons.
-- **Accent:** light orange wash for hover states and sidebar highlights.
-- **Destructive:** `oklch(0.577 0.245 27.325)` — errors, destructive actions.
+- **Approach:** Named palettes (Obsidian, Gallery) mapped onto the existing semantic shadcn roles (`background`, `foreground`, `primary`, `muted`, `accent`, …). Pick tokens by meaning.
+- **Theming:** `:root` / `[data-brand="navigato"]` and `[data-brand="nox-vale"]`, each with a `.dark` override. Docs set `data-brand` and `.dark` on `<html>`.
+- **Navigato primary:** ink (light) / champagne (dark). Champagne is `--brand` metal, not a loud CTA orange.
+- **Nox & Vale primary:** night (light) / plaster (dark). `--accent` and `--brand` are cobalt only.
+- **Destructive:** `#9F2D2D` — errors, not a brand color.
 - **Semantic aliases:** `--color-brand`, `--color-silver` (muted-foreground), `--color-mid` (border).
-- **Charts:** chart-1 through chart-5 — orange-led palette for analytics demos.
-- **Dark mode:** Full `.dark` token override; primary lightens to `oklch(0.75 0.19 47.604)`; surfaces deepen; borders use white/10–15% alpha. Opt-in via `.dark` on `<html>`.
+- **Charts:** brand-led (champagne or cobalt), not orange.
 
 ## Spacing
 
 - **Base unit:** 4px (Tailwind default).
-- **Density:** Comfortable — booking cards and filter bars need breathing room.
+- **Density:** Generous — luxury and gallery pages need breathing room.
 - **Scale:** Tailwind spacing scale (1 = 4px). Common: `gap-2` (8px), `gap-4` (16px), `p-5`/`p-6` (20–24px) for cards and sidebar.
 
 ## Layout
 
-- **Approach:** Grid-disciplined docs shell; flexible booking composites.
+- **Approach:** Grid-disciplined docs shell; flexible booking composites; a small fashion/object page for Nox & Vale (not a fake hotel SERP).
 - **Docs grid:** 288px sticky sidebar + fluid main (max-w-5xl).
 - **Max content width:** 64rem (5xl) for docs prose.
-- **Border radius:** Base `--radius: 0.625rem` (10px). Scale: sm (×0.6), md (×0.8), lg (1×), xl (×1.4), 2xl–4xl for larger surfaces.
+- **Border radius:** Base `--radius: 0px`. All `--radius-*` theme keys are 0.
 
 ## Shadows
 
-Warm-tinted elevation scale (light mode uses stone-hued shadows):
+Hairline rings, not warm elevation:
 
 | Token | Use |
 |-------|-----|
-| `--shadow-2xs` / `--shadow-xs` | Subtle borders-as-shadow |
-| `--shadow-sm` | Cards at rest, tier cards |
+| `--shadow-2xs` / `--shadow-xs` | 1px foreground ring |
+| `--shadow-sm` | Cards at rest |
 | `--shadow-md` | Popovers, dropdowns |
-| `--shadow-lg` | Hover elevation on listing cards |
-| `--shadow-xl` / `--shadow-2xl` | Modals, hero overlays |
+| `--shadow-lg` | Hover emphasis |
+| `--shadow-xl` / `--shadow-2xl` | Modals |
 
 Utilities: `.nvg-shadow-sm`, `.nvg-shadow-lg`.
 
@@ -75,7 +114,7 @@ Utilities: `.nvg-shadow-sm`, `.nvg-shadow-lg`.
 - **Easing:** `ease-out` for enter, `ease-in` for exit, `ease-in-out` for hover transforms.
 - **Duration:**
   - micro: 100–150ms (color, opacity, border)
-  - short: 200ms (scale, shadow on cards/chips)
+  - short: 200ms (opacity, hairline ring)
   - medium: 250–400ms (sheet/dialog via tw-animate-css)
 - **Library utilities:** `.nvg-animate-pulse` (0.5s), `.nvg-animate-ping` (1.5s) — map markers, loading emphasis.
 - **Reduced motion:** `@media (prefers-reduced-motion: reduce)` disables custom animations; prefer opacity/color-only transitions.
@@ -84,7 +123,8 @@ Utilities: `.nvg-shadow-sm`, `.nvg-shadow-lg`.
 
 - **Booking components:** Phosphor Icons (`@phosphor-icons/react`) — regular/bold/fill weights.
 - **shadcn ui/ internals:** Lucide acceptable for upstream primitives (calendar chevrons, dialog close) — do not mass-migrate.
-- **Rule:** New booking-domain icons must use Phosphor.
+- **Brand marks:** globe, disc, brush N — SVG in `packages/navigato/src/marks/`. Not Phosphor.
+- **Rule:** New booking-domain icons must use Phosphor. Do not use Phosphor as a logo.
 
 ## Internal-only components
 
@@ -92,16 +132,18 @@ Not exported from `@navigato/react` public API (used inside library only):
 
 - `textarea`, `switch`, `avatar`, `command`, `input-group`
 
+Public mark exports: `GlobeMark`, `DiscMark`, `BrushNMark`.
+
 ## What good looks like
 
-A good system is a product other products ship with, not a component catalog that launched. Navigato is a small MIT travel-booking library — optimize vertical reuse inside SERP, PDP, and checkout, not Carbon-scale coverage. Component count is a weak health signal.
+A good system is a product other products ship with, not a component catalog that launched. Navigato is a small MIT travel-booking library that now hosts a second brand on the same primitives — optimize vertical reuse inside SERP, PDP, and checkout, plus one honest fashion/object page, not Carbon-scale coverage. Component count is a weak health signal.
 
 ### Quality bar
 
-- **Tokens vs components is the split.** Behavior and a11y live in the primitive (Radix / shadcn). Orange vs stone vs dark live in tokens. Do not fork a Dialog because the brand is orange. Identity is tokens + the astronaut cat mark. Chroma on primary booking actions, not every chrome.
-- **Accessibility is a foundation, not a page.** Inherit Radix keyboard and focus. Add travel-specific contracts: date-picker keyboard, live regions for price updates, never disable Pay without an explanation. Orange-on-stone contrast must meet WCAG 2.2 AA. Components are necessary but not sufficient for an accessible product.
-- **Thin semantic token layer.** Two layers: private core/option (ramps) + public semantic/decision roles (`color.text.danger`, `color.action.primary`). Pick tokens by meaning, not by matching hex. No third (component-token) layer unless a travel control truly needs a unique contract. DTCG-shaped naming is welcome; a Style Dictionary pipeline is not required while the only consumer is Tailwind v4 CSS variables.
-- **Patterns are the product.** Buttons don't differentiate this library. Date range, guest picker, price-with-fees, sold-out, layover, booking error, results skeleton do. Harvest patterns from a real booking flow, then extract. Show primitives inside page instances (SERP, PDP, checkout) with real-ish content, not only isolation.
+- **Tokens vs components is the split.** Behavior and a11y live in the primitive (Radix / shadcn). Obsidian vs Gallery vs dark live in tokens. Do not fork a Dialog because the brand changed. Identity is tokens + the globe / disc / brush-N marks. Chroma (champagne or cobalt) is spare, not every chrome.
+- **Accessibility is a foundation, not a page.** Inherit Radix keyboard and focus. Add travel-specific contracts: date-picker keyboard, live regions for price updates, never disable Pay without an explanation. Ink-on-mist, champagne-on-obsidian, night-on-plaster, and plaster-on-night must meet WCAG 2.2 AA. Components are necessary but not sufficient for an accessible product.
+- **Thin semantic token layer.** Two layers: private core/option (named palettes) + public semantic/decision roles (`background`, `primary`, `accent`). Pick tokens by meaning, not by matching hex. No third (component-token) layer unless a travel control truly needs a unique contract. DTCG-shaped naming is welcome; a Style Dictionary pipeline is not required while the only consumer is Tailwind v4 CSS variables. Fit `data-brand` + `.dark` — do not invent a theming library.
+- **Patterns are the product.** Buttons don't differentiate this library. Date range, guest picker, price-with-fees, sold-out, layover, booking error, results skeleton do. Harvest patterns from a real booking flow, then extract. Show primitives inside page instances (SERP, PDP, checkout, Nox & Vale gallery) with real-ish content, not only isolation. Do not invent amenity facets; filter chips stay honest.
 - **Docs answer when / when not.** A component is not `stable` without the skeleton below. Kitchen-sink stories are not documentation. Model: GOV.UK button-page judgment + shadcn copy-paste.
 
 | Required | What it covers |
@@ -120,7 +162,7 @@ A good system is a product other products ship with, not a component catalog tha
 | Related patterns | Where this shows up in the flow |
 
 - **Distribution is honest.** `@navigato/react` is a versioned npm package (changelog, semver, deprecations in a minor before a major). Internally, shadcn stays copy-in under `ui/` so the file is editable. Document the consumer boundary: import from the package vs override tokens vs fork. Don't do neither — black-box npm with no tokens and no fork path.
-- **Governance is twenty lines, not a committee.** Bugs and a11y always in. New primitive only if composition fails. New pattern if it appears twice in the booking flow. Breaking changes = major, with a deprecated minor first. Andre is the enforcer. Status badges; don't mix experiments with the public API.
+- **Governance is twenty lines, not a committee.** Bugs and a11y always in. New primitive only if composition fails. New pattern if it appears twice in the booking flow. Breaking changes = major, with a deprecated minor first. Andre is the enforcer. Status badges; don't mix experiments with the public API. Booking preview parts stay preview, not stable. Do not bump to 1.0 while they are preview.
 
 ### Definition of done
 
@@ -133,7 +175,7 @@ A part is not done until these exist together (Curtis: Discover → Design → B
 
 ### What this repo is not
 
-A 200-person federated system, a three-tier token thesaurus, or a mandate without support. First release shows value in a travel pattern, not completeness of the shadcn catalog.
+A 200-person federated system, a three-tier token thesaurus, or a mandate without support. First release shows value in a travel pattern, not completeness of the shadcn catalog. It is not a greenfield rebuild, not an npm blob wrap, and not a second hotel SERP for Nox & Vale.
 
 Sources: Brad Frost (tokens vs components); Nathan Curtis (product serving products; doc is a step); NN/g maturity (library ≠ system); Sparkbox 2022 (onboarding, a11y guidelines, docs pain); GOV.UK (when / when not); Atlassian (tokens by meaning); Lightning (patterns layer); shadcn/ui (copy-in vs npm); DTCG 2025.10.
 
@@ -150,7 +192,7 @@ AI does not replace the system. It turns it into a control plane. Unconstrained 
 
 ### Navigato-specific risk
 
-This library looks like shadcn. v0 and similar tools are trained on default shadcn. Standing rule: use `@navigato/react` or copied Navigato files — never emit `@/components/ui` from memory. Document gaps; if there is no match, flag it. Do not invent a fare calendar or itinerary stepper.
+This library looks like shadcn. v0 and similar tools are trained on default shadcn. Standing rule: use `@navigato/react` or copied Navigato files — never emit `@/components/ui` from memory. Document gaps; if there is no match, flag it. Do not invent a fare calendar or itinerary stepper. Do not invent amenity facets.
 
 ### What lives where
 
@@ -158,8 +200,8 @@ Do not duplicate the full system in every layer.
 
 | Layer | Job |
 |-------|-----|
-| DESIGN.md (this file) | Portable snapshot: semantic tokens, density, do/don't, contrast, the quality bar. Not prop tables. Not how to rebuild Button (that causes forks). |
-| Astro docs | Humans. Add a markdown twin per page + `/llms.txt` so agents can parse. |
+| DESIGN.md (this file) | Portable snapshot: brands, semantic tokens, density, marks, font substitutes, the quality bar. Not prop tables. Not how to rebuild Button (that causes forks). |
+| Astro docs | Humans. Brand + mode switch. Add a markdown twin per page + `/llms.txt` so agents can parse. |
 | Skill(s) | Highest leverage for cloud agents. Narrow: never invent props/tokens/icons; copy-in vs package; Phosphor names only from the catalog (see Icons); never emit `@/components/ui` from memory; booking a11y as in Accessibility is a foundation. `AGENTS.md` is two screens pointing at skills + "query docs/registry before any prop." |
 | Registry | How copy-in consumers install (`registry.json`, model-written descriptions). |
 | npm `@navigato/react` | Canonical runtime for teams that import. Types are the linter. |
@@ -169,7 +211,7 @@ Do not duplicate the full system in every layer.
 
 1. Never invent component names, props, tokens, utility classes, or Phosphor icon names.
 2. Prefer existing primitives; new primitive only if composition fails (same as Governance).
-3. Restyle via tokens, never fork Button/Dialog for orange (same as Tokens vs components).
+3. Restyle via tokens, never fork Button/Dialog for a brand (same as Tokens vs components).
 4. If unverifiable, do not use it; flag the gap.
 5. Plan against the system API before generating.
 
@@ -179,11 +221,12 @@ Sources: parked 2026-09-01 from the DS+AI research (control plane; agent as adop
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
+| 2026-09-03 | Multi-brand via `data-brand` + existing `.dark` CSS variables | Fit the kit; do not invent a third theming library |
+| 2026-09-03 | Obsidian + Gallery palettes; sharp corners; Cinzel / Helvetica Neue stack / Jost | Lock Navigato luxury travel and Nox & Vale gallery fashion |
+| 2026-09-03 | Globe, Disc, Brush N as original SVG marks | Identity is tokens + marks; Phosphor stays UI-only |
 | 2026-09-01 | AI control-plane note parked next to the quality bar | Agents are an adopter class; unconstrained generation is vibe coding |
 | 2026-09-01 | Quality bar parked in DESIGN.md | Source of truth for what "good" means; vertical reuse over catalog coverage |
-| 2026-06-29 | Orange primary + warm stone neutrals | Revived Navigato brand identity |
-| 2026-06-29 | SN Pro single-family typography | Modern, cohesive travel product feel |
 | 2026-06-29 | shadcn copy-in under `ui/` | Full control, no npm blob |
 | 2026-06-29 | Phosphor for booking, Lucide for ui/ | Match Andre prefs without fighting shadcn upstream |
 | 2026-06-29 | Light default, opt-in `.dark` | Docs and demos default to light; dark tokens ready |
-| 2026-06-29 | SN Pro via `<link>` not CSS `@import` | Performance — consumers add font link explicitly |
+| 2026-06-29 | Display fonts via `<link>` not CSS `@import` | Performance — consumers add font link explicitly |

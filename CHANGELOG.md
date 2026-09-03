@@ -10,6 +10,13 @@ The library is **0.x**. Breaking changes are allowed in a minor; deprecations ar
 
 Workspace version. Named here so the SERP / PDP floor and the remaining booking docs have a place to land before the first npm release.
 
+### Multi-brand tokens (still unpublished)
+
+- `data-brand="navigato" | "nox-vale"` plus existing `.dark` on `<html>`. Named palettes (Obsidian, Gallery) map onto the same semantic CSS variables. `--radius: 0`. No version bump.
+- Marks: `GlobeMark`, `DiscMark`, `BrushNMark` (original SVG; Phosphor stays UI-only).
+- Docs: brand + mode switch; SERP restyled as private stays; Nox & Vale gallery product page (not a hotel SERP).
+- Fonts: Cinzel + Helvetica Neue stack (Navigato); Jost (Nox & Vale). SN Pro / orange / astronaut cat are not the default look.
+
 ### SERP floor
 
 - `ListingCard` `soldOut` — unavailable stays stay in the grid; save still works; click-to-open is suppressed; price is not shown as bookable.

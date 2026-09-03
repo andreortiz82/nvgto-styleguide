@@ -1,6 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40" fill="none" role="img" aria-label="Navigato">
-  <rect width="40" height="40" rx="10" fill="oklch(0.705 0.213 47.604)"/>
-  <path d="M20 9c-4.42 0-8 3.58-8 8 0 6 8 13 8 13s8-7 8-13c0-4.42-3.58-8-8-8z" fill="white"/>
-  <circle cx="20" cy="17" r="2.75" fill="oklch(0.705 0.213 47.604)"/>
-  <text x="50" y="27" font-family="SN Pro, system-ui, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.02em" fill="oklch(0.20 0.022 50)">Navigato</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 40" fill="none" role="img" aria-label="Navigato">
+  <g transform="translate(0,2) scale(0.5625)" stroke="#1C1917" stroke-width="1.15" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <circle cx="32" cy="32" r="29.25"/>
+    <line x1="2.75" y1="32" x2="61.25" y2="32"/>
+    <line x1="32" y1="2.75" x2="32" y2="61.25"/>
+    <ellipse cx="32" cy="32" rx="14" ry="29.25"/>
+    <polygon points="32,18.5 35.89,28.11 45.5,32 35.89,35.89 32,45.5 28.11,35.89 18.5,32 28.11,28.11"/>
+  </g>
+  <text x="48" y="26" font-family="Cinzel, Times New Roman, serif" font-size="14" font-weight="500" letter-spacing="0.28em" fill="#1C1917">NAVIGATO</text>
 </svg>
