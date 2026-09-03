@@ -1,4 +1,4 @@
-# Navigato Design System
+# Leo Design System
 
 Monorepo: `@navigato/react` (packages/navigato) + Astro docs (apps/docs).
 

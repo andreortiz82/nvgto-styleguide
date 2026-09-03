@@ -97,7 +97,7 @@ export function MobileNav({ base, currentPath }: MobileNavProps) {
       <SheetContent side="left" className="w-72 overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-left">
-            <span className="nvg-wordmark text-sm">Navigato</span>
+            <span className="nvg-wordmark text-sm">Leo</span>
           </SheetTitle>
         </SheetHeader>
         <div className="mt-6">

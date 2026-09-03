@@ -1,15 +1,17 @@
-# Design System — Navigato
+# Leo Design System
+
+Leo is the system. It is not a third visual brand and it has no `data-brand="leo"`.
 
 ## Product Context
 
-- **What this is:** MIT-licensed React component library and documentation site. The kit is multi-brand: **Navigato** (global luxury hotels and travel) and **Nox & Vale** (New York high-end fashion and accessories). Booking composites stay on the same stack.
+- **What this is:** **Leo Design System** — MIT-licensed React component library and documentation site. Official design system for two brands: **Navigato** (global luxury hotels and travel) and **Nox & Vale** (New York high-end fashion and accessories). Booking composites stay on the same stack. The npm package remains `@navigato/react`.
 - **Who it's for:** Product engineers building SERP, PDP, checkout, and (for Nox & Vale) product/object pages; portfolio viewers evaluating design-system craft.
 - **Space/industry:** Travel / hospitality for Navigato; fashion / objects for Nox & Vale.
 - **Project type:** Design system docs site + npm package (`@navigato/react`).
 
 ## Brands
 
-Two brands, each with light and dark. Switch with `data-brand` on `<html>` (`navigato` | `nox-vale`) plus the existing `.dark` class. This is the same CSS-variable layer as `theme.css` / Tailwind v4 `@theme` — not a third theming library.
+Two brands, each with light and dark. Switch with `data-brand` on `<html>` (`navigato` | `nox-vale`) plus the existing `.dark` class. This is the same CSS-variable layer as `theme.css` / Tailwind v4 `@theme` — not a third theming library. Do not add `data-brand="leo"`.
 
 There is **no Navigato Black brand**. Dark Navigato is champagne on obsidian.
 
@@ -136,7 +138,7 @@ Public mark exports: `GlobeMark`, `DiscMark`, `BrushNMark`.
 
 ## What good looks like
 
-A good system is a product other products ship with, not a component catalog that launched. Navigato is a small MIT travel-booking library that now hosts a second brand on the same primitives — optimize vertical reuse inside SERP, PDP, and checkout, plus one honest fashion/object page, not Carbon-scale coverage. Component count is a weak health signal.
+A good system is a product other products ship with, not a component catalog that launched. Leo is a small MIT library that serves Navigato booking flows and a Nox & Vale gallery page on the same primitives — optimize vertical reuse inside SERP, PDP, and checkout, plus one honest fashion/object page, not Carbon-scale coverage. Component count is a weak health signal.
 
 ### Quality bar
 
@@ -192,7 +194,7 @@ AI does not replace the system. It turns it into a control plane. Unconstrained 
 
 ### Navigato-specific risk
 
-This library looks like shadcn. v0 and similar tools are trained on default shadcn. Standing rule: use `@navigato/react` or copied Navigato files — never emit `@/components/ui` from memory. Document gaps; if there is no match, flag it. Do not invent a fare calendar or itinerary stepper. Do not invent amenity facets.
+This library looks like shadcn. v0 and similar tools are trained on default shadcn. Standing rule: use `@navigato/react` or copied Leo files from `packages/navigato/src` — never emit `@/components/ui` from memory. Document gaps; if there is no match, flag it. Do not invent a fare calendar or itinerary stepper. Do not invent amenity facets. Do not treat Leo as a third `data-brand`.
 
 ### What lives where
 
@@ -221,6 +223,7 @@ Sources: parked 2026-09-01 from the DS+AI research (control plane; agent as adop
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
+| 2026-09-03 | Product name locked: Leo Design System | Leo is the system; Navigato and Nox & Vale are the brands. No `data-brand="leo"` |
 | 2026-09-03 | Multi-brand via `data-brand` + existing `.dark` CSS variables | Fit the kit; do not invent a third theming library |
 | 2026-09-03 | Obsidian + Gallery palettes; sharp corners; Cinzel / Helvetica Neue stack / Jost | Lock Navigato luxury travel and Nox & Vale gallery fashion |
 | 2026-09-03 | Globe, Disc, Brush N as original SVG marks | Identity is tokens + marks; Phosphor stays UI-only |

@@ -72,7 +72,7 @@ const typeScale: TypeSample[] = [
   {
     name: "Heading 1",
     role: "Page titles in docs and primary screens",
-    sample: "Navigato Design System",
+    sample: "Leo Design System",
     as: "h1",
     className:
       "nvg-wordmark text-4xl leading-[1.2] m-0 text-foreground",

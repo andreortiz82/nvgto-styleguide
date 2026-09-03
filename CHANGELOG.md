@@ -12,6 +12,7 @@ Workspace version. Named here so the SERP / PDP floor and the remaining booking 
 
 ### Multi-brand tokens (still unpublished)
 
+- Product name: **Leo Design System**. Leo is the system; Navigato and Nox & Vale are the brands. No `data-brand="leo"`. Package stays `@navigato/react`.
 - `data-brand="navigato" | "nox-vale"` plus existing `.dark` on `<html>`. Named palettes (Obsidian, Gallery) map onto the same semantic CSS variables. `--radius: 0`. No version bump.
 - Marks: `GlobeMark`, `DiscMark`, `BrushNMark` (original SVG; Phosphor stays UI-only).
 - Docs: brand + mode switch; SERP restyled as private stays; Nox & Vale gallery product page (not a hotel SERP).

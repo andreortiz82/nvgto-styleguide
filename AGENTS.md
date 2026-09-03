@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Navigato is a small MIT travel-booking library that also hosts Nox & Vale on the same primitives. `@navigato/react` is the system. Unconstrained generation is vibe coding.
+Leo is the design system. Navigato and Nox & Vale are brands inside it. `@navigato/react` is the package (do not rename it). There is no `data-brand="leo"`. Unconstrained generation is vibe coding.
 
 Read `DESIGN.md` (quality bar + How AI changes this) before writing UI. Query this file, `DESIGN.md`, and `apps/docs/src/content/components/registry.ts` before any prop. Human Cursor skill routing lives in `CLAUDE.md` — do not duplicate it here.
 

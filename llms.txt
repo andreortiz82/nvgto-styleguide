@@ -1,6 +1,6 @@
-# Navigato
+# Leo Design System
 
-> MIT travel-booking React library (`@navigato/react`) and docs. Multi-brand: Navigato (Obsidian) and Nox & Vale (Gallery). Index only — query the linked files before generating UI. Never emit `@/components/ui` from memory.
+> Leo is the system. Brands: Navigato (Obsidian) and Nox & Vale (Gallery). Package: `@navigato/react`. No `data-brand="leo"`. Index only — query the linked files before generating UI. Never emit `@/components/ui` from memory.
 
 `@navigato/react@0.2.0` is unpublished. Booking parts are `preview`, not `stable`. Changelog: [CHANGELOG.md](./CHANGELOG.md).
 

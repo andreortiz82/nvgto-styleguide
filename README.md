@@ -1,6 +1,6 @@
-# Navigato Design System
+# Leo Design System
 
-**Navigato** is a multi-brand React kit: luxury hotel booking UIs (Navigato) and a New York fashion/object gallery (Nox & Vale) on the same shadcn primitives and booking composites.
+**Leo** is the official design system for two brands: **Navigato** (luxury hotel booking) and **Nox & Vale** (New York fashion and objects). Same shadcn primitives and booking composites. Leo is the system — not a third visual brand and not a third `data-brand`.
 
 Originally built as a [Middleman](https://middlemanapp.com) styleguide, this repo is now a modern npm monorepo: **`@navigato/react` 0.2.0** on **shadcn/ui + Tailwind CSS v4**, with live documentation. Identity is tokens + marks (globe, disc, brush N), not orange or SN Pro.
 

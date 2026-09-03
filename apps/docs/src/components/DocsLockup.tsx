@@ -58,10 +58,10 @@ export function DocsBrandLockup({ compact = false }: { compact?: boolean }) {
   return (
     <>
       <span className="docs-lockup docs-lockup--navigato">
-        <NavigatoLockup size={size} sublabel={compact ? undefined : "Design system"} />
+        <NavigatoLockup size={size} sublabel={compact ? undefined : "Leo"} />
       </span>
       <span className="docs-lockup docs-lockup--nox">
-        <NoxValeLockup size={compact ? 18 : 22} mark="disc" sublabel={compact ? undefined : "Design system"} />
+        <NoxValeLockup size={compact ? 18 : 22} mark="disc" sublabel={compact ? undefined : "Leo"} />
       </span>
     </>
   );

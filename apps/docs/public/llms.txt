@@ -1,6 +1,6 @@
-# Navigato
+# Leo Design System
 
-> MIT travel-booking React library (`@navigato/react`). Index only — not a teacher. Query DESIGN.md and the component registry in the GitHub repo before any prop. Never emit `@/components/ui` from memory.
+> Leo is the system. Brands: Navigato and Nox & Vale. Package: `@navigato/react`. No `data-brand="leo"`. Index only — not a teacher. Query DESIGN.md and the component registry in the GitHub repo before any prop. Never emit `@/components/ui` from memory.
 
 `@navigato/react@0.2.0` is unpublished. Booking parts are `preview`, not `stable`. Changelog lives at the repo root.
 
