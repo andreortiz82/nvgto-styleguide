@@ -2,6 +2,7 @@
 import DocsLayout from "../../../layouts/DocsLayout.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import { NoxValeGalleryDemo } from "../../../components/demos/v2/NoxValeDemo";
+import { PhotoCredits } from "../../../components/PhotoCredits";
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -10,9 +11,21 @@ const base = import.meta.env.BASE_URL;
   <Breadcrumb base={base} tier="Pages" tierHref="/components/pages/" />
   <h1>Nox &amp; Vale — Gallery</h1>
   <p>
-    A small fashion/object product page — disc in the header, brush N as the signature,
-    outline bag action, sharp corners. Not a hotel SERP. Switch brand and mode in the
-    sidebar to see Gallery tokens on this composition.
+    A fashion/object PDP and lookbook — disc in the header, brush N as the signature, shopping
+    composites (size, color, quantity, bag). Status preview. Not a hotel SERP. Switch brand and
+    mode in the sidebar to see Gallery tokens on this composition.
   </p>
   <NoxValeGalleryDemo client:load />
+  <PhotoCredits
+    files={[
+      "hoop-earrings.jpg",
+      "leather-belt.jpg",
+      "menswear-suit.jpg",
+      "womenswear.jpg",
+      "handbag.jpg",
+      "shoes.jpg",
+      "menswear-coat.jpg",
+      "jewelry.jpg",
+    ]}
+  />
 </DocsLayout>

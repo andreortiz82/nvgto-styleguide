@@ -57,3 +57,20 @@ export { SearchHeader, type SearchHeaderProps } from "./components/booking/searc
 export { BookingSteps, defaultBookingSteps, type BookingStepsProps, type BookingStep } from "./components/booking/booking-steps";
 export { EmptyState, type EmptyStateProps } from "./components/booking/empty-state";
 export { ListingCardSkeleton, type ListingCardSkeletonProps } from "./components/booking/listing-card-skeleton";
+
+// shopping molecules
+export { SizeSelector, type SizeSelectorProps } from "./components/shopping/size-selector";
+export { ColorSwatch, type ColorSwatchProps, type ColorOption } from "./components/shopping/color-swatch";
+export { QuantityStepper, type QuantityStepperProps } from "./components/shopping/quantity-stepper";
+export { ProductPrice, type ProductPriceProps } from "./components/shopping/product-price";
+export { WishlistButton, type WishlistButtonProps } from "./components/shopping/wishlist-button";
+export { ProductBadge, type ProductBadgeProps, type ProductBadgeTone } from "./components/shopping/product-badge";
+
+// shopping organisms
+export { ProductCard, type ProductCardProps } from "./components/shopping/product-card";
+export { ProductCardSkeleton, type ProductCardSkeletonProps } from "./components/shopping/product-card-skeleton";
+export { ProductGallery, type ProductGalleryProps } from "./components/shopping/product-gallery";
+export { CartLine, type CartLineProps, type CartLineItem } from "./components/shopping/cart-line";
+export { CartDrawer, type CartDrawerProps } from "./components/shopping/cart-drawer";
+export { LookbookRow, type LookbookRowProps } from "./components/shopping/lookbook-row";
+export { ProductGrid, type ProductGridProps } from "./components/shopping/product-grid";

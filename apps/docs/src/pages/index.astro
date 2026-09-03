@@ -6,10 +6,11 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <DocsLayout title="Overview">
-  <h1>Navigato Design System</h1>
+  <h1>Leo Design System</h1>
   <p class="nvg-lead">
     A multi-brand React kit: Navigato for private stays, Nox &amp; Vale for gallery objects —
-    same primitives, tokens, and booking composites. Switch brand and mode in the sidebar.
+    same primitives, tokens, and composites under <code>@navigato/react</code>. Switch brand and
+    mode in the sidebar.
   </p>
 
   <div class="not-prose my-8 grid gap-4 sm:grid-cols-2">
@@ -20,11 +21,16 @@ const base = import.meta.env.BASE_URL;
         Light: ink on mist. Dark: champagne on obsidian. Cinzel + Helvetica Neue stack. Globe mark.
       </p>
       <div class="mt-4 flex gap-2" aria-hidden="true">
-        <span class="size-8 border border-border" style="background:#F4F2EE"></span>
-        <span class="size-8 border border-border" style="background:#1C1917"></span>
-        <span class="size-8 border border-border" style="background:#C4B59A"></span>
-        <span class="size-8 border border-border" style="background:#0C0A09"></span>
+        <span class="size-8 border border-border" style="background:#F4F2EE" title="mist"></span>
+        <span class="size-8 border border-border" style="background:#44403C" title="graphite"></span>
+        <span class="size-8 border border-border" style="background:#1C1917" title="ink"></span>
+        <span class="size-8 border border-border" style="background:#C4B59A" title="champagne"></span>
+        <span class="size-8 border border-border" style="background:#0C0A09" title="black"></span>
+        <span class="size-8 border border-border" style="background:#B8B4AE" title="silver"></span>
       </div>
+      <p class="m-0 mt-3 text-xs text-muted-foreground">
+        Summary chips. <a href={`${base}tokens/colors/`} class="text-primary">Full ramps →</a>
+      </p>
     </div>
     <div class="border border-border bg-card p-5">
       <p class="nvg-uppercase text-muted-foreground m-0 mb-3">Gallery</p>
@@ -33,11 +39,15 @@ const base = import.meta.env.BASE_URL;
         Light: night on plaster. Dark: plaster on night. Jost. Disc + Brush N. Cobalt only as accent.
       </p>
       <div class="mt-4 flex gap-2" aria-hidden="true">
-        <span class="size-8 border border-border" style="background:#F4F2EF"></span>
-        <span class="size-8 border border-border" style="background:#111318"></span>
-        <span class="size-8 border border-border" style="background:#1E4FD6"></span>
-        <span class="size-8 border border-border" style="background:#9A9AA3"></span>
+        <span class="size-8 border border-border" style="background:#F4F2EF" title="plaster"></span>
+        <span class="size-8 border border-border" style="background:#111318" title="night"></span>
+        <span class="size-8 border border-border" style="background:#1E4FD6" title="cobalt"></span>
+        <span class="size-8 border border-border" style="background:#9A9AA3" title="pewter"></span>
+        <span class="size-8 border border-border" style="background:#E7E4DE" title="pearl"></span>
       </div>
+      <p class="m-0 mt-3 text-xs text-muted-foreground">
+        Summary chips. <a href={`${base}tokens/colors/`} class="text-primary">Full ramps →</a>
+      </p>
     </div>
   </div>
 
@@ -51,9 +61,9 @@ const base = import.meta.env.BASE_URL;
     </p>
     <ul class="list-disc pl-5 space-y-1">
       <li>Two brands, each with light and dark, on Tailwind v4 CSS variables (<code>data-brand</code> + <code>.dark</code>)</li>
-      <li>shadcn/ui primitives + booking composites — sharp corners, hairline borders</li>
+      <li>shadcn/ui primitives + booking and shopping composites — sharp corners, cool elevation</li>
       <li>Date range pickers, guest selectors, listing cards, booking widgets, price breakdowns</li>
-      <li>A Nox &amp; Vale product page — not a fake hotel SERP</li>
+      <li>Nox &amp; Vale shopping molecules (size, color, bag) and a gallery PDP — not a fake hotel SERP</li>
     </ul>
   </section>
 

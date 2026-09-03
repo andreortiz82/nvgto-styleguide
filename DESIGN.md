@@ -1,9 +1,9 @@
-# Design System — Navigato
+# Design System — Leo / Navigato
 
 ## Product Context
 
-- **What this is:** MIT-licensed React component library and documentation site. The kit is multi-brand: **Navigato** (global luxury hotels and travel) and **Nox & Vale** (New York high-end fashion and accessories). Booking composites stay on the same stack.
-- **Who it's for:** Product engineers building SERP, PDP, checkout, and (for Nox & Vale) product/object pages; portfolio viewers evaluating design-system craft.
+- **What this is:** MIT-licensed React component library and documentation site (**Leo Design System**). The kit is multi-brand: **Navigato** (global luxury hotels and travel) and **Nox & Vale** (New York high-end fashion and accessories). Booking composites and shopping composites share the same stack. Docs chrome title is **Leo Design System**; brands are Navigato and Nox & Vale.
+- **Who it's for:** Product engineers building SERP, PDP, checkout, and (for Nox & Vale) product/object pages; portfolio viewers evaluating design-system craft. The docs site lockup is Leo + the active brand — never “Nox & Vale Design System” while Navigato is selected.
 - **Space/industry:** Travel / hospitality for Navigato; fashion / objects for Nox & Vale.
 - **Project type:** Design system docs site + npm package (`@navigato/react`).
 
@@ -51,9 +51,9 @@ Phosphor is for UI icons. Phosphor is not the brand mark.
 ## Aesthetic Direction
 
 - **Direction:** Quiet luxury (Navigato) and white-cube fashion (Nox & Vale). Identity is palettes + type roles + marks + **0px radius**.
-- **Decoration level:** Restrained — hairline borders, almost no elevation. Shadows are 1px rings, not warm drop shadows.
+- **Decoration level:** Restrained — hairline borders plus a **cool, low-spread elevation scale**. Shadows are not Material blobs and not an orange or cobalt glow.
 - **Mood:** Inscribed travel vs gallery objects. Never approachable-orange utility.
-- **Corners:** Sharp everywhere (`--radius: 0`). `rounded-full` stays only where geometry is a circle (switch, slider thumb, disc).
+- **Corners:** Sharp everywhere (`--radius: 0`). `rounded-full` stays only where geometry is a circle (switch, slider thumb, disc, color swatch).
 
 ## Typography
 
@@ -89,24 +89,25 @@ Phosphor is for UI icons. Phosphor is not the brand mark.
 
 ## Layout
 
-- **Approach:** Grid-disciplined docs shell; flexible booking composites; a small fashion/object page for Nox & Vale (not a fake hotel SERP).
+- **Approach:** Grid-disciplined docs shell; flexible booking composites; shopping composites under `packages/navigato/src/components/shopping/` for Nox & Vale (not a fake hotel SERP).
+- **Docs chrome:** Mark follows the active brand (globe vs disc). Title is **Leo Design System** (stable). Subline is Navigato or Nox & Vale. Brand switcher is labeled Brand.
 - **Docs grid:** 288px sticky sidebar + fluid main (max-w-5xl).
 - **Max content width:** 64rem (5xl) for docs prose.
 - **Border radius:** Base `--radius: 0px`. All `--radius-*` theme keys are 0.
 
 ## Shadows
 
-Hairline rings, not warm elevation:
+Cool, low-spread elevation plus a hairline ring. Quiet luxury / gallery — not Material blobs, not champagne or cobalt glow. Andre overrode the earlier “rings only” rule.
 
 | Token | Use |
 |-------|-----|
-| `--shadow-2xs` / `--shadow-xs` | 1px foreground ring |
-| `--shadow-sm` | Cards at rest |
-| `--shadow-md` | Popovers, dropdowns |
-| `--shadow-lg` | Hover emphasis |
-| `--shadow-xl` / `--shadow-2xl` | Modals |
+| `--shadow-2xs` / `--shadow-xs` | Hairline lift |
+| `--shadow-sm` | Cards at rest (Card, ListingCard, ProductCard) |
+| `--shadow-md` | Popovers, dropdowns, selected swatches |
+| `--shadow-lg` | Hover emphasis, sheets |
+| `--shadow-xl` / `--shadow-2xl` | Dialogs, modals |
 
-Utilities: `.nvg-shadow-sm`, `.nvg-shadow-lg`.
+Utilities: `.nvg-shadow-sm`, `.nvg-shadow-md`, `.nvg-shadow-lg`, `.nvg-shadow-xl`. Light uses ink/night-tinted shadows; dark uses cool black with a hairline of champagne or plaster — not a warm glow.
 
 ## Motion
 
@@ -116,15 +117,16 @@ Utilities: `.nvg-shadow-sm`, `.nvg-shadow-lg`.
   - micro: 100–150ms (color, opacity, border)
   - short: 200ms (opacity, hairline ring)
   - medium: 250–400ms (sheet/dialog via tw-animate-css)
-- **Library utilities:** `.nvg-animate-pulse` (0.5s), `.nvg-animate-ping` (1.5s) — map markers, loading emphasis.
-- **Reduced motion:** `@media (prefers-reduced-motion: reduce)` disables custom animations; prefer opacity/color-only transitions.
+- **Library utilities:** `.nvg-animate-bounce`, `.nvg-animate-fade-in`, `.nvg-animate-fade-out`, `.nvg-animate-spin`, `.nvg-animate-ping`, `.nvg-animate-pulse`, `.nvg-animate-slide`, `.nvg-animate-scale`. Duration: `.nvg-duration-micro` / `short` / `medium`. CSS-first; no GSAP.
+- **Reduced motion:** `@media (prefers-reduced-motion: reduce)` maps movement utilities to opacity-only (fade / reduced pulse). Prefer opacity/color-only transitions.
 
 ## Icons
 
 - **Booking components:** Phosphor Icons (`@phosphor-icons/react`) — regular/bold/fill weights.
-- **shadcn ui/ internals:** Lucide acceptable for upstream primitives (calendar chevrons, dialog close) — do not mass-migrate.
+- **Shopping components:** Phosphor as well (`shopping/`). Travel + shopping catalog is documented on Tokens → Icons.
+- **shadcn ui/ internals:** Lucide acceptable for upstream primitives (calendar chevrons, dialog close) — do not mass-migrate. Lucide is not the documented icon set.
 - **Brand marks:** globe, disc, brush N — SVG in `packages/navigato/src/marks/`. Not Phosphor.
-- **Rule:** New booking-domain icons must use Phosphor. Do not use Phosphor as a logo.
+- **Rule:** New booking- or shopping-domain icons must use Phosphor. Do not use Phosphor as a logo.
 
 ## Internal-only components
 
@@ -143,7 +145,7 @@ A good system is a product other products ship with, not a component catalog tha
 - **Tokens vs components is the split.** Behavior and a11y live in the primitive (Radix / shadcn). Obsidian vs Gallery vs dark live in tokens. Do not fork a Dialog because the brand changed. Identity is tokens + the globe / disc / brush-N marks. Chroma (champagne or cobalt) is spare, not every chrome.
 - **Accessibility is a foundation, not a page.** Inherit Radix keyboard and focus. Add travel-specific contracts: date-picker keyboard, live regions for price updates, never disable Pay without an explanation. Ink-on-mist, champagne-on-obsidian, night-on-plaster, and plaster-on-night must meet WCAG 2.2 AA. Components are necessary but not sufficient for an accessible product.
 - **Thin semantic token layer.** Two layers: private core/option (named palettes) + public semantic/decision roles (`background`, `primary`, `accent`). Pick tokens by meaning, not by matching hex. No third (component-token) layer unless a travel control truly needs a unique contract. DTCG-shaped naming is welcome; a Style Dictionary pipeline is not required while the only consumer is Tailwind v4 CSS variables. Fit `data-brand` + `.dark` — do not invent a theming library.
-- **Patterns are the product.** Buttons don't differentiate this library. Date range, guest picker, price-with-fees, sold-out, layover, booking error, results skeleton do. Harvest patterns from a real booking flow, then extract. Show primitives inside page instances (SERP, PDP, checkout, Nox & Vale gallery) with real-ish content, not only isolation. Do not invent amenity facets; filter chips stay honest.
+- **Patterns are the product.** Buttons don't differentiate this library. Date range, guest picker, price-with-fees, sold-out, layover, booking error, results skeleton do. Harvest patterns from a real booking flow, then extract. Show primitives inside page instances (SERP, PDP, checkout, Nox & Vale gallery) with real-ish content and photography, not only isolation. Do not invent amenity facets; filter chips stay honest. Shopping composites live in `shopping/`, not `booking/`.
 - **Docs answer when / when not.** A component is not `stable` without the skeleton below. Kitchen-sink stories are not documentation. Model: GOV.UK button-page judgment + shadcn copy-paste.
 
 | Required | What it covers |
@@ -221,6 +223,9 @@ Sources: parked 2026-09-01 from the DS+AI research (control plane; agent as adop
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
+| 2026-09-03 | Docs chrome is Leo Design System; brands are Navigato and Nox & Vale | Kit name vs brand name; mark + subline follow `data-brand` |
+| 2026-09-03 | Elevation scale is cool low-spread shadows, not hairline-only | Andre production review |
+| 2026-09-03 | Shopping composites in `shopping/` (preview) | Fashion/object PDP for Nox & Vale; not a second hotel SERP |
 | 2026-09-03 | Multi-brand via `data-brand` + existing `.dark` CSS variables | Fit the kit; do not invent a third theming library |
 | 2026-09-03 | Obsidian + Gallery palettes; sharp corners; Cinzel / Helvetica Neue stack / Jost | Lock Navigato luxury travel and Nox & Vale gallery fashion |
 | 2026-09-03 | Globe, Disc, Brush N as original SVG marks | Identity is tokens + marks; Phosphor stays UI-only |

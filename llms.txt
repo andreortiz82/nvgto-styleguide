@@ -1,6 +1,6 @@
 # Navigato
 
-> MIT travel-booking React library (`@navigato/react`) and docs. Multi-brand: Navigato (Obsidian) and Nox & Vale (Gallery). Index only — query the linked files before generating UI. Never emit `@/components/ui` from memory.
+> MIT travel-booking React library (`@navigato/react`) and Leo Design System docs. Multi-brand: Navigato (Obsidian) and Nox & Vale (Gallery). Index only — query the linked files before generating UI. Never emit `@/components/ui` from memory.
 
 `@navigato/react@0.2.0` is unpublished. Booking parts are `preview`, not `stable`. Changelog: [CHANGELOG.md](./CHANGELOG.md).
 
@@ -12,7 +12,8 @@
 - [Public exports](./packages/navigato/src/index.ts): `@navigato/react` API
 - [Component registry](./apps/docs/src/content/components/registry.ts): purpose, status, when/when-not, props
 - [Page demos](./apps/docs/src/components/demos/v2/PageDemos.tsx): SERP, PDP, checkout
-- [Nox & Vale gallery](./apps/docs/src/components/demos/v2/NoxValeDemo.tsx): fashion/object product page
+- [Nox & Vale gallery](./apps/docs/src/components/demos/v2/NoxValeDemo.tsx): fashion/object PDP using `shopping/`
+- [Shopping composites](./packages/navigato/src/components/shopping/): SizeSelector, ProductCard, CartDrawer, …
 - [Getting started](./apps/docs/src/pages/getting-started.astro): consume from the repo; do not assume npm
 
 ## Docs site (`/leo-design-system/`)
@@ -36,6 +37,29 @@
 - [ListingCardSkeleton](https://andreortiz82.github.io/leo-design-system/components/organisms/listing-card-skeleton/)
 - [SERP](https://andreortiz82.github.io/leo-design-system/components/pages/serp/)
 - [Gallery](https://andreortiz82.github.io/leo-design-system/components/pages/gallery/)
+
+### Shopping parts (preview)
+
+- [SizeSelector](https://andreortiz82.github.io/leo-design-system/components/molecules/size-selector/)
+- [ColorSwatch](https://andreortiz82.github.io/leo-design-system/components/molecules/color-swatch/)
+- [QuantityStepper](https://andreortiz82.github.io/leo-design-system/components/molecules/quantity-stepper/)
+- [ProductPrice](https://andreortiz82.github.io/leo-design-system/components/molecules/product-price/)
+- [WishlistButton](https://andreortiz82.github.io/leo-design-system/components/molecules/wishlist-button/)
+- [ProductBadge](https://andreortiz82.github.io/leo-design-system/components/molecules/product-badge/)
+- [ProductCard](https://andreortiz82.github.io/leo-design-system/components/organisms/product-card/)
+- [ProductGallery](https://andreortiz82.github.io/leo-design-system/components/organisms/product-gallery/)
+- [CartLine](https://andreortiz82.github.io/leo-design-system/components/organisms/cart-line/)
+- [CartDrawer](https://andreortiz82.github.io/leo-design-system/components/organisms/cart-drawer/)
+- [LookbookRow](https://andreortiz82.github.io/leo-design-system/components/organisms/lookbook-row/)
+- [ProductGrid](https://andreortiz82.github.io/leo-design-system/components/organisms/product-grid/)
+
+### Tokens
+
+- [Colors](https://andreortiz82.github.io/leo-design-system/tokens/colors/)
+- [Spacing & shadows](https://andreortiz82.github.io/leo-design-system/tokens/spacing/)
+- [Motion](https://andreortiz82.github.io/leo-design-system/tokens/motion/)
+- [Icons](https://andreortiz82.github.io/leo-design-system/tokens/icons/)
+- [Charts](https://andreortiz82.github.io/leo-design-system/tokens/charts/)
 
 ### PDP and checkout parts
 

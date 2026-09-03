@@ -1,7 +1,7 @@
 ---
 import { siteNav, withBase, isActive, type NavItem } from "../lib/nav";
 import { MobileNav } from "../components/MobileNav";
-import { DocsThemeControls } from "../components/ThemeToggle";
+import { DocsThemeControls, ThemeToggle } from "../components/ThemeToggle";
 import { DocsBrandLockup } from "../components/DocsLockup";
 import "@navigato/react/styles.css";
 
@@ -29,8 +29,8 @@ function groupActive(item: NavItem) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description ?? "Navigato multi-brand design system documentation"} />
-    <title>{title ? `${title} · Navigato` : "Navigato Design System"}</title>
+    <meta name="description" content={description ?? "Leo Design System — Navigato and Nox & Vale on @navigato/react"} />
+    <title>{title ? `${title} · Leo Design System` : "Leo Design System"}</title>
     <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -74,11 +74,17 @@ function groupActive(item: NavItem) {
     </header>
 
     <div class="flex min-h-screen">
-      <aside class="w-72 shrink-0 border-r border-sidebar-border bg-sidebar p-6 hidden lg:block sticky top-0 h-screen overflow-y-auto">
-        <div class="flex items-start justify-between gap-2 mb-8">
-          <a href={base} class="no-underline text-foreground group min-w-0">
-            <DocsBrandLockup client:load />
-          </a>
+      <aside
+        id="docs-sidebar"
+        class="w-72 shrink-0 border-r border-sidebar-border bg-sidebar p-6 hidden lg:block sticky top-0 h-screen overflow-y-auto"
+      >
+        <div class="mb-8 space-y-4">
+          <div class="flex items-start justify-between gap-2">
+            <a href={base} class="no-underline text-foreground group min-w-0">
+              <DocsBrandLockup client:load />
+            </a>
+            <ThemeToggle client:load />
+          </div>
           <DocsThemeControls client:load />
         </div>
         <nav class="space-y-5 text-sm" aria-label="Documentation">
@@ -164,6 +170,39 @@ function groupActive(item: NavItem) {
             )
           }
         </nav>
+        <script is:inline>
+          (function () {
+            var KEY = "leo-docs-sidebar-scroll";
+            var el = document.getElementById("docs-sidebar");
+            if (!el) return;
+            var restore = function () {
+              try {
+                var y = sessionStorage.getItem(KEY);
+                if (y != null) el.scrollTop = parseInt(y, 10) || 0;
+              } catch (e) {}
+            };
+            restore();
+            requestAnimationFrame(restore);
+            el.addEventListener(
+              "scroll",
+              function () {
+                try {
+                  sessionStorage.setItem(KEY, String(el.scrollTop));
+                } catch (e) {}
+              },
+              { passive: true },
+            );
+            el.addEventListener("click", function (event) {
+              var node = event.target;
+              if (node && node.closest && node.closest("a")) {
+                try {
+                  sessionStorage.setItem(KEY, String(el.scrollTop));
+                } catch (e) {}
+              }
+            });
+            window.addEventListener("pageshow", restore);
+          })();
+        </script>
       </aside>
 
       <main id="main-content" class="flex-1 p-6 lg:p-10 max-w-5xl">
@@ -178,16 +217,26 @@ function groupActive(item: NavItem) {
 <style is:global>
   @import "../styles/global.css";
 
-  .docs-lockup {
+  .docs-mark,
+  .docs-brand-sub {
     display: none;
   }
 
-  :root[data-brand="navigato"] .docs-lockup--navigato,
-  :root:not([data-brand]) .docs-lockup--navigato {
-    display: flex;
+  :root[data-brand="navigato"] .docs-mark--globe,
+  :root:not([data-brand]) .docs-mark--globe {
+    display: inline-flex;
   }
 
-  :root[data-brand="nox-vale"] .docs-lockup--nox {
-    display: flex;
+  :root[data-brand="navigato"] .docs-brand-sub--navigato,
+  :root:not([data-brand]) .docs-brand-sub--navigato {
+    display: block;
+  }
+
+  :root[data-brand="nox-vale"] .docs-mark--disc {
+    display: inline-flex;
+  }
+
+  :root[data-brand="nox-vale"] .docs-brand-sub--nox {
+    display: block;
   }
 </style>

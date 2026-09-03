@@ -52,7 +52,11 @@ export function TabsDefaultDemo() {
         <TabsTrigger value="reviews">Reviews</TabsTrigger>
       </TabsList>
       <TabsContent value="photos" className="text-sm text-muted-foreground">
-        Photo gallery content
+        <img
+          src={`${import.meta.env.BASE_URL}photos/hotel-suite.jpg`}
+          alt="Hotel suite"
+          className="mt-2 aspect-[16/9] w-full object-cover"
+        />
       </TabsContent>
       <TabsContent value="amenities" className="text-sm text-muted-foreground">
         WiFi, pool, parking

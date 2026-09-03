@@ -30,7 +30,8 @@ import {
   StarRating,
 } from "@navigato/react";
 import { Coffee, CookingPot, Park, Snowflake, WifiHigh } from "@phosphor-icons/react";
-import { DEMO_STAY_RANGE, GALLERY, IMG, PDP_GALLERY } from "../examples/organisms";
+import { DEMO_STAY_RANGE, GALLERY, PDP_GALLERY } from "../examples/organisms";
+import { STAY_PHOTOS } from "../../../lib/photos";
 
 type SerpListing = {
   title: string;
@@ -53,7 +54,7 @@ const SERP_LISTINGS: SerpListing[] = [
     pricePerNight: 2400,
     rating: 4.9,
     reviewCount: 128,
-    imageUrl: IMG,
+    imageUrl: STAY_PHOTOS.pool,
     images: GALLERY,
     badge: "Members",
     mapPrice: "$2,400",
@@ -64,7 +65,7 @@ const SERP_LISTINGS: SerpListing[] = [
     pricePerNight: 1850,
     rating: 4.6,
     reviewCount: 87,
-    imageUrl: GALLERY[1],
+    imageUrl: STAY_PHOTOS.suite,
     mapPrice: "$1,850",
   },
   {
@@ -73,7 +74,7 @@ const SERP_LISTINGS: SerpListing[] = [
     pricePerNight: 3200,
     rating: 5,
     reviewCount: 18,
-    imageUrl: GALLERY[2],
+    imageUrl: STAY_PHOTOS.beach,
     saved: true,
     mapPrice: "$3,200",
   },
@@ -83,7 +84,7 @@ const SERP_LISTINGS: SerpListing[] = [
     pricePerNight: 2100,
     rating: 4.4,
     reviewCount: 61,
-    imageUrl: GALLERY[3],
+    imageUrl: STAY_PHOTOS.bedroom,
     soldOut: true,
   },
 ];
@@ -633,6 +634,7 @@ export function CheckoutPageDemo() {
             <CardDescription>Pincio, Rome · Mar 12–15 · 2 adults · 1 room</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            <img src={STAY_PHOTOS.pool} alt="" className="aspect-[16/9] w-full object-cover" />
             <Separator />
             <PriceBreakdown
               lineItems={[
